@@ -65,7 +65,7 @@ class EarningController extends Controller
                 'commission' => format_commission($provider) == 0 ? '0' : format_commission($provider),
                 'commission_type' => optional($provider->providertype)->type,
                 'total_bookings' => $bookings->count(),
-                'total_earning' => 100,
+                'total_earning' => $totalearning,
                 'taxes' => getPriceFormat($booking_data['tax']),
                 'admin_earning' => $adminearning,
                 'provider_earning' => $providerearning,
