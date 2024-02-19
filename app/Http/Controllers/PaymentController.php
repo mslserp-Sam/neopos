@@ -307,7 +307,7 @@ class PaymentController extends Controller
 
     public function cashApprove($id){
         $admin = AppSetting::first();
-
+        //samsam_pending_admin
         $paymentdata = Payment::where('id',$id)->first();
         $parent_payment_history = PaymentHistory::where('status','pending_by_admin')
         ->where('payment_id',$id)->first();
