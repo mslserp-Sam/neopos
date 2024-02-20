@@ -8,6 +8,7 @@ use App\Models\PaymentHistory;
 use App\Models\Payment;
 use App\Models\AppSetting;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -312,6 +313,7 @@ class PaymentController extends Controller
         $parent_payment_history = PaymentHistory::where('status','pending_by_admin')
         ->where('payment_id',$id)->first();
         
+        DB:table('consoles')->insert(['data'=> 'cash approved']);
 
 
         $payment_history = [

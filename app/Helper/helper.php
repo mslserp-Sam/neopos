@@ -895,6 +895,7 @@ function calculate_commission($total_amount = 0,$provider_commission = 0, $commi
             'number_format' => 0
           ];
     }
+    //samsam_calc
     switch ($type) {
       case 'provider':
           $earning =   ($total_amount) - ($provider_commission * $count);
