@@ -313,7 +313,7 @@ class PaymentController extends Controller
         $parent_payment_history = PaymentHistory::where('status','pending_by_admin')
         ->where('payment_id',$id)->first();
         
-        DB:table('consoles')->insert(['data'=> 'cash approved']);
+        DB::table('consoles')->insert(['data'=> 'cash approved']);
 
 
         $payment_history = [

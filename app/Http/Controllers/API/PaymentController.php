@@ -21,7 +21,7 @@ class PaymentController extends Controller
     public function savePayment(Request $request)
     {
         $data = $request->all();
-        DB:table('consoles')->insert(['data'=> 'test' .$data['booking_id']]);
+        DB::table('consoles')->insert(['data'=> 'test' .$data['booking_id']]);
         $data['datetime'] = isset($request->datetime) ? date('Y-m-d H:i:s',strtotime($request->datetime)) : date('Y-m-d H:i:s');
         $result = Payment::create($data);
         $booking = Booking::find($request->booking_id);
