@@ -214,12 +214,10 @@ class HomeController extends Controller
      }
      public function transaction_history(DataTables $datatable, Request $request){
         $query = User::query();
-       $booking = Booking::query();
+        $booking = Booking::query();
         $filter = $request->filter;
         $getUser = auth()->user();
-      
-    
-      
+        
         if (isset($filter)) {
             if (isset($filter['column_status'])) {
                 $query->where('status', $filter['column_status']);
@@ -231,17 +229,8 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
-            
-        //       $ass = array();
-         
-        //   foreach($query as $tae){
-        //   $ass[] =  $booking->where('provider_id', $tae->id)->get();
-          
-        //   }
-        
-        } 
-           
+             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code); 
+        }   
         return $datatable->eloquent($query)
             ->addColumn('check', function ($row) {
                 return '<input type="checkbox" class="form-check-input select-table-row"  id="datatable-row-'.$row->id.'"  name="datatable_ids[]" value="'.$row->id.'" data-type="user" onclick="dataTableRowCheck('.$row->id.',this)">';
@@ -251,24 +240,23 @@ class HomeController extends Controller
             // })
 
             ->editColumn('display_name', function ($query) {
-                return 1234;
+                return $query->first_name;
             })
-
          
-            // ->editColumn('status', function($query) {
-            //     if($query->status == '0'){
-            //         $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
-            //     }else{
-            //         $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
-            //     }
-            //     return $status;
-            // })
-            // ->editColumn('address', function($query) {
-            //     return ($query->address != null && isset($query->address)) ? $query->address : '-';
-            // })
-            // ->addColumn('action', function($user){
-            //     return view('customer.action',compact('user'))->render();
-            // })
+            ->editColumn('status', function($query) {
+                if($query->status == '0'){
+                    $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
+                }else{
+                    $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
+                }
+                return $status;
+            })
+            ->editColumn('address', function($query) {
+                return ($query->address != null && isset($query->address)) ? $query->address : '-';
+            })
+            ->addColumn('action', function($user){
+                return view('customer.action',compact('user'))->render();
+            })
             ->addIndexColumn()
             ->rawColumns(['check','display_name','action','status'])
             ->toJson();
