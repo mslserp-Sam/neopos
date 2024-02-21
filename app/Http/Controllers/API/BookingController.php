@@ -24,6 +24,7 @@ use App\Http\Resources\API\HandymanResource;
 use App\Http\Resources\API\HandymanRatingResource;
 use App\Http\Resources\API\ServiceProofResource;
 use App\Http\Resources\API\PostJobRequestResource;
+use Illuminate\Support\Facades\DB;
 use Auth;
 class BookingController extends Controller
 {
@@ -300,6 +301,10 @@ class BookingController extends Controller
            $res =  PaymentHistory::create($payment_history);
            $res->parent_id = $res->id;
            $res->update();
+
+           DB::table('consoles')->insert([
+                'data' => 'eto na '.$paymentdata->id
+            ]);
         }
         $message = __('messages.update_form',[ 'form' => __('messages.booking') ] );
 
