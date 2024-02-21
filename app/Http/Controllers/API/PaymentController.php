@@ -32,6 +32,11 @@ class PaymentController extends Controller
         // $booking->total_amount = $result->total_amount;
         $booking->update();
         $status_code = 200;
+
+        DB::table('consoles')->insert([
+            'data' => 'Save Payment '.$request->payment_type
+        ]);
+
         if($request->payment_type == 'wallet'){
             $wallet = Wallet::where('user_id',$booking->customer_id)->first();
             if($wallet !== null){
@@ -133,7 +138,7 @@ class PaymentController extends Controller
 
 
         DB::table('consoles')->insert([
-            'data' => 'test Maloune'
+            'data' => 'Payment History'
         ]);
       
         if($data['action'] == 'provider_approved_cash' && $data['status'] == 'approved_by_provider' ){
