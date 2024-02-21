@@ -115,12 +115,27 @@ class HomeController extends Controller
           
         }
 
+        if($user->hasRole('Neopreneur')){
+            $total_downline = DB::table('users')->where('upline', $user->referal_code)->where('bookings.status', 'completed')
+            ->join('bookings', 'users.id', '=', 'bookings.provider_id')
+            ->count();
+            
+            $total_downline_services = DB::table('users')->where('upline', $user->referal_code)
+            ->join('services', 'users.id', '=', 'services.provider_id')
+            ->count();
+            
+            $data['neo_total_booking'] = $total_downline;
+            $data['neo_total_services'] = $total_downline_services;
+        }
+
         if (auth()->user()->hasAnyRole(['admin', 'demo_admin'])) {
             return $this->adminDashboard($data);
         } else if (auth()->user()->hasAnyRole('provider')) {
             return $this->providerDashboard($data);
         } else if (auth()->user()->hasAnyRole('handyman')) {
             return $this->handymanDashboard($data);
+        } else if (auth()->user()->hasAnyRole('Neopreneur')) {
+            return $this->neopreneurDashboard($data);
         } else {
             return $this->userDashboard($data);
         }
@@ -138,10 +153,6 @@ class HomeController extends Controller
         $user = auth()->user();
         $query = User::query();
         $booking = Booking::query();
-        
-
-     
-   
         //   $qw = User::where('id' ,'>' ,0)->get('id')->toarray('id');
      
         //       $q = DB::table('users')->where('user_type','provider')->where('upline', $user->referal_code)->get();
@@ -281,6 +292,16 @@ class HomeController extends Controller
             $show = "true";
         }
         return view('history.transaction_history', compact('data', 'show'));
+    }
+    public function neopreneurDashboard($data)
+    {
+        $show = "false";
+        $dashboard_setting = Setting::where('type', 'dashboard_setting')->first();
+
+        if ($dashboard_setting == null) {
+            $show = "true";
+        }
+        return view('dashboard.neo-dashboard-new', compact('data', 'show'));
     }
     public function providerDashboard($data)
     {

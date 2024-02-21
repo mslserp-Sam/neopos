@@ -101,6 +101,11 @@ class BookingController extends Controller
                     $q->where('display_name','like','%'.$keyword.'%');
                 });
             })
+            ->filterColumn('customer_id',function($query,$keyword){
+                $query->whereHas('customer',function ($q) use($keyword){
+                    $q->where('email','like','%'.$keyword.'%');
+                });
+            })
             ->editColumn('service_id' , function ($query){
                 $service_name = ($query->service_id != null && isset($query->service)) ? $query->service->name : "";
                 return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->id).">".$service_name ."</a>";
@@ -119,6 +124,11 @@ class BookingController extends Controller
             ->filterColumn('provider_id',function($query,$keyword){
                 $query->whereHas('provider',function ($q) use($keyword){
                     $q->where('display_name','like','%'.$keyword.'%');
+                });
+            })
+            ->filterColumn('provider_id',function($query,$keyword){
+                $query->whereHas('provider',function ($q) use($keyword){
+                    $q->where('email','like','%'.$keyword.'%');
                 });
             })
             ->editColumn('status' , function ($query){
