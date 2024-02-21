@@ -31,11 +31,6 @@ class PaymentController extends Controller
         $booking->payment_id = $result->id;
         // $booking->total_amount = $result->total_amount;
         $booking->update();
-        $status_code = 200;
-
-        DB::table('consoles')->insert([
-            'data' => 'Save Payment '.$request->payment_type
-        ]);
 
         if($request->payment_type == 'wallet'){
             $wallet = Wallet::where('user_id',$booking->customer_id)->first();
