@@ -276,54 +276,7 @@ class BookingController extends Controller
             $user = User::where('id',$handyman->handyman_id)->first();
             
             //samsam
-            $commisionData = DB::table('commission')->where('id',1)->first();
-
-            $adminComm       = $commisionData->admin; // 10%
-            $cityManagerComm = $commisionData->city_manager; // 1%
-            $neoComm         = $commisionData->neopreneur;  // 10%
-            $uplineComm      = $commisionData->upline; // 1%
-            $spComm          = $commisionData->service_provider; // 80%
-
-            $serviceProvider = $user->upline;
-            if($serviceProvider)
-            {
-                $neoProvider     = User::where('referal_code',$serviceProvider)->first();
-                $totalNeoComm    = $neoComm * $paymentdata->total_amount;
-                DB::table('earnings_neo')->insert([
-                    'booking_id' => $paymentdata->booking_id,
-                    'neo_comm'   => $totalNeoComm,
-                    'neo_id'     => $neoProvider->id;
-                ]);
-                if($neoProvider)
-                {
-                    $uplineNeo = User::where('referal_code',$neoProvider->upline)->first();
-                    $totalUplineComm = $uplineComm * $paymentdata->total_amount;
-                    DB::table('earnings_upline')->insert([
-                        'booking_id'    => $paymentdata->booking_id,
-                        'upline_comm'   => $totalUplineComm,
-                        'upline_id'     => $uplineNeo->id;
-                    ]);
-                }
-            }
-            $totalAdminComm         = $adminComm * $paymentdata->total_amount;
-            $totalCityManagerComm   = $cityManagerComm * $paymentdata->total_amount;
-            $totalSpComm            = $spComm * $paymentdata->total_amount;
-
-            DB::table('earnings_service_provider')->insert([
-                'booking_id'    => $paymentdata->booking_id,
-                'sp_comm'       => $totalSpComm,
-                'sp_id'         => $user->id;
-            ]);
-            DB::table('earnings_admin')->insert([
-                'booking_id' => $paymentdata->booking_id,
-                'admin_comm' => $totalAdminComm
-            ]);
-            DB::table('earnings_city_manager')->insert([
-                'booking_id' => $paymentdata->booking_id,
-                'city_comm'  => $totalCityManagerComm
-            ]);
             
-
             $payment_history = [
                 'payment_id'   => $paymentdata->id,
                 'booking_id'   => $paymentdata->booking_id,
