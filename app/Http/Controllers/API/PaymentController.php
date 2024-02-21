@@ -21,9 +21,6 @@ class PaymentController extends Controller
     public function savePayment(Request $request)
     {
         $data = $request->all();
-        DB::table('consoles')->insert([
-            'data' => 'test'
-        ]);
         $data['datetime'] = isset($request->datetime) ? date('Y-m-d H:i:s',strtotime($request->datetime)) : date('Y-m-d H:i:s');
         $result = Payment::create($data);
         $booking = Booking::find($request->booking_id);
@@ -133,6 +130,11 @@ class PaymentController extends Controller
             'amount' => getPriceFormat((float)$data['total_amount']) ]);
         }
         $result = \App\Models\PaymentHistory::create($data);
+
+
+        DB::table('consoles')->insert([
+            'data' => 'test Maloune'
+        ]);
       
         if($data['action'] == 'provider_approved_cash' && $data['status'] == 'approved_by_provider' ){
             $get_parent_history =  \App\Models\PaymentHistory::where('id',$request->p_id)->first();
