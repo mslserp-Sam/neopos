@@ -288,7 +288,7 @@ class BookingController extends Controller
             if($serviceProvider)
             {
                 $neoProvider     = User::where('referal_code',$serviceProvider)->first();
-                $totalNeoComm    = $neoComm * $paymentdata->total_amount;
+                $totalNeoComm    = ($neoComm * $paymentdata->total_amount) / 100;
                 DB::table('earnings_neo')->insert([
                     'booking_id' => $paymentdata->booking_id,
                     'neo_comm'   => $totalNeoComm,
@@ -297,7 +297,7 @@ class BookingController extends Controller
                 if($neoProvider)
                 {
                     $uplineNeo = User::where('referal_code',$neoProvider->upline)->first();
-                    $totalUplineComm = $uplineComm * $paymentdata->total_amount;
+                    $totalUplineComm = ($uplineComm * $paymentdata->total_amount) / 100;
                     DB::table('earnings_upline')->insert([
                         'booking_id'    => $paymentdata->booking_id,
                         'upline_comm'   => $totalUplineComm,
@@ -305,9 +305,9 @@ class BookingController extends Controller
                     ]);
                 }
             }
-            $totalAdminComm         = $adminComm * $paymentdata->total_amount;
-            $totalCityManagerComm   = $cityManagerComm * $paymentdata->total_amount;
-            $totalSpComm            = $spComm * $paymentdata->total_amount;
+            $totalAdminComm         = ($adminComm * $paymentdata->total_amount) / 100;
+            $totalCityManagerComm   = ($cityManagerComm * $paymentdata->total_amount) / 100;
+            $totalSpComm            = ($spComm * $paymentdata->total_amount) / 100;
 
             DB::table('earnings_service_provider')->insert([
                 'booking_id'    => $paymentdata->booking_id,
