@@ -301,7 +301,7 @@ class HomeController extends Controller
         if ($dashboard_setting == null) {
             $show = "true";
         }
-        return view('dashboard.neo-dashboard', compact('data', 'show'));
+        return view('dashboard.neo-dashboard-new', compact('data', 'show'));
     }
     public function providerDashboard($data)
     {
