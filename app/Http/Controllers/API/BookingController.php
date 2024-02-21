@@ -276,7 +276,7 @@ class BookingController extends Controller
             $user = User::where('id',$handyman->handyman_id)->first();
             
             //samsam
-            $commisionData = DB::table('commission')->first();
+            $commisionData = DB::table('commission')->where('id',1)->first();
 
             $adminComm       = $commisionData->admin; // 10%
             $cityManagerComm = $commisionData->city_manager; // 1%
