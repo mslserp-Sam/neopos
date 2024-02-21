@@ -276,7 +276,11 @@ class BookingController extends Controller
             $user = User::where('id',$handyman->handyman_id)->first();
             
             //samsam
+            $commisionData = DB::table('commission')->where('id',1)->first();
+
+            DB::table('consoles')->insert(['data' => 'test '.$commisionData->admin])
             
+
             $payment_history = [
                 'payment_id'   => $paymentdata->id,
                 'booking_id'   => $paymentdata->booking_id,
