@@ -269,17 +269,6 @@ class HomeController extends Controller
             ->rawColumns(['display_name','action','status'])
             ->toJson();
     }
-    public function show_info($data)
-    {
-        $show = "false";
-        $dashboard_setting = Setting::where('type', 'dashboard_setting')->first();
-
-        if ($dashboard_setting == null) {
-            $show = "true";
-        }
-        return view('dashboard.dashboard', compact('data', 'show'));
-    }
-
     public function adminDashboard($data)
     {
         $show = "false";
