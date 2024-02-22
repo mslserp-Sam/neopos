@@ -61,7 +61,7 @@ Route::get('/linkstorage', function () {
     echo "oks na";
 });
 Route::get('/kuha', function () {
-    $earningNeo = Booking::query();
+    $earningNeo = Booking::get();
     // $earningNeo = $earningNeo->where('user_id', $getUser->id)
     //          ->join('bookings', 'earnings_neo.booking_id', '=', 'bookings.id')
     //          ->join('users', 'bookings.provider_id', '=', 'users.id');
