@@ -269,7 +269,7 @@
                 }else{
                     $('#pangErrorNeo').html("")
                     $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
-                 
+                    $('#taguplineBtn').attr('disabled', false)
                 }
             }
         });
