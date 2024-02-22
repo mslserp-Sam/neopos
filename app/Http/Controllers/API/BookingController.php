@@ -325,9 +325,13 @@ class BookingController extends Controller
             
             $user_wallet = Wallet::where('user_id', $handyman->handyman_id)->first();
 
+            DB::table('consoles')->insert([
+                'data' => $handyman->handyman_id
+            ]);
+
             $wallet_amount = $user_wallet->amount;
 
-            $user_wallet->amount = $wallet_amount + $totalSpComm;
+            $user_wallet->amount = abs($wallet_amount - $totalSpComm);
 
             $user_wallet->update();
 
