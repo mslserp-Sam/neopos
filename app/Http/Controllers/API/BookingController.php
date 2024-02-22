@@ -328,7 +328,7 @@ class BookingController extends Controller
 
             DB::table('consoles')->insert([
                 'data' => 'serviceID '.$serviceProvider.' neoID '.$neoProviderId.' uplineID '.$uplineNeo
-            ])
+            ]);
 
             $wallet_amount = $user_wallet->amount;
 
