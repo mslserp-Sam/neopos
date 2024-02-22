@@ -287,7 +287,7 @@
         });
     })
     function addTag(dataa, dataid){
-        $('#alertAdd').html("")
+        $('#pangErrorNeo').html("")
         var token = "{{ csrf_token() }}";
         var ndata = {
             tagId: dataa,
@@ -311,21 +311,21 @@
                 dataType: 'JSON',
                 success: function(data){
                     if(data.status == "success"){
-                        $('#alertAdd').append(`
+                        $('#pangErrorNeo').append(`
                             <div class="alert alert-success ml-2" role="alert">
                               Successfully Added !
                             </div>`)
                         neoList("{{ $customerdata->referal_code }}");
                         setTimeout(()=>{
-                            $('#alertAdd').html("")
+                            $('#pangErrorNeo').html("")
                         }, 2000)
                     }else{
-                        $('#alertAdd').append(`
+                        $('#pangErrorNeo').append(`
                             <div class="alert alert-danger ml-2" role="alert">
                               Failed !
                             </div>`)
                         setTimeout(()=>{
-                            $('#alertAdd').html("")
+                            $('#pangErrorNeo').html("")
                         }, 2000)
                     }
                     console.log(data)
