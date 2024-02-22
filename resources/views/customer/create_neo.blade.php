@@ -206,6 +206,7 @@
     }
     $('#referal_code').val(makeid(6));
     $('#taguplineBtn').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
+    $('#taguplineBtn').attr('disabled', true)
     $('#taguplineBtn').on('click', () => {
         console.log('asd')
         var vdata = {
