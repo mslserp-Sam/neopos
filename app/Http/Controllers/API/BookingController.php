@@ -312,7 +312,7 @@ class BookingController extends Controller
             DB::table('earnings_service_provider')->insert([
                 'booking_id'    => $paymentdata->booking_id,
                 'sp_comm'       => $totalSpComm,
-                'sp_id'         => $user->id
+                'sp_id'         => $handyman->handyman_id
             ]);
             DB::table('earnings_admin')->insert([
                 'booking_id' => $paymentdata->booking_id,
@@ -323,7 +323,7 @@ class BookingController extends Controller
                 'city_comm'  => $totalCityManagerComm
             ]);
             
-            $user_wallet = Wallet::where('user_id', $bookingdata->customer_id)->first();
+            $user_wallet = Wallet::where('user_id', $handyman->handyman_id)->first();
 
             $wallet_amount = $user_wallet->amount;
 
