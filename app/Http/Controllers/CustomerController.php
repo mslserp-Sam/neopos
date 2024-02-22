@@ -9,7 +9,7 @@ use App\Models\Payment;
 use App\Models\Role;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\UserRequest;
-use App\Http\Controllers\DB;
+use Illuminate\Support\Facades\DB;
 use Hash;
 
 class CustomerController extends Controller
