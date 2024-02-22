@@ -263,7 +263,7 @@ class HomeController extends Controller
                 return $status;
             })
             ->addColumn('action', function($query){
-                return "<a class='btn-link btn-link-hover' href=" .route('home.show_info', $query->booking_id).">View</a>";
+                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_id).">View</a>";
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
