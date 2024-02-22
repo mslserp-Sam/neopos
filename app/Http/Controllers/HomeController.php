@@ -214,8 +214,8 @@ class HomeController extends Controller
       
      }
      public function transaction_history(DataTables $datatable, Request $request){
-        $query = User::query();
-        $booking = Booking::query();
+        //$query = User::query();
+        $query = Booking::query();
         $earningNeo = EarningsNeo::get();
         $filter = $request->filter;
         $getUser = auth()->user();
