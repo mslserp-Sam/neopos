@@ -216,7 +216,7 @@ class HomeController extends Controller
      public function transaction_history(DataTables $datatable, Request $request){
         $query = User::query();
         $booking = Booking::query();
-        $earningNeo = EarningsNeo::query();
+        $earningNeo = EarningsNeo::get();
         $filter = $request->filter;
         $getUser = auth()->user();
         
@@ -234,7 +234,7 @@ class HomeController extends Controller
              $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
              $earningNeo = $earningNeo->where('user_id', $getUser->id); 
         }   
-        return $datatable->eloquent($query)
+        return $datatable->eloquent($earningNeo)
             // ->editColumn('display_name', function($query){
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })
