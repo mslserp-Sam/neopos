@@ -39,7 +39,7 @@ use App\Http\Controllers\BookingRatingController;
 use App\Http\Controllers\HandymanRatingController;
 use App\Http\Controllers\UserServiceListController;
 use App\Http\Controllers\ProviderSlotController;
-
+use App\Models\EarningsNeo;
 
 
 
@@ -59,7 +59,9 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
     echo "oks na";
 });
-
+Route::get('/kuha', function () {
+    return EarningsNeo::get();
+});
 
 require __DIR__.'/auth.php';
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
