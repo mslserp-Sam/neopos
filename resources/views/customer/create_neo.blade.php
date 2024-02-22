@@ -242,7 +242,7 @@
             userid: "{{ $customerdata->id }}"
         }
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '{{ route("booking.search_neo_tagged") }}',
             data: vdata,
             dataType: 'JSON',
