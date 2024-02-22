@@ -79,21 +79,9 @@
                         title: "{{__('messages.name')}}"
                     },
                     {
-                        data: 'contact_number',
-                        name: 'contact_number',
-                        title: "{{__('messages.contact_number')}}"
-                    },
-                    {
                         data: 'status',
                         name: 'status',
                         title: "{{__('messages.status')}}"
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        title: "{{__('messages.action')}}"
                     }
                     
                 ]

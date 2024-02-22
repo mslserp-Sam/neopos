@@ -243,7 +243,7 @@ class HomeController extends Controller
             // })
 
             ->editColumn('display_name', function ($query) {
-                return $query->first_name. " " .$query->last_name;
+                return $query->first_name;
             })
          
             ->editColumn('status', function($query) {
@@ -254,14 +254,8 @@ class HomeController extends Controller
                 }
                 return $query;
             })
-            ->editColumn('address', function($query) {
-                return $query->address;
-            })
-            ->addColumn('action', function($user){
-                return view('customer.action',compact('user'))->render();
-            })
             ->addIndexColumn()
-            ->rawColumns(['check','display_name','action','status'])
+            ->rawColumns(['display_name','action','status'])
             ->toJson();
      }
     public function adminDashboard($data)
