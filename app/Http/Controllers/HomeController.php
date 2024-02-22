@@ -231,10 +231,12 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
-             $earningNeo = $earningNeo->where('user_id', $getUser->id); 
+            //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
+             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
+             ->join('bookings', 'users.id', '=', 'bookings.provider_id');
+             
         }   
-        return $datatable->eloquent($earningNeo)
+        return $datatable->eloquent($query)
             // ->editColumn('display_name', function($query){
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })
