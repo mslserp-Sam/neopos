@@ -425,7 +425,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-      $auth_user = authSession();
+        $auth_user = authSession();
 
          $user = auth()->user();
          $user->last_notification_seen = now();
@@ -445,7 +445,7 @@ class BookingController extends Controller
         
              }
                   
-        }
+        }   
 
     
         $bookingdata = Booking::with('bookingExtraCharge','payment')->myBooking()->find($id);

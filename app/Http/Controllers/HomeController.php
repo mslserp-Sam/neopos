@@ -236,6 +236,7 @@ class HomeController extends Controller
                 'users.first_name',
                 'users.last_name',
                 'bookings.status',
+                'earnings_neo.booking_id',
                 'earnings_neo.neo_comm'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
                  ->join('users', 'users.id', '=', 'bookings.provider_id')
@@ -262,12 +263,23 @@ class HomeController extends Controller
                 return $status;
             })
             ->addColumn('action', function($query){
-                return "gege";
+                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_id).">View</a>";
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
             ->toJson();
-     }
+    }
+    public function show_info($data)
+    {
+        $show = "false";
+        $dashboard_setting = Setting::where('type', 'dashboard_setting')->first();
+
+        if ($dashboard_setting == null) {
+            $show = "true";
+        }
+        return view('dashboard.dashboard', compact('data', 'show'));
+    }
+
     public function adminDashboard($data)
     {
         $show = "false";

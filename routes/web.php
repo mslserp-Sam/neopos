@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('home-upline-data',[HomeController::class,'upline_data'])->name('home.upline_data');
     Route::get('transaction-history',[HomeController::class,'history_index'])->name('history_index');
+    Route::get('/history/show-booking-info/',[HomeController::class,'show_info'])->name('home.show_info');
     Route::get('transaction-history',[HomeController::class,'transaction_history'])->name('transaction_history');
     Route::get('/history',[HomeController::class,'history_index'])->name('history_index');
     Route::group(['namespace' => '', 'middleware' => ['permission:permission list']], function () {
@@ -175,7 +176,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
         Route::post('coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
     });
 
-    Route::group(['middleware' => ['permission:booking list']], function () {
+    Route::group(['middleware' => ['permission:booking list, Neopreneur']], function () {
         Route::resource('booking', BookingController::class);
         Route::get('booking-index-data',[BookingController::class,'index_data'])->name('booking.index_data');
         Route::post('booking-bulk-action', [BookingController::class, 'bulk_action'])->name('booking.bulk-action');
