@@ -195,20 +195,6 @@ Route::group(['middleware' => ['auth', 'verified']], function()
 
     Route::group(['middleware' => ['permission:Neopreneur']], function () {
         Route::resource('booking', BookingController::class);
-        Route::get('booking-index-data',[BookingController::class,'index_data'])->name('booking.index_data');
-        Route::post('booking-bulk-action', [BookingController::class, 'bulk_action'])->name('booking.bulk-action');
-        Route::post('booking-status-update',[ BookingController::class,'updateStatus'])->name('bookingStatus.update');
-        Route::post('booking-save', [ App\Http\Controllers\BookingController::class, 'store' ] )->name('booking.save');
-        
-        Route::post('ajax-add-neo-tag',[BookingController::class,'add_neo_tag'])->name('booking.add_neo_tag');
-        Route::get('ajax-neo-tag',[BookingController::class,'search_neo'])->name('booking.search_neo');
-        Route::get('ajax-neo-tagged',[BookingController::class,'search_neo_tagged'])->name('booking.search_neo_tagged');
-        Route::post('ajax-add-neo',[BookingController::class,'add_neo'])->name('booking.add_neo');
-        Route::post('ajax-remove-neo',[BookingController::class,'remove_neo'])->name('booking.remove_neo');
-        Route::post('ajax-remove-neo-upline',[BookingController::class,'remove_neo_upline'])->name('booking.remove_neo_upline');
-        
-        Route::post('booking-action',[BookingController::class, 'action'])->name('booking.action');
-        Route::post('booking/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
     });
     
     Route::group(['middleware' => ['permission:Commission']], function () {
