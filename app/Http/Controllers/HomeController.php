@@ -232,27 +232,28 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
              $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
-              
+             $earningNeo = $earningNeo->where('user_id', $getUser->id); 
         }   
-        return $datatable->eloquent($query)
+        return $datatable->eloquent($earningNeo)
             // ->editColumn('display_name', function($query){
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })
 
-            ->editColumn('display_name', function ($query) {
-                return $query->first_name;
+            ->editColumn('display_name', function ($earningNeo) {
+                return $earningNeo->booking_id;
             })
          
-            ->editColumn('status', function($query) {
-                if($query->status == '0'){
+            ->editColumn('status', function($earningNeo) {
+                $status == '0';
+                if($status == '0'){
                     $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
                 }else{
                     $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
                 }
                 return $status;
             })
-            ->editColumn('address', function($query) {
-                return ($query->address != null && isset($query->address)) ? $query->address : '-';
+            ->editColumn('address', function($earningNeo) {
+                return $earningNeo->neo_com;
             })
             ->addColumn('action', function($user){
                 return view('customer.action',compact('user'))->render();
