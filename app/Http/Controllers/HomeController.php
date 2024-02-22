@@ -233,7 +233,8 @@ class HomeController extends Controller
         }else{
             //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
              $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
-             ->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+             ->join('bookings', 'users.id', '=', 'bookings.provider_id')
+             ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
         }   
         return $datatable->eloquent($query)
@@ -242,17 +243,16 @@ class HomeController extends Controller
             // })
 
             ->editColumn('display_name', function ($query) {
-                return $query->first_name;
+                return $query->first_name. " " .$query->last_name;
             })
          
             ->editColumn('status', function($query) {
-                $status = '0';
-                if($status == '0'){
+                if($query->status == '0'){
                     $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
                 }else{
                     $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
                 }
-                return $status;
+                return $query;
             })
             ->editColumn('address', function($query) {
                 return $query->address;
