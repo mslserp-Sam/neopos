@@ -247,6 +247,7 @@
             data: vdata,
             dataType: 'JSON',
             success: function(data) {
+                console.log(data)
                 var nData = data.data;
                 console.log(nData)
                 if(data.status == "error"){
