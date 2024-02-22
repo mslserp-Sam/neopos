@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('home-upline-data',[HomeController::class,'upline_data'])->name('home.upline_data');
     Route::get('transaction-history',[HomeController::class,'history_index'])->name('history_index');
+    Route::get('show-booking-info',[HomeController::class,'show_info'])->name('show_info');
     Route::get('transaction-history',[HomeController::class,'transaction_history'])->name('transaction_history');
     Route::get('/history',[HomeController::class,'history_index'])->name('history_index');
     Route::group(['namespace' => '', 'middleware' => ['permission:permission list']], function () {
