@@ -333,7 +333,7 @@ class BookingController extends Controller
 
             DB::table('payments')->where('booking_id',$paymentdata->booking_id)->update([
                 'payment_status' => 'paid'
-            ])
+            ]);
 
             $payment_history = [
                 'payment_id'   => $paymentdata->id,
