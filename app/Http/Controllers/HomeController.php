@@ -241,11 +241,11 @@ class HomeController extends Controller
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })
 
-            ->editColumn('display_name', function ($earningNeo) {
-                return $earningNeo->booking_id;
+            ->editColumn('display_name', function ($query) {
+                return $query->first_name;
             })
          
-            ->editColumn('status', function($earningNeo) {
+            ->editColumn('status', function($query) {
                 $status = '0';
                 if($status == '0'){
                     $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
@@ -254,8 +254,8 @@ class HomeController extends Controller
                 }
                 return $status;
             })
-            ->editColumn('address', function($earningNeo) {
-                return $earningNeo->neo_com;
+            ->editColumn('address', function($query) {
+                return $query->address;
             })
             ->addColumn('action', function($user){
                 return view('customer.action',compact('user'))->render();
