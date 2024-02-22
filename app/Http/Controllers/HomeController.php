@@ -124,9 +124,12 @@ class HomeController extends Controller
             $total_downline_services = DB::table('users')->where('upline', $user->referal_code)
             ->join('services', 'users.id', '=', 'services.provider_id')
             ->count();
+
+            $total_downline_commission = DB::table('earnings_neo')->where('neo_id', $user->id)->sum('neo_comm');
             
             $data['neo_total_booking'] = $total_downline;
             $data['neo_total_services'] = $total_downline_services;
+            $data['total_downline_commission'] = $total_downline_commission;
         }
 
         if (auth()->user()->hasAnyRole(['admin', 'demo_admin'])) {
