@@ -213,10 +213,8 @@ class BookingController extends Controller
     }
     public function search_neo_tagged(Request $request)
     {
-       
-        $referal_code = $request->id;
-         
-        $data = DB::table('users')->where('user_type', 'provider')->where('upline', $referal_code)->get();
+        $referal_code = $request->email;
+        $data = DB::table('users')->where('email', $request->email)->get();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{

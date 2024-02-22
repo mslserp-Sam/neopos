@@ -229,7 +229,33 @@
                    
                 }else{
                     $('#pangErrorNeo').html("")
-                    $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email matched !</label>`)
+                    $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
+                 
+                }
+            }
+        });
+    })
+    $('#inputNeo').on('keyup', () => {
+        var vdata = {
+            email: $('#inputNeo').val(),
+            refid: $('#neo_referal_code').val(),
+            userid: "{{ $customerdata->id }}"
+        }
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("booking.search_neo_tagged") }}',
+            data: vdata,
+            dataType: 'JSON',
+            success: function(data) {
+                var nData = data.data;
+                console.log(nData)
+                if(data.status == "error"){
+                    $('#pangErrorNeo').html("")
+                    $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                    $('#taguplineBtn').attr('disabled', true)
+                }else{
+                    $('#pangErrorNeo').html("")
+                    $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
                  
                 }
             }
@@ -370,6 +396,7 @@
                               Successfully Removed !
                             </div>`)
                         neoList("{{ $customerdata->referal_code }}");
+                        $('#neoAccordion').html("");
                         setTimeout(()=>{
                             $('#pangErrorNeo').html("")
                         }, 2000)
