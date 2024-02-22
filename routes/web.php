@@ -176,7 +176,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
         Route::post('coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
     });
 
-    Route::group(['middleware' => ['permission:booking list, Neopreneur']], function () {
+    Route::group(['middleware' => ['permission:booking list']], function () {
         Route::resource('booking', BookingController::class);
         Route::get('booking-index-data',[BookingController::class,'index_data'])->name('booking.index_data');
         Route::post('booking-bulk-action', [BookingController::class, 'bulk_action'])->name('booking.bulk-action');
