@@ -72,14 +72,7 @@
                   },
                 },
                 columns: [
-                    {
-                        name: 'check',
-                        data: 'check',
-                        title: '<input type="checkbox" class="form-check-input" name="select_all_table" id="select-all-table" data-type="user" onclick="selectAllTable(this)">',
-                        exportable: false,
-                        orderable: false,
-                        searchable: false,
-                    },
+                   
                     {
                         data: 'display_name',
                         name: 'display_name',

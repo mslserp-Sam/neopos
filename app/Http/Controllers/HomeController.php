@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Category;
+use App\Models\EarningsNeo;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProviderDocument;
 use App\Models\AppSetting;
@@ -215,6 +216,7 @@ class HomeController extends Controller
      public function transaction_history(DataTables $datatable, Request $request){
         $query = User::query();
         $booking = Booking::query();
+        $earningNeo = EarningsNeo::query();
         $filter = $request->filter;
         $getUser = auth()->user();
         
@@ -229,12 +231,10 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code); 
+             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
+              
         }   
         return $datatable->eloquent($query)
-            ->addColumn('check', function ($row) {
-                return '<input type="checkbox" class="form-check-input select-table-row"  id="datatable-row-'.$row->id.'"  name="datatable_ids[]" value="'.$row->id.'" data-type="user" onclick="dataTableRowCheck('.$row->id.',this)">';
-            })
             // ->editColumn('display_name', function($query){
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })

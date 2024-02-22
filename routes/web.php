@@ -60,7 +60,11 @@ Route::get('/linkstorage', function () {
     echo "oks na";
 });
 Route::get('/kuha', function () {
-    return EarningsNeo::get();
+    $earningNeo = EarningsNeo::query();
+    // $earningNeo = $earningNeo->where('user_id', $getUser->id)
+    //          ->join('bookings', 'earnings_neo.booking_id', '=', 'bookings.id')
+    //          ->join('users', 'bookings.provider_id', '=', 'users.id');
+    return $earningNeo;
 });
 
 require __DIR__.'/auth.php';
