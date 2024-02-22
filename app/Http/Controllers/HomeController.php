@@ -244,7 +244,7 @@ class HomeController extends Controller
             })
          
             ->editColumn('status', function($earningNeo) {
-                $status == '0';
+                $status = '0';
                 if($status == '0'){
                     $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
                 }else{
