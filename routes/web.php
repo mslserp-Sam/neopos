@@ -40,6 +40,7 @@ use App\Http\Controllers\HandymanRatingController;
 use App\Http\Controllers\UserServiceListController;
 use App\Http\Controllers\ProviderSlotController;
 use App\Models\EarningsNeo;
+use App\Models\Booking;
 
 
 
@@ -60,7 +61,7 @@ Route::get('/linkstorage', function () {
     echo "oks na";
 });
 Route::get('/kuha', function () {
-    $earningNeo = EarningsNeo::query();
+    $earningNeo = Booking::query();
     // $earningNeo = $earningNeo->where('user_id', $getUser->id)
     //          ->join('bookings', 'earnings_neo.booking_id', '=', 'bookings.id')
     //          ->join('users', 'bookings.provider_id', '=', 'users.id');
