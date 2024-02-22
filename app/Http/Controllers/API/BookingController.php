@@ -336,7 +336,7 @@ class BookingController extends Controller
             $user_wallet->update();
 
             DB::table('payments')->where('booking_id',$paymentdata->booking_id)->update([
-                'payment_status' => 'paid'
+                'payment_status' => 'paid '.$paymentdata->total_amount
             ]);
 
             $payment_history = [
@@ -345,7 +345,7 @@ class BookingController extends Controller
                 'type'         => $paymentdata->payment_type,
                 'sender_id'    => $bookingdata->customer_id,
                 'receiver_id'  => $handyman->handyman_id,
-                'total_amount' => $totalSpComm,
+                'total_amount' => $paymentdata->total_amount - $totalSpComm,
                 'datetime'     => date('Y-m-d H:i:s'),
                 'text'         =>  __('messages.payment_transfer',['from' => get_user_name($bookingdata->customer_id),'to' => get_user_name($handyman->handyman_id),
                 'amount'       => getPriceFormat((float)$paymentdata->total_amount) ]),
