@@ -233,7 +233,7 @@ class HomeController extends Controller
         }else{
             //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
              $query = $query->select('users.first_name', 'bookings.status')->where('user_type','provider')->where('upline', $getUser->referal_code)
-             ->join('bookings', 'users.id', '=', 'bookings.provider_id')
+             ->join('users', 'users.id', '=', 'bookings.provider_id')
              ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
         }   
