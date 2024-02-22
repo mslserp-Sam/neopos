@@ -294,9 +294,10 @@ class BookingController extends Controller
                     'neo_comm'   => $totalNeoComm,
                     'neo_id'     => $neoProvider->id
                 ]);
-                if($neoProvider)
+                $neoProviderId = $neoProvider->upline;
+                if($neoProviderId)
                 {
-                    $uplineNeo = User::where('referal_code',$neoProvider->upline)->first();
+                    $uplineNeo = User::where('referal_code',$neoProviderId)->first();
                     $totalUplineComm = ($uplineComm * $paymentdata->total_amount) / 100;
                     DB::table('earnings_upline')->insert([
                         'booking_id'    => $paymentdata->booking_id,
@@ -326,8 +327,8 @@ class BookingController extends Controller
             $user_wallet = Wallet::where('user_id', $handyman->handyman_id)->first();
 
             DB::table('consoles')->insert([
-                'data' => $handyman->handyman_id
-            ]);
+                'data' => 'serviceID '.$serviceProvider.' neoID '.$neoProviderId.' uplineID '.$uplineNeo
+            ])
 
             $wallet_amount = $user_wallet->amount;
 
