@@ -263,13 +263,14 @@ class HomeController extends Controller
                 return $status;
             })
             ->addColumn('action', function($query){
-                return "<a class='btn-link btn-link-hover' href=" .route('show_info', $query->booking_id).">View</a>";
+                return "<a class='btn-link btn-link-hover' href=" .route('home.show_info', $query->booking_id).">View</a>";
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
             ->toJson();
     }
-    public function show_info($id){
+    public function show_info($id)
+    {
         $auth_user = authSession();
         $user = auth()->user();
         $user->last_notification_seen = now();
