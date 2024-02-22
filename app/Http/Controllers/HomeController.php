@@ -214,7 +214,7 @@ class HomeController extends Controller
       
      }
      public function transaction_history(DataTables $datatable, Request $request){
-        //$query = User::query();
+        $user = User::query();
         $query = Booking::query();
         $earningNeo = EarningsNeo::get();
         $filter = $request->filter;
@@ -251,7 +251,6 @@ class HomeController extends Controller
                 return $query->first_name. " " . $query->last_name;
             })
             ->editColumn('neo_comm', function($query) {
-               
                 return $query->neo_comm;
             })
             ->editColumn('status', function($query) {
@@ -261,6 +260,9 @@ class HomeController extends Controller
                     $status = '<span class="badge badge-active">'.$query->status.'</span>';
                 }
                 return $status;
+            })
+            ->addColumn('action', function($user){
+                return view('customer.action',compact('user'))->render();
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])

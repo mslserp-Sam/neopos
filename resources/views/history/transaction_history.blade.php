@@ -76,7 +76,7 @@
                     {
                         data: 'display_name',
                         name: 'display_name',
-                        title: "{{__('messages.name')}}"
+                        title: "Provider Name"
                     },
                     {
                         data: 'neo_comm',
@@ -87,6 +87,11 @@
                         data: 'status',
                         name: 'status',
                         title: "{{__('messages.status')}}"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        title: "Action"
                     }
                     
                 ]
