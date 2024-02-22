@@ -261,8 +261,8 @@ class HomeController extends Controller
                 }
                 return $status;
             })
-            ->addColumn('action', function($user){
-                return view('customer.action',compact('user'))->render();
+            ->addColumn('action', function($query){
+                return "gege";
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
