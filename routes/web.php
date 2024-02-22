@@ -64,8 +64,7 @@ Route::get('/kuha', function () {
     $earningNeo = EarningsNeo::get();
     $getUser = auth()->user();
     $earningNeo = $earningNeo->where('user_id', $getUser->id)
-             ->join('bookings', 'earnings_neo.booking_id', '=', 'bookings.id')
-             ->join('users', 'bookings.provider_id', '=', 'users.id');
+             ->join('bookings', 'earnings_neo.booking_id', '=', 'bookings.id');
     return $earningNeo;
 });
 
