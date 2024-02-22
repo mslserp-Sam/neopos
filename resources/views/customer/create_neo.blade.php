@@ -223,14 +223,26 @@
                 var nData = data.data;
                 console.log(nData)
                 if(data.status == "error"){
-                    $('#pangErrorNeo').html("")
-                    $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email not found !</label>`)
-                    $('#taguplineBtn').attr('disabled', true)
-                   
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    // $('#taguplineBtn').attr('disabled', true)
                 }else{
                     $('#pangErrorNeo').html("")
-                    $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
-                 
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(()=>{
+                        location.reload();
+                    });
+                    
                 }
             }
         });

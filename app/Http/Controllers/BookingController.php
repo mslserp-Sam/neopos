@@ -188,7 +188,7 @@ class BookingController extends Controller
         if($users){
             $update = DB::table('users')->where('id', $id)->update(['upline' => $users->referal_code]);
             if($update){
-                return response()->json(['data'=> $id ,'status' => 'success']); 
+                return response()->json(['data'=> $users ,'status' => 'success']); 
             }else{
                 return response()->json(['data'=> "a" ,'status' => 'error']); 
             }
