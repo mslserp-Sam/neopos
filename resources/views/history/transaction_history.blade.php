@@ -72,23 +72,16 @@
                   },
                 },
                 columns: [
-                    {
-                        name: 'check',
-                        data: 'check',
-                        title: '<input type="checkbox" class="form-check-input" name="select_all_table" id="select-all-table" data-type="user" onclick="selectAllTable(this)">',
-                        exportable: false,
-                        orderable: false,
-                        searchable: false,
-                    },
+                   
                     {
                         data: 'display_name',
                         name: 'display_name',
-                        title: "{{__('messages.name')}}"
+                        title: "Provider Name"
                     },
                     {
-                        data: 'contact_number',
-                        name: 'contact_number',
-                        title: "{{__('messages.contact_number')}}"
+                        data: 'neo_comm',
+                        name: 'neo_comm',
+                        title: "Commission"
                     },
                     {
                         data: 'status',
@@ -98,9 +91,7 @@
                     {
                         data: 'action',
                         name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        title: "{{__('messages.action')}}"
+                        title: "Action"
                     }
                     
                 ]

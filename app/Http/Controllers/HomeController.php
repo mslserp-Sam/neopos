@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Category;
+use App\Models\EarningsNeo;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProviderDocument;
 use App\Models\AppSetting;
@@ -213,13 +214,12 @@ class HomeController extends Controller
       
      }
      public function transaction_history(DataTables $datatable, Request $request){
-        $query = User::query();
-       $booking = Booking::query();
+        $user = User::query();
+        $query = Booking::query();
+        $earningNeo = EarningsNeo::get();
         $filter = $request->filter;
         $getUser = auth()->user();
-      
-    
-      
+        
         if (isset($filter)) {
             if (isset($filter['column_status'])) {
                 $query->where('status', $filter['column_status']);
@@ -231,46 +231,41 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
-            
-        //       $ass = array();
-         
-        //   foreach($query as $tae){
-        //   $ass[] =  $booking->where('provider_id', $tae->id)->get();
-          
-        //   }
-        
-        } 
-           
+            //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
+             $query = $query->select(
+                'users.first_name',
+                'users.last_name',
+                'bookings.status',
+                'earnings_neo.neo_comm'
+                )->where('user_type','provider')->where('upline', $getUser->referal_code)
+                 ->join('users', 'users.id', '=', 'bookings.provider_id')
+                 ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+             
+        }   
         return $datatable->eloquent($query)
-            ->addColumn('check', function ($row) {
-                return '<input type="checkbox" class="form-check-input select-table-row"  id="datatable-row-'.$row->id.'"  name="datatable_ids[]" value="'.$row->id.'" data-type="user" onclick="dataTableRowCheck('.$row->id.',this)">';
-            })
             // ->editColumn('display_name', function($query){
             //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             // })
 
             ->editColumn('display_name', function ($query) {
-                return 1234;
+                return $query->first_name. " " . $query->last_name;
             })
-
-         
-            // ->editColumn('status', function($query) {
-            //     if($query->status == '0'){
-            //         $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
-            //     }else{
-            //         $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
-            //     }
-            //     return $status;
-            // })
-            // ->editColumn('address', function($query) {
-            //     return ($query->address != null && isset($query->address)) ? $query->address : '-';
-            // })
-            // ->addColumn('action', function($user){
-            //     return view('customer.action',compact('user'))->render();
-            // })
+            ->editColumn('neo_comm', function($query) {
+                return $query->neo_comm;
+            })
+            ->editColumn('status', function($query) {
+                if($query->status != 'completed'){
+                    $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
+                }else{
+                    $status = '<span class="badge badge-active">'.$query->status.'</span>';
+                }
+                return $status;
+            })
+            ->addColumn('action', function($query){
+                return "gege";
+            })
             ->addIndexColumn()
-            ->rawColumns(['check','display_name','action','status'])
+            ->rawColumns(['display_name','action','status'])
             ->toJson();
      }
     public function adminDashboard($data)
