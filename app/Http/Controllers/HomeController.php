@@ -232,9 +232,14 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
             //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
-             $query = $query->select('users.first_name', 'bookings.status')->where('user_type','provider')->where('upline', $getUser->referal_code)
-             ->join('users', 'users.id', '=', 'bookings.provider_id')
-             ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+             $query = $query->select(
+                'users.first_name',
+                'users.last_name',
+                'bookings.status',
+                'earnings_neo.neo_comm'
+                )->where('user_type','provider')->where('upline', $getUser->referal_code)
+                 ->join('users', 'users.id', '=', 'bookings.provider_id')
+                 ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
         }   
         return $datatable->eloquent($query)
@@ -243,16 +248,19 @@ class HomeController extends Controller
             // })
 
             ->editColumn('display_name', function ($query) {
-                return $query->first_name;
+                return $query->first_name. " " . $query->last_name;
             })
-         
+            ->editColumn('neo_comm', function($query) {
+               
+                return $query->neo_comm;
+            })
             ->editColumn('status', function($query) {
-                if($query->status == '0'){
-                    $status = '<span class="badge badge-inactive">'.__('messages.inactive').'</span>';
+                if($query->status != 'completed'){
+                    $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
                 }else{
-                    $status = '<span class="badge badge-active">'.__('messages.active').'</span>';
+                    $status = '<span class="badge badge-active">'.$query->status.'</span>';
                 }
-                return $query;
+                return $status;
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
