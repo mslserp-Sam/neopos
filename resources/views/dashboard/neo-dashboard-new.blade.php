@@ -57,10 +57,10 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                                <h4 class="mb-2 booking-text font-weight-bold">{{ !empty($data['dashboard']['count_total_provider']) ? $data['dashboard']['count_total_provider'] : 0 }}</h4>
+                                                <h4 class="mb-2 booking-text font-weight-bold">{{ !empty($data['total_downline_commission']) ? $data['total_downline_commission'] : 0 }}</h4>
                                                 <p class="mb-0 ml-3 text-danger font-weight-bold"></p>
                                             </div>
-                                            <p class="mb-0 booking-text">{{ __('messages.total_name', ['name' => __('messages.providers')]) }}</p>
+                                            <p class="mb-0 booking-text">Total Commissions</p>
                                         </div>
                                         <div class="col-auto d-flex flex-column">
                                             <div class="iq-card-icon iq-card-icon-provider icon-shape  text-white rounded-circle shadow">
