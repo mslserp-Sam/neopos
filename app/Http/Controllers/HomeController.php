@@ -271,38 +271,38 @@ class HomeController extends Controller
     }
     public function show_info($id)
     {
-        $auth_user = authSession();
-        $user = auth()->user();
-        $user->last_notification_seen = now();
-        $user->save();
+    //     $auth_user = authSession();
+    //     $user = auth()->user();
+    //     $user->last_notification_seen = now();
+    //     $user->save();
 
-        if(count($user->unreadNotifications) > 0 ) {
+    //     if(count($user->unreadNotifications) > 0 ) {
 
-          foreach($user->unreadNotifications as $notifications){
+    //       foreach($user->unreadNotifications as $notifications){
 
-             if($notifications['data']['id'] == $id){
+    //          if($notifications['data']['id'] == $id){
 
-                $notification = $user->unreadNotifications->where('id', $notifications['id'])->first();
-               if($notification){
-                    $notification->markAsRead();
-                      }
-                 }
+    //             $notification = $user->unreadNotifications->where('id', $notifications['id'])->first();
+    //            if($notification){
+    //                 $notification->markAsRead();
+    //                   }
+    //              }
        
-            }
+    //         }
                  
-       }
-       $bookingdata = Booking::with('bookingExtraCharge','payment')->myBooking()->find($id);
-       $tabpage = 'info';
-       if (empty($bookingdata)) {
-           $msg = __('messages.not_found_entry', ['name' => __('messages.booking')]);
-           return redirect(route('booking.index'))->withError($msg);
-       }
-       if (count($auth_user->unreadNotifications) > 0) {
-           $auth_user->unreadNotifications->where('data.id', $id)->markAsRead();
-       }
+    //    }
+    //    $bookingdata = Booking::with('bookingExtraCharge','payment')->myBooking()->find($id);
+    //    $tabpage = 'info';
+    //    if (empty($bookingdata)) {
+    //        $msg = __('messages.not_found_entry', ['name' => __('messages.booking')]);
+    //        return redirect(route('booking.index'))->withError($msg);
+    //    }
+    //    if (count($auth_user->unreadNotifications) > 0) {
+    //        $auth_user->unreadNotifications->where('data.id', $id)->markAsRead();
+    //    }
 
-       $pageTitle = __('messages.view_form_title', ['form' => __('messages.booking')]);
-       return view('booking.view', compact('pageTitle', 'bookingdata', 'auth_user', 'tabpage'));
+    //    $pageTitle = __('messages.view_form_title', ['form' => __('messages.booking')]);
+    //    return view('booking.view', compact('pageTitle', 'bookingdata', 'auth_user', 'tabpage'));
     }
 
     public function adminDashboard($data)
