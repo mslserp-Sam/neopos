@@ -498,6 +498,7 @@
                 if(data.status == "error"){
                     console.log('wala')
                 }else{
+                    console.log(nData)
                     nData.forEach((element) => {
                         $('#neoList').append(`
                             <div class="card">
