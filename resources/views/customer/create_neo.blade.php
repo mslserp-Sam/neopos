@@ -490,7 +490,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '{{ route("booking.search_neo_tagged") }}',
+            url: '{{ route("booking.neo_tagged") }}',
             data: vdata,
             dataType: 'JSON',
             success: function(data) {
