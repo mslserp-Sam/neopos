@@ -102,7 +102,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex p-3 ">
-                            <h5 class="font-weight-bold">Tag Upline</h5>
+                            <h5 class="font-weight-bold">Tag Neopreneur Upline</h5>
                         </div>
                         <div class="form-group col-md-4">
                             <lavel cclass="form-control-label">Upline name</lavel>
@@ -145,6 +145,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="d-flex p-3 ">
+                                <h5 class="font-weight-bold">Search Service Provider</h5>
+                        </div>
                         <div class="input-group ml-2 mb-2">
                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
@@ -162,7 +165,7 @@
                             </div>
                             <hr>
                             <div class="d-flex p-3 ">
-                                <h5 class="font-weight-bold">List</h5>
+                                <h5 class="font-weight-bold">Service Provider List</h5>
                             </div>
                             <div id="neoList">
                                 
