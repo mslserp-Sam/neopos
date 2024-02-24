@@ -262,7 +262,7 @@ class HomeController extends Controller
             // ->editColumn('neo_comm', function($query) {
             //     return $query->neo_comm;
             // })
-            ->editColumn('neo_comm', function($query) {
+            ->editColumn('coms', function($query) {
                 return $query->id;
             })
             ->editColumn('status', function($query) {
