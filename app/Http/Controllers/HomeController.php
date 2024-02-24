@@ -323,8 +323,7 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-                $getneo = DB::table('users')->where('referal_code', $query->upline)->first();
-                $totalkomi = DB::table('earnings_neo')->where('neo_id', $getneo->id)->sum('neo_comm');
+                $totalkomi = DB::table('earnings_neo')->where('neo_id', $getUser->id)->sum('neo_comm');
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('total_completed', function($query) {
