@@ -315,7 +315,7 @@ class HomeController extends Controller
             })
             ->editColumn('sp_comm', function($query) {
                 $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
-                return $totalkomi;
+                return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
