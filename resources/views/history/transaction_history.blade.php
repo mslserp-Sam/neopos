@@ -60,8 +60,8 @@
                         title: "Commission"
                     },
                     {
-                        data: 'bookingstat',
-                        name: 'bookingstat',
+                        data: 'status',
+                        name: 'status',
                         title: "{{__('messages.status')}}"
                     },
                     {
