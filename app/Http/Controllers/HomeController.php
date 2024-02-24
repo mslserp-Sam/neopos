@@ -242,8 +242,8 @@ class HomeController extends Controller
                 'earnings_neo.booking_id',
                 'earnings_neo.neo_comm'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
-                 ->leftjoin('users', 'users.id', '=', 'bookings.provider_id')
-                 ->leftjoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+                 ->join('users', 'users.id', '=', 'bookings.provider_id')
+                 ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
         }   
         return $datatable->eloquent($query)
