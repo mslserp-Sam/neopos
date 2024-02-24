@@ -217,11 +217,11 @@ class HomeController extends Controller
       
      }
      public function transaction_history(DataTables $datatable, Request $request){
-        $user = User::query();
-        $query = Booking::query();
+        // $user = User::query();
+        // $query = Booking::query();
         
-        // $query = User::query();
-        // $user = Booking::query();
+        $query = User::query();
+        $user = Booking::query();
 
         $earningNeo = EarningsNeo::get();
         $filter = $request->filter;
@@ -247,8 +247,8 @@ class HomeController extends Controller
                 'earnings_neo.booking_id',
                 'earnings_neo.neo_comm'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
-                 ->join('users', 'users.id', '=', 'bookings.provider_id')
-                 ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+                 ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
+                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
         }   
         return $datatable->eloquent($query)
