@@ -117,26 +117,6 @@
             <!-- start table -->
             <div class="card">
                 <div class="card-body">
-                    <div class="row justify-content-between">
-                        <div class="col-md-12">
-                            <form action="{{ route('booking.bulk-action') }}" id="quick-action-form" class="form-disabled d-flex gap-3 align-items-center">
-                                    @csrf
-                                    <select name="action_type" class="form-control select2" id="quick-action-type" style="width:100%" disabled>
-                                        <option value="">{{__('messages.no_action')}}</option>
-                                        <option value="delete">{{__('messages.delete')}}</option>
-                                        <option value="restore">{{__('messages.restore')}}</option>
-                                        <option value="permanently-delete">{{__('messages.permanent_dlt')}}</option>
-                                    </select>
-                                    
-                                <button id="quick-action-apply" class="btn btn-primary" data-ajax="true"
-                                data--submit="{{ route('booking.bulk-action') }}"
-                                data-datatable="reload" data-confirmation='true'
-                                data-title="{{ __('booking',['form'=>  __('booking') ]) }}"
-                                title="{{ __('booking',['form'=>  __('booking') ]) }}"
-                                data-message='{{ __("Do you want to perform this action?") }}' disabled>{{__('messages.apply')}}</button>
-                            </form>
-                        </div>
-                    </div>
                     <div class="d-flex justify-content-end">
                         <div class="input-group ml-2">
                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
