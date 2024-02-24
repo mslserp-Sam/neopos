@@ -166,42 +166,38 @@
                         {
                             data: 'total_booking',
                             name: 'total_booking',
-                            title: "Total Booking"
+                            title: "Total Booking",
+                            searchable: false,
                         },
                         {
                             data: 'sp_comm',
                             name: 'sp_comm',
-                            title: "Commission"
+                            title: "Commission",
+                            searchable: false,
                         },
                         {
                             data: 'total_completed',
                             name: 'total_completed',
-                            title: "Completed"
+                            title: "Completed",
+                            searchable: false,
                         },
                         {
                             data: 'total_rejected',
                             name: 'total_rejected',
-                            title: "Rejected"
+                            title: "Rejected",
+                            searchable: false,
                         },
                         {
                             data: 'total_cancelled',
                             name: 'total_cancelled',
-                            title: "Cancelled"
+                            title: "Cancelled",
+                            searchable: false,
                         },
                         {
                             data: 'total_failed',
                             name: 'total_failed',
-                            title: "Failed"
-                        },
-                        {
-                            data: 'status',
-                            name: 'status',
-                            title: "{{__('messages.status')}}"
-                        },
-                        {
-                            data: 'action',
-                            name: 'action',
-                            title: "Action"
+                            title: "Failed",
+                            searchable: false,
                         }
                         
                     ]
