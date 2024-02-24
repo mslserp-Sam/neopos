@@ -164,8 +164,8 @@
                             title: "Provider Name"
                         },
                         {
-                            data: 'neo_comm',
-                            name: 'neo_comm',
+                            data: 'sp_comm',
+                            name: 'sp_comm',
                             title: "Commission"
                         },
                         {

@@ -301,11 +301,11 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
              //$query = $query->where('user_type', 'provider'); 
-             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
-                 ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
-                 ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
-             
+            //  $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
+            //      ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
+            //      ->rightJoin('earnings_service_provider', 'bookings.id', '=', 'earnings_service_provider.booking_id')
+            //      ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
+            $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
         }   
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
@@ -317,24 +317,25 @@ class HomeController extends Controller
             // ->editColumn('display_name', function ($query) {
             //     return $query->first_name. " " . $query->last_name;
             // })
-            ->editColumn('neo_comm', function($query) {
-                return $query->neo_comm;
+            ->editColumn('sp_comm', function($query) {
+                return "TEST";
             })
-            ->filterColumn('neo_comm',function($query,$keyword){
-                $query->where('neo_comm','like','%'.$keyword.'%');
-            })
+            // ->filterColumn('sp_comm',function($query,$keyword){
+            //     $query->where('sp_comm','like','%'.$keyword.'%');
+            // })
             ->editColumn('status', function($query) {
-                if($query->booking_status != 'completed'){
-                    $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
-                }else{
-                    $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
-                }
+                // if($query->booking_status != 'completed'){
+                //     $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
+                // }else{
+                //     $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
+                // }
+                $status = "TEST";
                 return $status;
             })
             
             ->addColumn('action', function($query){
-                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
-                // return $query->username;
+              // return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
+                 return $query->username;
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
