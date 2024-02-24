@@ -179,6 +179,21 @@
                             title: "Completed"
                         },
                         {
+                            data: 'total_rejected',
+                            name: 'total_rejected',
+                            title: "Rejected"
+                        },
+                        {
+                            data: 'total_cancelled',
+                            name: 'total_cancelled',
+                            title: "Cancelled"
+                        },
+                        {
+                            data: 'total_failed',
+                            name: 'total_failed',
+                            title: "Failed"
+                        },
+                        {
                             data: 'status',
                             name: 'status',
                             title: "{{__('messages.status')}}"
