@@ -268,7 +268,7 @@ class HomeController extends Controller
                 return $query->last_name;
             })
             ->editColumn('booking_status', function($query) {
-                if($query->status != 'completed'){
+                if($query->booking_status != 'completed'){
                     $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
                 }else{
                     $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
