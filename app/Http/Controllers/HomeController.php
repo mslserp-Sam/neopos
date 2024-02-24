@@ -323,10 +323,9 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-               
                 $gete = $query->where('id', $query->id)
                  ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->sum('earnings_neo.neo_comm as neoneo');
+                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
                 return isset($gete) ? $gete : 0;
             })
             ->editColumn('total_completed', function($query) {
