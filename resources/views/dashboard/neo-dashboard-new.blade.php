@@ -1,4 +1,9 @@
 <x-master-layout>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  </head>
+   
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -104,95 +109,149 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
-                            <h4 class="">{{__('messages.monthly_revenue')}}</h4>
+                            <h4 class="">Your Service Provider</h4>
                         </div>
-                        <div id="monthly-revenue" class="custom-chart"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card top-providers">
-                    <div class="card-header d-flex justify-content-between gap-10">
-                        <h4 class="font-weight-bold">{{ __('messages.recent_provider') }}</h4>
-                            <a href="{{ route('provider.index') }}" class="btn-link btn-link-hover"><u>{{__('messages.view_all')}} </u></a>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="common-list list-unstyled">
-                            @foreach($data['dashboard']['new_provider'] as $provider)
-                            <li style="pointer-events:none;">
-                                <div class="media gap-3">
-                                    <div class="h-avatar is-medium h-5">
-                                        <img class="avatar-50 rounded-circle bg-light" alt="user-icon" src="{{ getSingleMedia($provider,'profile_image', null) }}">
-                                    </div>
+            <!-- start table -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="col-md-12">
+                            <form action="{{ route('booking.bulk-action') }}" id="quick-action-form" class="form-disabled d-flex gap-3 align-items-center">
+                                    @csrf
+                                    <select name="action_type" class="form-control select2" id="quick-action-type" style="width:100%" disabled>
+                                        <option value="">{{__('messages.no_action')}}</option>
+                                        <option value="delete">{{__('messages.delete')}}</option>
+                                        <option value="restore">{{__('messages.restore')}}</option>
+                                        <option value="permanently-delete">{{__('messages.permanent_dlt')}}</option>
+                                    </select>
                                     
-                                    <div class="media-body ">
-                                        <h5><span class="font-weight-bold">{{!empty($provider->display_name) ? $provider->display_name : '-'}}</span> </h5>
-                                            <span class="common-list_rating d-flex gap-1">
-                                                <i class="ri-star-s-fill"></i>
-                                                {{round($provider->getServiceRating->avg('rating'), 1)}}
-                                            </span>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card top-providers">
-                    <div class="card-header d-flex justify-content-between gap-10">
-                        <h4 class="font-weight-bold">{{ __('messages.recent_customer') }}</h4>
-                        <a href="{{ route('user.index') }}" class="btn-link btn-link-hover"><u>{{__('messages.view_all')}}</u></a>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="common-list list-unstyled">
-                            @foreach($data['dashboard']['new_customer'] as $customer) 
-                            <li style="pointer-events:none;">
-                                <div class="media gap-3">
-                                    <div class="h-avatar is-medium h-5">
-                                        <img class="avatar-50 rounded-circle bg-light" alt="user-icon" src="{{ getSingleMedia($customer,'profile_image', null) }}">
-                                    </div>
-                                    <div class="media-body ">
-                                        <h5><span class="font-weight-bold">{{!empty($customer->display_name) ? $customer->display_name : '-'}}</span>  </h5>
-                                        <span>{{($customer->created_at)}}</span>
-                                            
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach 
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card recent-activities">
-                    <div class="card-header d-flex justify-content-between gap-10">
-                        <h4>{{__('messages.recent_booking')}}</h4>
-                        <a href="{{ route('booking.index') }}" class="btn-link btn-link-hover"><u>{{__('messages.view_all')}}</u></a>
-                    </div>
-                        <div class="card-body">
-                            <ul class="common-list p-0">
-                                
-                                @foreach($data['dashboard']['upcomming_booking'] as $booking)
-                                    <li class="d-flex flex-wrap gap-2 align-items-start align-items-lg-center justify-content-between flex-column flex-lg-row "  style="pointer-events:none;">
-                                        <div class="media align-items-center gap-3">
-                                                <div class="h-avatar is-medium h-5">
-                                                    <img class="avatar-50 rounded-circle bg-light" alt="user-icon" src="{{ getSingleMedia($booking->customer,'profile_image', null) }}">
-                                                </div>
-                                                <div class="media-body ">
-                                                    <h5>#{{$booking->id}}</h5>
-                                                        
-                                                    <span>{{($booking->date)}}</span>
-                                                </div>
-                                        </div>
-                                        <span class="badge rounded-pill py-2 px-3 badge-pending text-capitalize">{{$booking->status}}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                <button id="quick-action-apply" class="btn btn-primary" data-ajax="true"
+                                data--submit="{{ route('booking.bulk-action') }}"
+                                data-datatable="reload" data-confirmation='true'
+                                data-title="{{ __('booking',['form'=>  __('booking') ]) }}"
+                                title="{{ __('booking',['form'=>  __('booking') ]) }}"
+                                data-message='{{ __("Do you want to perform this action?") }}' disabled>{{__('messages.apply')}}</button>
+                            </form>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group ml-2">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control dt-search" placeholder="Search..." aria-label="Search" aria-describedby="addon-wrapping" aria-controls="dataTableBuilder">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped border">
+
+                        </table>
+                    </div>
                 </div>
             </div>
+            <!-- end table -->
         </div>
     </div>
+    @section('bottom_script')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+            window.renderedDataTable = $('#datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    autoWidth: false,                                                                                                                                                                         
+                    responsive: true,
+                    
+                    dom: '<"row align-items-center"><"table-responsive my-3" rt><"row align-items-center" <"col-md-6" l><"col-md-6" p>><"clear">',
+                    ajax: {
+                    "type"   : "GET",
+                    "url"    : '{{ route("transaction_history") }}',
+                    "data"   : function( d ) {
+                        d.search = {
+                        value: $('.dt-search').val()
+                        };
+                        d.filter = {
+                        column_status: $('#column_status').val()
+                        }
+                    },
+                    },
+                    columns: [
+                    
+                        {
+                            data: 'display_name',
+                            name: 'display_name',
+                            title: "Provider Name"
+                        },
+                        {
+                            data: 'neo_comm',
+                            name: 'neo_comm',
+                            title: "Commission"
+                        },
+                        {
+                            data: 'status',
+                            name: 'status',
+                            title: "{{__('messages.status')}}"
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            title: "Action"
+                        }
+                        
+                    ]
+                    
+                });
+        });
+
+        function resetQuickAction () 
+        {
+            const actionValue = $('#quick-action-type').val();
+            console.log(actionValue)
+            if (actionValue != '') {
+                $('#quick-action-apply').removeAttr('disabled');
+
+                if (actionValue == 'change-status') {
+                    $('.quick-action-field').addClass('d-none');
+                    $('#change-status-action').removeClass('d-none');
+                } else {
+                    $('.quick-action-field').addClass('d-none');
+                }
+            } else {
+                $('#quick-action-apply').attr('disabled', true);
+                $('.quick-action-field').addClass('d-none');
+            }
+        }
+
+        $('#quick-action-type').change(function () {
+            resetQuickAction()
+        });
+
+        $(document).on('update_quick_action', function() {
+
+        })
+
+            $(document).on('click', '[data-ajax="true"]', function (e) {
+            e.preventDefault();
+            const button = $(this);
+            const confirmation = button.data('confirmation');
+
+            if (confirmation === 'true') {
+                const message = button.data('message');
+                if (confirm(message)) {
+                    const submitUrl = button.data('submit');
+                    const form = button.closest('form');
+                    form.attr('action', submitUrl);
+                    form.submit();
+                }
+            } else {
+                const submitUrl = button.data('submit');
+                const form = button.closest('form');
+                form.attr('action', submitUrl);
+                form.submit();
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @endsection
 </x-master-layout>
