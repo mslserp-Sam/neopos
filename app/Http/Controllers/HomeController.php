@@ -319,19 +319,19 @@ class HomeController extends Controller
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
-                return '<span class="badge badge-active">'. $totalCompleted . '</span>';
+                return $totalCompleted;
             })
             ->editColumn('total_rejected', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'rejected')->count();
-                return '<span class="badge badge-inactive">' .isset($total) ? $total : 0 . '</span>';
+                return isset($total) ? $total : 0;
             })
             ->editColumn('total_cancelled', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'cancelled')->count();
-                return '<span class="badge badge-inactive">'. isset($total) ? $total : 0 . '</span>';
+                return isset($total) ? $total : 0;
             })
             ->editColumn('total_failed', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'failed')->count();
-                return '<span class="badge badge-inactive">'. isset($total) ? $total : 0 .'</span>';
+                return isset($total) ? $total : 0;
             })
             // ->filterColumn('sp_comm',function($query,$keyword){
             //     $query->where('sp_comm','like','%'.$keyword.'%');
