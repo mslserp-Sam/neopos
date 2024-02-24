@@ -313,7 +313,7 @@ class HomeController extends Controller
             //     return $query->first_name. " " . $query->last_name;
             // })
             ->editColumn('total_booking', function($query) {
-                $totalbooking = DB::table('bookings')->count();
+                $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
                 return $totalbooking;
             })
             ->editColumn('sp_comm', function($query) {
