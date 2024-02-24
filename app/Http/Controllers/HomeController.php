@@ -237,6 +237,7 @@ class HomeController extends Controller
             //  $earningNeo = $earningNeo->where('user_id', $getUser->id); 
              $query = $query->select(
                 'users.first_name',
+                'users.display_name',
                 'users.last_name',
                 'bookings.status',
                 'earnings_neo.booking_id',
