@@ -164,8 +164,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="d-flex p-3 ">
-                                                <h5 class="font-weight-bold">Search Service Provider</h5>
+                                        <div class="d-flex ">
+                                                <h5 class="font-weight-bold">Search Neopreneur</h5>
                                         </div>
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
@@ -182,7 +182,7 @@
                                                 
                                             </div>
                                             <hr>
-                                            <div class="d-flex p-3 ">
+                                            <div class="d-flex  ">
                                                 <h5 class="font-weight-bold">Service Provider List</h5>
                                             </div>
                                             <div id="neoList">
