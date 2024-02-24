@@ -268,17 +268,17 @@ class HomeController extends Controller
             ->filterColumn('neo_comm',function($query,$keyword){
                 $query->where('neo_comm','like','%'.$keyword.'%');
             })
-            ->editColumn('status', function($query) {
-                if($query->status != 1){
-                    $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
-                }else{
-                    $status = '<span class="badge badge-active">'.$query->status.'</span>';
-                }
-                return $status;
-            })
-            ->filterColumn('status',function($query,$keyword){
-                $query->where('status','like','%'.$keyword.'%');
-            })
+            // ->editColumn('status', function($query) {
+            //     if($query->status != 1){
+            //         $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
+            //     }else{
+            //         $status = '<span class="badge badge-active">'.$query->status.'</span>';
+            //     }
+            //     return $status;
+            // })
+            // ->filterColumn('status',function($query,$keyword){
+            //     $query->where('status','like','%'.$keyword.'%');
+            // })
             ->addColumn('action', function($query){
                 return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
                 // return $query->username;

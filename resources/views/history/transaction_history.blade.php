@@ -59,11 +59,11 @@
                         name: 'neo_comm',
                         title: "Commission"
                     },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        title: "{{__('messages.status')}}"
-                    },
+                    // {
+                    //     data: 'status',
+                    //     name: 'status',
+                    //     title: "{{__('messages.status')}}"
+                    // },
                     {
                         data: 'action',
                         name: 'action',
