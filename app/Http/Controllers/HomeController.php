@@ -248,13 +248,13 @@ class HomeController extends Controller
              
         }   
         return $datatable->eloquent($query)
-            // ->editColumn('display_name', function($query){
-            //     return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
-            // })
-
-            ->editColumn('display_name', function ($query) {
-                return $query->first_name. " " . $query->last_name;
+            ->editColumn('display_name', function($query){
+                return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
             })
+
+            // ->editColumn('display_name', function ($query) {
+            //     return $query->first_name. " " . $query->last_name;
+            // })
             ->editColumn('neo_comm', function($query) {
                 return $query->neo_comm;
             })
