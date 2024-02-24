@@ -160,6 +160,41 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex p-3 ">
+                                                <h5 class="font-weight-bold">Search Service Provider</h5>
+                                        </div>
+                                        <div class="input-group ml-2 mb-2">
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
+                                        </div>
+                                        <div id="pangError">
+                                            aa
+                                        </div>
+                                        <div id="accordion">
+                                            <div id="searchContent">
+                                                
+                                            </div>
+                                            <div id="alertAdd">
+                                                
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex p-3 ">
+                                                <h5 class="font-weight-bold">Service Provider List</h5>
+                                            </div>
+                                            <div id="neoList">
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        
+                        </div>
                         {{ Form::submit( __('messages.save'), ['class'=>'btn btn-md btn-primary float-right']) }}
                         {{ Form::close() }}
                     </div>
