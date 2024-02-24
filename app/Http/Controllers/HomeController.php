@@ -241,7 +241,8 @@ class HomeController extends Controller
              //$query = $query->where('user_type', 'provider'); 
              $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
                  ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
+                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
+                 ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
              
         }   
         return $datatable->eloquent($query)
@@ -266,11 +267,11 @@ class HomeController extends Controller
                 // }else{
                 //     $status = '<span class="badge badge-active">'.$query->status.'</span>';
                 // }
-                return $query->status;
+                return $query->booking_status;
             })
             
             ->addColumn('action', function($query){
-                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->id).">View</a>";
+                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
                 // return $query->username;
             })
             ->addIndexColumn()
