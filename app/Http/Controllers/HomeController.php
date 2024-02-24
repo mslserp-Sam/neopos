@@ -326,7 +326,7 @@ class HomeController extends Controller
                 //$getU = DB::table('users')->where('id', 2597)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')->sum('ye');
                 //->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status')
                 //->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')
-                $getU = DB::table('users')->where('id', '=', 2597)->first();
+                $getU = DB::table('users')->where('id', '=', $query->id)->select('first_name');
                
                 return isset($getU->first_name) ? $getU->first_name : 0;
             })
