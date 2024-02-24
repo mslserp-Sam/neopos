@@ -325,8 +325,6 @@ class HomeController extends Controller
             ->editColumn('neo_comm', function($query) {
                 $qwe = User::query();
                 $gete = $qwe->where('id', $query->id)
-                 ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('*');
                 return isset($gete) ? $gete : 0;
             })
             ->editColumn('total_completed', function($query) {
