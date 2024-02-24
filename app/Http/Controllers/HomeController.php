@@ -319,39 +319,25 @@ class HomeController extends Controller
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
-                return $totalCompleted;
+                return '<span class="badge badge-active">'. $totalCompleted . '</span>';
             })
             ->editColumn('total_rejected', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'rejected')->count();
-                return isset($total) ? $total : 0;
+                return '<span class="badge badge-inactive">' .isset($total) ? $total : 0 . '</span>';
             })
             ->editColumn('total_cancelled', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'cancelled')->count();
-                return isset($total) ? $total : 0;
+                return '<span class="badge badge-inactive">'. isset($total) ? $total : 0 . '</span>';
             })
             ->editColumn('total_failed', function($query) {
                 $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'failed')->count();
-                return isset($total) ? $total : 0;
+                return '<span class="badge badge-inactive">'. isset($total) ? $total : 0 .'</span>';
             })
             // ->filterColumn('sp_comm',function($query,$keyword){
             //     $query->where('sp_comm','like','%'.$keyword.'%');
             // })
-            ->editColumn('status', function($query) {
-                // if($query->booking_status != 'completed'){
-                //     $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
-                // }else{
-                //     $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
-                // }
-                $status = "TEST";
-                return $status;
-            })
-            
-            ->addColumn('action', function($query){
-              // return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
-                 return $query->username;
-            })
             ->addIndexColumn()
-            ->rawColumns(['display_name','action','status'])
+            ->rawColumns(['display_name'])
             ->toJson();
     }
     public function adminDashboard($data)
