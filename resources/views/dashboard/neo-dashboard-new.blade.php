@@ -174,6 +174,11 @@
                             title: "Commission"
                         },
                         {
+                            data: 'total_completed',
+                            name: 'total_completed',
+                            title: "Completed"
+                        },
+                        {
                             data: 'status',
                             name: 'status',
                             title: "{{__('messages.status')}}"

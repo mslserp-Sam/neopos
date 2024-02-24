@@ -309,15 +309,17 @@ class HomeController extends Controller
             ->filterColumn('display_name',function($query,$keyword){
                 $query->where('display_name','like','%'.$keyword.'%');
             })
-            // ->editColumn('display_name', function ($query) {
-            //     return $query->first_name. " " . $query->last_name;
-            // })
             ->editColumn('total_booking', function($query) {
                 $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
                 return $totalbooking;
             })
             ->editColumn('sp_comm', function($query) {
-                return "TEST";
+                $totalkomi = DB::table('earnings_service_provider')->where('provider_id', $query->id)->sum('sp_comm');
+                return $totalkomi;
+            })
+            ->editColumn('total_completed', function($query) {
+                $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
+                return $totalkomi;
             })
             // ->filterColumn('sp_comm',function($query,$keyword){
             //     $query->where('sp_comm','like','%'.$keyword.'%');
