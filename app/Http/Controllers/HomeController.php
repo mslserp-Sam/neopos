@@ -257,7 +257,7 @@ class HomeController extends Controller
             })
             ->filterColumn('display_name',function($query,$keyword){
                 $query->whereHas('provider',function ($q) use($keyword){
-                    $q->where('email','like','%'.$keyword.'%');
+                    $q->where('display_name','like','%'.$keyword.'%');
                 });
             })
             // ->editColumn('display_name', function ($query) {
