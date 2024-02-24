@@ -240,7 +240,8 @@ class HomeController extends Controller
                 'users.last_name',
                 'bookings.status',
                 'earnings_neo.booking_id',
-                'earnings_neo.neo_comm'
+                'earnings_neo.neo_comm',
+                'users.display_name'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
                  ->join('users', 'users.id', '=', 'bookings.provider_id')
                  ->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
