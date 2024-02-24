@@ -326,7 +326,7 @@ class HomeController extends Controller
                 $ee = User::query();
                 $ee = $ee->where('id', $query->id)
 
-                return "asdad";
+                return $query->id;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
