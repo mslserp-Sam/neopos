@@ -244,7 +244,7 @@ class HomeController extends Controller
                 'users.display_name',
                 'users.last_name',
                 'bookings.status as booking_status',
-                'earnings_neo.booking_id',
+                'earnings_neo.booking_id as booking_new_id',
                 'earnings_neo.neo_comm'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
                  ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
@@ -261,12 +261,10 @@ class HomeController extends Controller
             // ->editColumn('display_name', function ($query) {
             //     return $query->first_name. " " . $query->last_name;
             // })
-            // ->editColumn('neo_comm', function($query) {
-            //     return $query->neo_comm;
-            // })
-            ->editColumn('last_name', function($query) {
-                return $query->last_name;
+            ->editColumn('neo_comm', function($query) {
+                return $query->neo_comm;
             })
+            
             ->editColumn('booking_status', function($query) {
                 if($query->booking_status != 'completed'){
                     $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
@@ -276,8 +274,8 @@ class HomeController extends Controller
                 return $status;
             })
             ->addColumn('action', function($query){
-                //return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_id).">View</a>";
-                return $query->username;
+                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
+                // return $query->username;
             })
             ->addIndexColumn()
             ->rawColumns(['display_name','action','status'])
