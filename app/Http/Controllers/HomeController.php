@@ -323,9 +323,6 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-                $ee = User::query();
-                $ee = $ee->where('id', $query->id)
-
                 return $query->id;
             })
             ->editColumn('total_completed', function($query) {
