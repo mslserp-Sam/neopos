@@ -264,7 +264,9 @@ class HomeController extends Controller
             ->editColumn('neo_comm', function($query) {
                 return $query->neo_comm;
             })
-            
+            ->filterColumn('neo_comm',function($query,$keyword){
+                $query->where('neo_comm','like','%'.$keyword.'%');
+            })
             ->editColumn('booking_status', function($query) {
                 if($query->booking_status != 'completed'){
                     $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
