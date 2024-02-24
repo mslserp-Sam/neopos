@@ -300,11 +300,6 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             //$query = $query->where('user_type', 'provider'); 
-            //  $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
-            //      ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-            //      ->rightJoin('earnings_service_provider', 'bookings.id', '=', 'earnings_service_provider.booking_id')
-            //      ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
         }   
         return $datatable->eloquent($query)
@@ -317,6 +312,10 @@ class HomeController extends Controller
             // ->editColumn('display_name', function ($query) {
             //     return $query->first_name. " " . $query->last_name;
             // })
+            ->editColumn('total_booking', function($query) {
+                $totalbooking = DB::table('bookings')->count();
+                return $totalbooking;
+            })
             ->editColumn('sp_comm', function($query) {
                 return "TEST";
             })
