@@ -255,7 +255,9 @@ class HomeController extends Controller
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
             })
-
+            ->filterColumn('display_name',function($query,$keyword){
+                $query->>where('display_name','like','%'.$keyword.'%');
+            })
             // ->editColumn('display_name', function ($query) {
             //     return $query->first_name. " " . $query->last_name;
             // })
