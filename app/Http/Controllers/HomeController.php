@@ -243,7 +243,7 @@ class HomeController extends Controller
                 'users.first_name',
                 'users.display_name',
                 'users.last_name',
-                'bookings.status',
+                'bookings.status as booking_status',
                 'earnings_neo.booking_id',
                 'earnings_neo.neo_comm'
                 )->where('user_type','provider')->where('upline', $getUser->referal_code)
@@ -267,11 +267,11 @@ class HomeController extends Controller
             ->editColumn('last_name', function($query) {
                 return $query->last_name;
             })
-            ->editColumn('status', function($query) {
+            ->editColumn('booking_status', function($query) {
                 if($query->status != 'completed'){
-                    $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
+                    $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
                 }else{
-                    $status = '<span class="badge badge-active">'.$query->status.'</span>';
+                    $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
                 }
                 return $status;
             })
