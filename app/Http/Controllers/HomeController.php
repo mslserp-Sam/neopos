@@ -319,7 +319,7 @@ class HomeController extends Controller
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
-                return $totalkomi;
+                return $totalCompleted;
             })
             // ->filterColumn('sp_comm',function($query,$keyword){
             //     $query->where('sp_comm','like','%'.$keyword.'%');
