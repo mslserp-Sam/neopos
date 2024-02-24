@@ -276,9 +276,7 @@ class HomeController extends Controller
                 // }
                 return $query->bookingstat;
             })
-            ->filterColumn('bookingstat',function($query,$keyword){
-                $query->where('bookingstat','like','%'.$keyword.'%');
-            })
+            
             ->addColumn('action', function($query){
                 return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
                 // return $query->username;
