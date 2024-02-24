@@ -323,6 +323,7 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
+                $bookingzz = "x";
                 $bookingzz = DB::table('bookings')->where('provider_id', $query->id)->first();
                 $totalkomis;
                 $totalkomiss;
@@ -332,7 +333,7 @@ class HomeController extends Controller
                         $totalkomiss = $totalkomis;
                     }
                 }
-                return isset($totalkomiss) ? $totalkomiss : 0;
+                return isset($totalkomiss) ? $totalkomiss : 0 $bookingzz;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
