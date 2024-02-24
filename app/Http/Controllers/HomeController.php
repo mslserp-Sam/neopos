@@ -267,13 +267,16 @@ class HomeController extends Controller
             ->filterColumn('neo_comm',function($query,$keyword){
                 $query->where('neo_comm','like','%'.$keyword.'%');
             })
-            ->editColumn('booking_status', function($query) {
-                if($query->booking_status != 'completed'){
-                    $status = '<span class="badge badge-inactive">'.$query->booking_status.'</span>';
+            ->editColumn('status', function($query) {
+                if($query->status != 'completed'){
+                    $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
                 }else{
-                    $status = '<span class="badge badge-active">'.$query->booking_status.'</span>';
+                    $status = '<span class="badge badge-active">'.$query->status.'</span>';
                 }
                 return $status;
+            })
+            ->filterColumn('status',function($query,$keyword){
+                $query->where('status','like','%'.$keyword.'%');
             })
             ->addColumn('action', function($query){
                 return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
