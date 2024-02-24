@@ -268,7 +268,7 @@ class HomeController extends Controller
                 $query->where('neo_comm','like','%'.$keyword.'%');
             })
             ->editColumn('status', function($query) {
-                if($query->status != 'completed'){
+                if($query->status != 1){
                     $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
                 }else{
                     $status = '<span class="badge badge-active">'.$query->status.'</span>';
