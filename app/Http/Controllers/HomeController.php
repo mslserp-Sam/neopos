@@ -243,6 +243,7 @@ class HomeController extends Controller
                 'users.first_name',
                 'users.display_name',
                 'users.last_name',
+                'users.status',
                 'bookings.status',
                 'earnings_neo.booking_id as booking_new_id',
                 'earnings_neo.neo_comm'
