@@ -238,7 +238,7 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-             $query = $query->where('user_id', $getUser->id); 
+             $query = $query->where('user_type', 'provider'); 
             //  $query = $query->select(
             //     'users.first_name',
             //     'users.display_name',
