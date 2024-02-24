@@ -164,7 +164,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="d-flex ">
+                                        <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Search Neopreneur</h5>
                                         </div>
                                         <div class="input-group ml-2 mb-2">
@@ -178,11 +178,8 @@
                                             <div id="searchContent">
                                                 
                                             </div>
-                                            <div id="alertAdd">
-                                                
-                                            </div>
                                             <hr>
-                                            <div class="d-flex  ">
+                                            <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Service Provider List</h5>
                                             </div>
                                             <div id="neoList">
