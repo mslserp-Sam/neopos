@@ -325,7 +325,7 @@ class HomeController extends Controller
             ->editColumn('neo_comm', function($query) {
                 
                 $bookingzz = DB::table('bookings')->where('provider_id', $query->id)->first();
-                $totalkomis = DB::table('earnings_neo')->where('booking_id', $bookingzz->booking_id)->where('neo_id', $getUser->id)->sum('neo_comm');
+                $totalkomis = DB::table('earnings_neo')->where('booking_id', $bookingzz->id)->where('neo_id', $getUser->id)->sum('neo_comm');
                 return isset($totalkomis) ? $totalkomis : 0;
             })
             ->editColumn('total_completed', function($query) {
