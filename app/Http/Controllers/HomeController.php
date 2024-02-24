@@ -327,7 +327,7 @@ class HomeController extends Controller
                 $totalkomis;
                 $totalkomiss;
                 if($bookingzz){
-                    $totalkomis = DB::table('earnings_neo')->where('booking_id', $bookingzz->id)->where('neo_id', 3934)->sum('neo_comm');
+                    $totalkomis = DB::table('earnings_neo')->where('booking_id', $bookingzz->id)->where('neo_id', $getUser->id)->sum('neo_comm');
                     if($totalkomis){
                         $totalkomiss = $totalkomis;
                     }
