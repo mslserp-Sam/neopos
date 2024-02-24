@@ -239,15 +239,7 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
              //$query = $query->where('user_type', 'provider'); 
-             $query = $query->select(
-                'users.first_name',
-                'users.display_name',
-                'users.last_name',
-                'users.status',
-                'bookings.status as bookingstat',
-                'earnings_neo.booking_id as booking_new_id',
-                'earnings_neo.neo_comm'
-                )->where('user_type','provider')->where('upline', $getUser->referal_code)
+             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code)
                  ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
                  ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id');
              
@@ -268,17 +260,17 @@ class HomeController extends Controller
             ->filterColumn('neo_comm',function($query,$keyword){
                 $query->where('neo_comm','like','%'.$keyword.'%');
             })
-            ->editColumn('bookingstat', function($query) {
+            ->editColumn('status', function($query) {
                 // if($query->status != 1){
                 //     $status = '<span class="badge badge-inactive">'.$query->status.'</span>';
                 // }else{
                 //     $status = '<span class="badge badge-active">'.$query->status.'</span>';
                 // }
-                return $query->bookingstat;
+                return $query->status;
             })
             
             ->addColumn('action', function($query){
-                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->booking_new_id).">View</a>";
+                return "<a class='btn-link btn-link-hover' href=" .route('booking.show', $query->id).">View</a>";
                 // return $query->username;
             })
             ->addIndexColumn()
