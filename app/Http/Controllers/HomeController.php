@@ -322,6 +322,11 @@ class HomeController extends Controller
                 $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
                 return isset($totalkomi) ? $totalkomi : 0;
             })
+            ->editColumn('neo_comm', function($query) {
+                $getneo = DB::table('users')->where('referal_code', $query->upline)->first();
+                $totalkomi = DB::table('earnings_neo')->where('neo_id', $getneo->id)->sum('neo_comm');
+                return isset($totalkomi) ? $totalkomi : 0;
+            })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
                 return $totalCompleted;

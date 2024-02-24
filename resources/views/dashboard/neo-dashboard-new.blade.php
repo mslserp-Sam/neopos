@@ -89,7 +89,7 @@
                                                 <h4 class="mb-2 booking-text font-weight-bold">{{ !empty($data['total_sp_rev']) ? $data['total_sp_rev'] : 0 }}</h4>
                                                 <p class="mb-0 ml-3 text-danger font-weight-bold"></p>
                                             </div>
-                                            <p class="mb-0 booking-text">Total Service Provider Revenue</p>
+                                            <p class="mb-0 booking-text">Total SP Revenue</p>
                                         </div>
                                         <div class="col-auto d-flex flex-column">
                                             <div class="iq-card-icon iq-card-icon-revenue icon-shape text-white rounded-circle shadow">
@@ -172,6 +172,12 @@
                         {
                             data: 'sp_comm',
                             name: 'sp_comm',
+                            title: "SP Revenue",
+                            searchable: false,
+                        },
+                        {
+                            data: 'neo_comm',
+                            name: 'neo_comm',
                             title: "Commission",
                             searchable: false,
                         },
