@@ -323,18 +323,12 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-           
-                $bookingzz = DB::table('bookings')->where('provider_id', $query->id)->first();
-                // $totalkomis;
-                // $totalkomiss;
-                // if($bookingzz){
-                //     $totalkomis = DB::table('earnings_neo')->where('booking_id', $bookingzz->id)->where('neo_id', $getUser->id)->sum('neo_comm');
-                //     if($totalkomis){
-                //         $totalkomiss = $totalkomis;
-                //     }
-                // }
-                // return isset($totalkomiss) ? $totalkomiss : 0 $bookingzz;
-                return isset($bookingzz->id) ? $bookingzz->id : 0;
+               
+                $gete = $query->where('id',$query->id)
+                 ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
+                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
+                 ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status')->sum('neo_comm as neoneo');
+                return isset($gete) ? $gete : 0;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
