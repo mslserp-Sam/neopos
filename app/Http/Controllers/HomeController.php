@@ -323,7 +323,7 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-                $getU = DB::table('users')->where('id', $query->id)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->sum('earnings_neo.neo_comm');
+                $getU = DB::table('users')->where('id', 2597)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->sum('earnings_neo.neo_comm');
                 if($getU == null){
                     $getU = 0;
                 }
