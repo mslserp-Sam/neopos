@@ -265,7 +265,7 @@ class HomeController extends Controller
             //     return $query->neo_comm;
             // })
             ->editColumn('last_name', function($query) {
-                return $query->id;
+                return $query->last_name;
             })
             ->editColumn('status', function($query) {
                 if($query->status != 'completed'){
