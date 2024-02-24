@@ -249,7 +249,7 @@ class HomeController extends Controller
         }   
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
-                return '<a class="btn-link btn-link-hover" href='.route('user.show', $query->id).'>'.$query->display_name.'</a>';
+                return '<a class="btn-link btn-link-hover" href=''>'.$query->display_name.'</a>';
             })
 
             // ->editColumn('display_name', function ($query) {
