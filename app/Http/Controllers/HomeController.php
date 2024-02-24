@@ -331,7 +331,7 @@ class HomeController extends Controller
                 $querye = $querye->where('user_type','provider')->where('upline', $getUser->referal_code)->where('id', 2597)
                 ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
                 ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
-                ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status')
+                ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
                 return isset($querye->neo_comm) ? $querye->neo_comm."xdeee" : 0;
             })
             ->editColumn('total_completed', function($query) {
