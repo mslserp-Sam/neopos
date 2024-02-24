@@ -314,7 +314,7 @@ class HomeController extends Controller
                 return $totalbooking;
             })
             ->editColumn('sp_comm', function($query) {
-                $totalkomi = DB::table('earnings_service_provider')->where('provider_id', $query->id)->sum('sp_comm');
+                $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
                 return $totalkomi;
             })
             ->editColumn('total_completed', function($query) {
