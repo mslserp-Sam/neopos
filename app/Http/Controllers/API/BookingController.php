@@ -333,7 +333,7 @@ class BookingController extends Controller
             $user_wallet->update();
 
             DB::table('payments')->where('booking_id',$paymentdata->booking_id)->update([
-                'payment_status' => 'paid '.$paymentdata->total_amount
+                'payment_status' => 'paid'
             ]);
 
             $payment_history = [
