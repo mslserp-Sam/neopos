@@ -181,7 +181,7 @@ class ProviderController extends Controller
             return  redirect()->back()->withErrors(trans('messages.demo_permission_denied'));
         }
         $data = $request->all();
-        dd($data['neo']);
+        // dd($data['neo']);
         $id = $data['id'];
         $data['user_type'] = $data['user_type'] ?? 'provider';
         $data['is_featured'] = 0;
