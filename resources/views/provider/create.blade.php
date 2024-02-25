@@ -151,7 +151,8 @@
                             </div>
                         </div>
                         @if(isset($providerdata->upline))
-                            @php use Illuminate\Support\Facades\DB; @endphp
+                         {{ Illuminate\Support\Facades\DB }}
+                            @php use  @endphp
                             @php $getUpline = DB::table('users')->where('referal_code', '$providerdata->upline')->first @endphp        
                             <div class="form-group col-md-12">
                                 <label class=""form-control-label>Neopreneur</label>
