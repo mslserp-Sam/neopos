@@ -151,7 +151,11 @@
                             </div>
                         </div>
                         @if(isset($providerdata->upline))
-
+                            @php $getUpline = DB::table('users')->where('referal_code', '$providerdata->upline')->first @endphp        
+                            <div class="form-group col-md-12">
+                                <label class=""form-control-label>Neopreneur</label>
+                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last Name }}" disabled>
+                            </div>
                         @else
                         <div class="row">
                             <div class="col-lg-12">
