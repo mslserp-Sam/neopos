@@ -255,7 +255,7 @@
                 }else{
                     $('#pangError').html("");
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
-                    $("#neoReferralCode").val(data.referal_code);
+                    $("#neoReferralCode").val(nData.referal_code);
                   
                  
                 }
