@@ -194,7 +194,7 @@ class ProviderController extends Controller
 
         if($id == null){
             $data['password'] = bcrypt($data['password']);
-            $data['upline'] = isset($data['neo']) ? $data['neo'] : "";
+            $data['upline'] = isset($data['neo']) ? $data['neo'] : NULL;
             $user = User::create($data);
         }else{
             $user = User::findOrFail($id);
