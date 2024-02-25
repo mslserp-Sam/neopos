@@ -151,16 +151,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <div class="custom-control custom-switch custom-control-inline ">
-                                    {{ Form::checkbox('is_featured', $providerdata->is_featured, null, ['class' => 'custom-control-input' , 'id' => 'is_featured' ]) }}
-                                    <label class="custom-control-label"
-                                        for="is_featured">{{ __('messages.set_as_featured')  }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -171,27 +161,24 @@
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
                                         </div>
-                                        <div id="pangError">
-                                            aa
-                                        </div>
-                                        <div id="accordion">
-                                            <div id="searchContent">
-                                                
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex p-3 ">
-                                                <h5 class="font-weight-bold">Service Provider List</h5>
-                                            </div>
-                                            <div id="neoList">
-                                                
-                                            </div>
-                                            
+                                        <div id="pangError ml-2">
+                            
                                         </div>
                                     </div>
                                 </div>
                             </div>  
-                        
                         </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="custom-control custom-switch custom-control-inline ">
+                                    {{ Form::checkbox('is_featured', $providerdata->is_featured, null, ['class' => 'custom-control-input' , 'id' => 'is_featured' ]) }}
+                                    <label class="custom-control-label"
+                                        for="is_featured">{{ __('messages.set_as_featured')  }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
                         {{ Form::submit( __('messages.save'), ['class'=>'btn btn-md btn-primary float-right']) }}
                         {{ Form::close() }}
                     </div>
@@ -246,7 +233,32 @@
             $('#contact_number_err').text('Please enter a valid mobile number');
         }
     });
-
+    $('#searchNeo').on('keyup', () => {
+        var data = {
+            email: $('#searchNeo').val()
+        }
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("booking.sp_search_neo") }}',
+            data: data,
+            dataType: 'JSON',
+            success: function(data) {
+                // console.log(data);
+                var nData = data.data;
+                console.log(nData)
+                if(data.status == "error"){
+                   $('#pangError').html("") 
+                   $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                   
+                }else{
+                    $('#pangError').html("")
+                    $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
+                  
+                 
+                }
+            }
+        })
+    })
         function stateName(country, state = "") {
             var state_route = "{{ route('ajax-list', [ 'type' => 'state','country_id' =>'']) }}" + country;
             state_route = state_route.replace('amp;', '');
