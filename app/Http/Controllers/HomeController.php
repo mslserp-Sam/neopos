@@ -307,7 +307,7 @@ class HomeController extends Controller
         }else{
             $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
         }   
-        return $datatable->eloquent($query,$getUser)
+        return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
             })
@@ -322,7 +322,7 @@ class HomeController extends Controller
                 $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
                 return isset($totalkomi) ? $totalkomi : 0;
             })
-            ->editColumn('neo_comm', function($query,$getUser) {
+            ->editColumn('neo_comm', function($query) {
                 // $neoComms = DB::table('earnings_neo')
                 //             ->where('neo_id', $getUser->id)
                 //             ->where('provider_id', $query->id)
