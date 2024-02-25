@@ -160,6 +160,7 @@
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
+                                            <input type="hidden" name="neo" id="neoReferralCode">
                                         </div>
                                         <div id="pangError" class="ml-2">
                             
@@ -249,10 +250,12 @@
                 if(data.status == "error"){
                    $('#pangError').html("") 
                    $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                   $("#neoReferralCode").val("");
                    
                 }else{
-                    $('#pangError').html("")
+                    $('#pangError').html("");
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
+                    $("#neoReferralCode").val(data.referal_code);
                   
                  
                 }
