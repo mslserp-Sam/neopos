@@ -336,7 +336,7 @@ class HomeController extends Controller
                 // ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
                 // ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
                 // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
-                return $getUser->id.' | '$query->id;
+                return $getUser->id.' | '.$query->id;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
