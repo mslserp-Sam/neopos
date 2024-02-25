@@ -154,7 +154,7 @@
                             @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
                             <div class="form-group col-md-12">
                                 <label class=""form-control-label>Neopreneur</label>
-                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" disabled>
+                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
                             </div>
                         @else
                         <div class="row">
