@@ -161,7 +161,7 @@
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
                                         </div>
-                                        <div id="pangError ml-2">
+                                        <div id="pangError" class="ml-2">
                             
                                         </div>
                                     </div>
