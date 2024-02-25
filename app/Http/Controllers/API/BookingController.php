@@ -332,7 +332,7 @@ class BookingController extends Controller
 
             $wallet_amount = $user_wallet->amount;
 
-            $user_wallet->amount = abs($wallet_amount - $totalSpComm);
+            $user_wallet->amount = $wallet_amount - $totalSpComm;
 
             $user_wallet->update();
 
