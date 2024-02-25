@@ -147,9 +147,12 @@
 
                             <div class="form-group col-md-12">
                                 {{ Form::label('address',__('messages.address'), ['class' => 'form-control-label']) }}
-                                {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>3  , 'placeholder'=> __('messages.address') ]) }}
+                                {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
                         </div>
+                        @if(isset($providerdata->upline))
+
+                        @else
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -169,6 +172,8 @@
                                 </div>
                             </div>  
                         </div>
+                        @endif
+                        
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <div class="custom-control custom-switch custom-control-inline ">
