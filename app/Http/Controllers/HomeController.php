@@ -323,10 +323,10 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-                // $neoComms = DB::table('earnings_neo')
-                //             ->where('neo_id', $getUser->id)
-                //             ->where('provider_id', $query->id)
-                //             ->sum('neo_comm');
+                $neoComms = DB::table('earnings_neo')
+                            ->where('neo_id', auth()->user()->id)
+                            ->where('sp_id', $query->id)
+                            ->sum('neo_comm');
                 //$getU = DB::table('users')->where('id', 2597)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')->sum('ye');
                 //->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status')
                 //->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')
@@ -336,7 +336,7 @@ class HomeController extends Controller
                 // ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
                 // ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
                 // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
-                return $query->id;
+                return $neoComms;
             })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
