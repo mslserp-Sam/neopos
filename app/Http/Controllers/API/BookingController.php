@@ -292,7 +292,8 @@ class BookingController extends Controller
                 DB::table('earnings_neo')->insert([
                     'booking_id' => $paymentdata->booking_id,
                     'neo_comm'   => $totalNeoComm,
-                    'neo_id'     => $neoProvider->id
+                    'neo_id'     => $neoProvider->id,
+                    'sp_id'      => $handyman->handyman_id
                 ]);
                 $neoProviderId = $neoProvider->upline;
                 if($neoProviderId)
@@ -302,7 +303,8 @@ class BookingController extends Controller
                     DB::table('earnings_upline')->insert([
                         'booking_id'    => $paymentdata->booking_id,
                         'upline_comm'   => $totalUplineComm,
-                        'upline_id'     => $uplineNeo->id
+                        'upline_id'     => $uplineNeo->id,
+                        'sp_id'         => $handyman->handyman_id
                     ]);
                 }
             }
@@ -317,11 +319,13 @@ class BookingController extends Controller
             ]);
             DB::table('earnings_admin')->insert([
                 'booking_id' => $paymentdata->booking_id,
-                'admin_comm' => $totalAdminComm
+                'admin_comm' => $totalAdminComm,
+                'sp_id'      => $handyman->handyman_id
             ]);
             DB::table('earnings_city_manager')->insert([
                 'booking_id' => $paymentdata->booking_id,
-                'city_comm'  => $totalCityManagerComm
+                'city_comm'  => $totalCityManagerComm,
+                'sp_id'      => $handyman->handyman_id
             ]);
             
             $user_wallet = Wallet::where('user_id', $handyman->handyman_id)->first();
