@@ -233,7 +233,87 @@
                     
                 });
         });
+        document.addEventListener('DOMContentLoaded', (event) => {
 
+        window.renderedDataTable = $('#datatabled').DataTable({
+                processing: true,
+                serverSide: true,
+                autoWidth: false,                                                                                                                                                                         
+                responsive: true,
+                
+                dom: '<"row align-items-center"><"table-responsive my-3" rt><"row align-items-center" <"col-md-6" l><"col-md-6" p>><"clear">',
+                ajax: {
+                "type"   : "GET",
+                "url"    : '{{ route("neo_tag_history") }}',
+                "data"   : function( d ) {
+                    d.search = {
+                    value: $('.dt-search').val()
+                    };
+                    d.filter = {
+                    column_status: $('#column_status').val()
+                    }
+                },
+                },
+                columns: [
+                    
+                    {
+                        data: 'display_name',
+                        name: 'display_name',
+                        title: "Provider Name"
+                    },
+                    {
+                        data: 'total_booking',
+                        name: 'total_booking',
+                        title: "Total Booking",
+                        searchable: false,
+                    },
+                    {
+                        data: 'sp_comm',
+                        name: 'sp_comm',
+                        title: "SP Revenue",
+                        searchable: false,
+                    },
+                    {
+                        data: 'comm_persent',
+                        name: 'comm_persent',
+                        title: "Commission(%)",
+                        searchable: false,
+                    },
+                    {
+                        data: 'neo_comm',
+                        name: 'neo_comm',
+                        title: "Commission",
+                        searchable: false,
+                    },
+                    {
+                        data: 'total_completed',
+                        name: 'total_completed',
+                        title: "Completed",
+                        searchable: false,
+                    },
+                    {
+                        data: 'total_rejected',
+                        name: 'total_rejected',
+                        title: "Rejected",
+                        searchable: false,
+                    },
+                    {
+                        data: 'total_cancelled',
+                        name: 'total_cancelled',
+                        title: "Cancelled",
+                        searchable: false,
+                    },
+                    {
+                        data: 'total_failed',
+                        name: 'total_failed',
+                        title: "Failed",
+                        searchable: false,
+                    }
+                    
+                ]
+                
+            });
+        });
         function resetQuickAction () 
         {
             const actionValue = $('#quick-action-type').val();
