@@ -219,14 +219,10 @@ class BookingController extends Controller
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error', 'uplineEmail' => ""]);  
         }else{
-            if($data->upline == null){
-                return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => ""]);
-            }else{
-                $upline = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $data->upline)->first();
+            $upline = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $data->upline)->first();
                 $ndata = $data->all();
                 $ndata['upline'] = isset($ndata['upline']) ? $ndata['upline'] : "";
                 return response()->json(['data'=> $ndata ,'status' => 'success', 'uplineEmail' => $upline->email]);
-            } 
         }
         
     }
