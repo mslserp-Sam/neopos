@@ -286,8 +286,8 @@
                     $('#pangError').html("");
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
                     $("#neoReferralCode").val(nData.referal_code);
-                    $('#searchUpline').val(nData.upline);
-                    // $('#neoReferralCode').val(nData.upline)
+                    $('#searchUpline').val(nData.email);
+                    $('#neoReferralCode').val(nData.upline)
                     $('#searchUpline').attr('disabled', false);
                  
                 }
