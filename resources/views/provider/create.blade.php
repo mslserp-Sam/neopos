@@ -278,9 +278,9 @@
                    $('#pangError').html("") 
                    $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
                    $("#neoReferralCode").val("");
-                   $('#searchUpline').attr('disabled', true);
                    $('#searchUpline').val("");
                    $('#neoReferralCode').val("")
+                   $('#pangErrorUpline').html("");)
                    
                 }else{
                     $('#pangError').html("");
@@ -288,7 +288,9 @@
                     $("#neoReferralCode").val(nData.referal_code);
                     $('#searchUpline').val(data.uplineEmail);
                     $('#neoReferralCode').val(nData.upline)
-                    $('#searchUpline').attr('disabled', false);
+                    $('#pangErrorUpline').html("");
+                    $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
+                    
                  
                 }
             }
