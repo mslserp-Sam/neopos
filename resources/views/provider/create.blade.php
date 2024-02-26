@@ -159,8 +159,8 @@
                         @else
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="">
+                                    <div class="">
                                         <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Search Neopreneur</h5>
                                         </div>
@@ -176,17 +176,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="">
+                                    <div class="">
                                         <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Search Upline</h5>
                                         </div>
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeos">
-                                            <input type="hidden" name="neo" id="neoReferralCodes">
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline">
+                                            <input type="hidden" name="spNeoUpline" id="uplineReferralCode">
                                         </div>
-                                        <div id="pangError" class="ml-2">
+                                        <div id="pangErrorUpline" class="ml-2">
                             
                                         </div>
                                     </div>
@@ -260,6 +260,7 @@
             $('#contact_number_err').text('Please enter a valid mobile number');
         }
     });
+
     $('#searchNeo').on('keyup', () => {
         var data = {
             email: $('#searchNeo').val()
@@ -277,13 +278,40 @@
                    $('#pangError').html("") 
                    $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
                    $("#neoReferralCode").val("");
+                   $('#searchUpline').atttr('disabled', true);
                    
                 }else{
                     $('#pangError').html("");
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
                     $("#neoReferralCode").val(nData.referal_code);
-                  
+                    $('#searchUpline').attr('disabled', false);
                  
+                }
+            }
+        })
+    })
+    $('#searchUpline').on('keyup', () => {
+        var data = {
+            email: $('#searchUpline').val(),
+            refid: $('#neoReferralCode').val()
+        }
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("booking.sp_search_upline") }}',
+            data: data,
+            dataType: 'JSON',
+            success: function(data) {
+                // console.log(data);
+                var nData = data.data;
+                console.log(nData)
+                if(data.status == "error"){
+                    $('#pangErrorUpline').html("") 
+                    $('#pangErrorUpline').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                    $("#uplineReferralCode").val("");
+                }else{
+                    $('#pangErrorUpline').html("");
+                    $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
+                    $("#uplineReferralCode").val(nData.referal_code);
                 }
             }
         })

@@ -186,6 +186,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
         Route::post('ajax-add-neo-tag',[BookingController::class,'add_neo_tag'])->name('booking.add_neo_tag');
         Route::get('ajax-neo-tag',[BookingController::class,'search_neo'])->name('booking.search_neo');
         Route::get('ajax-neo-search',[BookingController::class,'sp_search_neo'])->name('booking.sp_search_neo');
+        Route::get('ajax-neo-upline-search',[BookingController::class,'sp_search_upline'])->name('booking.sp_search_upline');
 
         Route::get('ajax-neo-tagged',[BookingController::class,'search_neo_tagged'])->name('booking.search_neo_tagged');
         Route::get('neo-tagged',[BookingController::class,'neo_tagged'])->name('booking.neo_tagged');

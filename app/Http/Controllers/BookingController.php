@@ -223,14 +223,27 @@ class BookingController extends Controller
         }
         
     }
-    public function search_neo_tagged(Request $request)
+    public function sp_search_upline(Request $request)
     {
-        $referal_code = $request->email;
-        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $request->email)->first();
+        $name = $request->email;
+         
+        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
             return response()->json(['data'=> $data ,'status' => 'success']); 
+        }
+        
+    }
+    public function search_neo_tagged(Request $request)
+    {
+        $referal_code = $request->email;
+
+        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $request->email)->first();
+        if($data == null){
+           return response()->json(['data'=> 'none' ,'status' => 'error']);  
+        }else{
+            return response()->json(['data'=> $data ,'status' => 'success', 'ref_ng_upline' => $request->refid]); 
         }
         
     }
