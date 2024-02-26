@@ -178,7 +178,7 @@
                         {
                             data: 'comm_persent',
                             name: 'comm_persent',
-                            title: "Upline Commission",
+                            title: "Commission(%)",
                             searchable: false,
                         },
                         {
