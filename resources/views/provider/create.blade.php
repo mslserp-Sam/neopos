@@ -288,9 +288,12 @@
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
                     $("#neoReferralCode").val(nData.referal_code);
                     $('#searchUpline').val(data.uplineEmail);
-                    $('#neoReferralCode').val(nData.upline)
                     $('#pangErrorUpline').html("");
                     $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
+                    if(data.uplineEmail == ""){
+                        $('#pangErrorUpline').html("");
+                    }
+                    $('#neoReferralCode').val(nData.upline)
                     $('#searchUpline').attr('disabled', false)
                  
                 }
