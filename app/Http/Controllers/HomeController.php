@@ -338,7 +338,7 @@ class HomeController extends Controller
                 // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
                 return $neoComms;
             })
-            ->editColumn('neo_comm', function($query) {
+            ->editColumn('upline_comm', function($query) {
                 
                 return "0";
             })
