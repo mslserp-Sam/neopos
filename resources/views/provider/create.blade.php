@@ -174,6 +174,23 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex p-3 ">
+                                                <h5 class="font-weight-bold">Search Upline</h5>
+                                        </div>
+                                        <div class="input-group ml-2 mb-2">
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeos">
+                                            <input type="hidden" name="neo" id="neoReferralCodes">
+                                        </div>
+                                        <div id="pangError" class="ml-2">
+                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>  
                         </div>
                         @endif
