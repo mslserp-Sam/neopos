@@ -232,7 +232,7 @@ class BookingController extends Controller
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
-            $neo = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_id', $ref_id)->first();
+            $neo = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $ref_id)->first();
             if($neo->upline){
                 $lagayan['upline_referal'] = $neo->referal_code;
                 $lagayan['upline_upline'] = $neo->upline;
