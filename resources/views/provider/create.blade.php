@@ -281,7 +281,7 @@
                    $('#searchUpline').val("");
                    $('#neoReferralCode').val("")
                    $('#pangErrorUpline').html("")
-                   $('#searchUpline').attr('disable', true)
+                   $('#searchUpline').attr('disabled', true)
                    
                 }else{
                     $('#pangError').html("");
@@ -291,7 +291,7 @@
                     $('#neoReferralCode').val(nData.upline)
                     $('#pangErrorUpline').html("");
                     $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
-                    $('#searchUpline').attr('disable', false)
+                    $('#searchUpline').attr('disabled', false)
                  
                 }
             }
