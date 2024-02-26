@@ -196,6 +196,11 @@ class ProviderController extends Controller
             $data['password'] = bcrypt($data['password']);
             $data['upline'] = isset($data['neo']) ? $data['neo'] : NULL;
             $user = User::create($data);
+            if($user){
+                if($data['spNeoUpline'] != NULL){
+                    $updateupline = DB::table('users')->where('referal_code', $data['neo'])->update(['upline' => $data['spNeoUpline']]);
+                }
+            }
         }else{
             $user = User::findOrFail($id);
 
