@@ -280,7 +280,7 @@
                    $("#neoReferralCode").val("");
                    $('#searchUpline').val("");
                    $('#neoReferralCode').val("")
-                   $('#pangErrorUpline').html("");)
+                   $('#pangErrorUpline').html("")
                    
                 }else{
                     $('#pangError').html("");
