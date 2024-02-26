@@ -279,6 +279,8 @@
                    $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
                    $("#neoReferralCode").val("");
                    $('#searchUpline').atttr('disabled', true);
+                   $('#searchUpline').val("");
+                   $('#neoReferralCode').val("")
                    
                 }else{
                     $('#pangError').html("");
