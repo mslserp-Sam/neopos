@@ -214,7 +214,7 @@ class BookingController extends Controller
     public function sp_search_neo(Request $request)
     {
         $name = $request->email;
-        
+        $ndata =[];
         $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error', 'uplineEmail' => ""]);  
@@ -223,6 +223,8 @@ class BookingController extends Controller
                 return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => ""]);
             }else{
                 $upline = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $data->upline)->first();
+                $ndata = $data->all();
+                $ndata['upline'] = isset($ndata['upline']) ? $ndata['upline'] : "";
                 return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => $upline->email]);
             } 
         }
