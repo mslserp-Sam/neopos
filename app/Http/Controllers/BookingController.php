@@ -221,7 +221,7 @@ class BookingController extends Controller
         }else{
             $upline = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $data->upline)->first();
          
-            return response()->json(['data'=> $data ,'status' => 'success', 'name' => $upline->email]); 
+            return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => $upline->email]); 
         }
         
     }
