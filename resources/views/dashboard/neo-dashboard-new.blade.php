@@ -130,6 +130,23 @@
                     </div>
                 </div>
                 <!-- end table -->
+                 <!-- start table -->
+                 <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-start">
+                            <div class="input-group col-xl-4 col-sm-12 col-md-12">
+                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control dt-search" placeholder="Search..." aria-label="Search" aria-describedby="addon-wrapping" aria-controls="dataTableBuilder">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatabled" class="table table-striped border">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end table -->
             </div>
         </div>
     </div>
