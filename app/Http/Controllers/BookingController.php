@@ -214,14 +214,13 @@ class BookingController extends Controller
     public function sp_search_neo(Request $request)
     {
         $name = $request->email;
-        $ndata = [];
         $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error', 'uplineEmail' => ""]);  
         }else{
             if($data->upline == null){
-                // $ndata = $data->all();
-                // $ndata['upline'] = isset($data->upline) ? $data->upline : "";
+                $ndata = $data->all();
+                $ndata['upline'] = isset($data->upline) ? $data->upline : "";
                 return response()->json(['data'=> "oo" ,'status' => 'success', 'uplineEmail' => ""]);
             }else{
                 $upline = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $data->upline)->first();
