@@ -168,6 +168,7 @@
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
                                             <input type="hidden" name="neo" id="neoReferralCode">
+                                            <input type="hidden" name="neoUpline" id="neouplineCode">
                                         </div>
                                         <div id="pangError" class="ml-2">
                             
@@ -287,6 +288,7 @@
                     $('#pangError').html("");
                     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
                     $("#neoReferralCode").val(nData.referal_code);
+                    $("#neouplineCode").val(nData.upline);
                     $('#searchUpline').val(data.uplineEmail);
                     $('#pangErrorUpline').html("");
                     if(data.uplineEmail == ""){
