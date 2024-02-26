@@ -233,20 +233,12 @@ class BookingController extends Controller
     public function sp_search_upline(Request $request)
     {
         $name = $request->email;
-        $ref_id = $request->refid;
-        $lagayan = [];
+        $ref_id = isset($request->refid) ? $request->refid : "";
         $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
-            $neo = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $ref_id)->first();
-            if($neo->upline){
-                $lagayan['upline_referal'] = $neo->referal_code;
-                $lagayan['upline_upline'] = $neo->upline;
-                return response()->json(['data'=> $data ,'status' => 'success','lagayan' => $lagayan]); 
-            }else{
-                return response()->json(['data'=> 'none' ,'status' => 'error']);
-            }
+            return response()->json(['data'=> $data ,'status' => 'success']);  
             
         }
         
