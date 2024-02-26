@@ -244,7 +244,7 @@
                 dom: '<"row align-items-center"><"table-responsive my-3" rt><"row align-items-center" <"col-md-6" l><"col-md-6" p>><"clear">',
                 ajax: {
                 "type"   : "GET",
-                "url"    : '{{ route("neo_tag_history") }}',
+                "url"    : '{{ route("neo_tag_upline_history") }}',
                 "data"   : function( d ) {
                     d.search = {
                     value: $('.dt-search').val()

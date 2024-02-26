@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('transaction-history',[HomeController::class,'history_index'])->name('history_index');
     Route::get('transaction-history',[HomeController::class,'transaction_history'])->name('transaction_history');
     Route::get('neo-tag-history',[HomeController::class,'neo_tag_history'])->name('neo_tag_history');
+    Route::get('neo-tag-upline-history',[HomeController::class,'neo_tag_upline_history'])->name('neo_tag_upline_history');
     Route::get('/history',[HomeController::class,'history_index'])->name('history_index');
     Route::group(['namespace' => '', 'middleware' => ['permission:permission list']], function () {
         Route::resource('permission',PermissionController::class);
