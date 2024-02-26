@@ -231,7 +231,7 @@ class BookingController extends Controller
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
-            return response()->json(['data'=> $data ,'status' => 'success']); 
+            return response()->json(['data'=> $data ,'status' => 'success','ref_ng_upline' => $request->refid]); 
         }
         
     }
@@ -243,7 +243,7 @@ class BookingController extends Controller
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
-            return response()->json(['data'=> $data ,'status' => 'success', 'ref_ng_upline' => $request->refid]); 
+            return response()->json(['data'=> $data ,'status' => 'success']); 
         }
         
     }
