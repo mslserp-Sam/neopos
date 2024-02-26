@@ -219,7 +219,7 @@ class BookingController extends Controller
            return response()->json(['data'=> 'none' ,'status' => 'error', 'uplineEmail' => ""]);  
         }else{
             
-            return response()->json(['data'=> $data ,'status' => 'error', 'uplineEmail' => ""]);
+            return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => ""]);
         }
         
     }
