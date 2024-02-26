@@ -176,15 +176,15 @@
                             searchable: false,
                         },
                         {
-                            data: 'neo_comm',
-                            name: 'neo_comm',
-                            title: "Commission",
+                            data: 'comm_persent',
+                            name: 'comm_persent',
+                            title: "Upline Commission",
                             searchable: false,
                         },
                         {
-                            data: 'upline_comm',
-                            name: 'upline_comm',
-                            title: "Upline Commission",
+                            data: 'neo_comm',
+                            name: 'neo_comm',
+                            title: "Commission",
                             searchable: false,
                         },
                         {
