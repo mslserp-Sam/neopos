@@ -303,7 +303,7 @@
             success: function(data) {
                 // console.log(data);
                 var nData = data.data;
-                console.log(nData)
+                console.log(data)
                 if(data.status == "error"){
                     $('#pangErrorUpline').html("") 
                     $('#pangErrorUpline').append(`<label class="text-danger ml-2">Email not found !</label>`)
