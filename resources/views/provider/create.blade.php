@@ -296,7 +296,7 @@
                         $("#uplineReferralCode").val(data.ref_neo);
                         $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
                     }
-                    $('#neoReferralCode').val(nData.upline)
+                    // $('#neoReferralCode').val(nData.upline)
                     $('#searchUpline').attr('disabled', false)
                  
                 }
