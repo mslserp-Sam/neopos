@@ -338,6 +338,10 @@ class HomeController extends Controller
                 // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
                 return $neoComms;
             })
+            ->editColumn('neo_comm', function($query) {
+                
+                return "0";
+            })
             ->editColumn('total_completed', function($query) {
                 $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
                 return $totalCompleted;

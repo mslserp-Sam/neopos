@@ -182,6 +182,12 @@
                             searchable: false,
                         },
                         {
+                            data: 'upline_comm',
+                            name: 'upline_comm',
+                            title: "Upline Commission",
+                            searchable: false,
+                        },
+                        {
                             data: 'total_completed',
                             name: 'total_completed',
                             title: "Completed",
