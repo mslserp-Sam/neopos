@@ -375,8 +375,8 @@ class HomeController extends Controller
         
         $getUser = auth()->user();
 
-        $query = $query->where('user_type', 'provider')->where('upline', $getUser->referal_code);
-        $query = '';
+        $query = $query->where('user_type', 'providers')->where('upline', $getUser->referal_code);
+        
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
