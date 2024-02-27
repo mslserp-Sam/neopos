@@ -275,6 +275,7 @@ class BookingController extends Controller
             ]);
 
             saveBookingActivity($activity_data);
+            $message = __('messages.update_form',[ 'form' => __('messages.booking') ] );
             return comman_message_response($message);
         }
 
