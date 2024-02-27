@@ -383,7 +383,7 @@ class HomeController extends Controller
         foreach($getNeo as $val){
             array_push($query, [
                 'id' => $val->id,
-                'display_name' => "ge"
+                'display_name' => $val->first_name
             ]);
         }
         // [
