@@ -149,7 +149,6 @@
                                 {{ Form::label('address',__('messages.address'), ['class' => 'form-control-label']) }}
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
-                            
                         </div>
                         <div class="row">
                             @if(isset($providerdata->upline))
@@ -202,7 +201,7 @@
                                 </div>
                             </div>  
                         </div>
-                        @endif
+                        
                         
                         <div class="row">
                             <div class="form-group col-md-6">
