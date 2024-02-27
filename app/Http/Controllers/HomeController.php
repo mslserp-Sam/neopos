@@ -375,7 +375,8 @@ class HomeController extends Controller
         
         $getUser = auth()->user();
 
-        $query = $query->where('user_type', 'provider')->where('upline', $getUser->referal_code);
+        $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
+        $query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
         
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
