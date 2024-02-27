@@ -275,7 +275,8 @@ class BookingController extends Controller
             ]);
 
             saveBookingActivity($activity_data);
-            $message = __('messages.update_form',[ 'form' => __('messages.booking') ] );
+            
+            $message = __('messages.wallent_balance_error');
             return comman_message_response($message);
         }
 
