@@ -455,7 +455,7 @@ class HomeController extends Controller
         if ($dashboard_setting == null) {
             $show = "true";
         }
-        $wallet = DB::table('wallets')->where('user_id', $data->wallet_id)->first();
+        $wallet = DB::table('wallets')->where('user_id', $data['wallet_id'])->first();
         return view('dashboard.neo-dashboard-new', compact('data', 'show', 'wallet'));
     }
     public function providerDashboard($data)
