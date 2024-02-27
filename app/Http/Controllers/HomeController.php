@@ -378,13 +378,16 @@ class HomeController extends Controller
         // $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
         //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
         $query = [];
-        $getNeo = DB::table('users')->where('user_type', 'Neopreneur')->get();
+        $getNeo = DB::table('users')->where('user_type', 'Neopreneur')->where('upline', auth()->user()->referal_code)->get();
 
         foreach($getNeo as $val){
-            array_push($query, [
-                'id' => $val->id,
-                'display_name' => $val->first_name
-            ]);
+            $getProvider = DB::table('users')->where('user_type', 'provider')->where('upline', $val->referal_code)->get();
+            foreach($getProvider as $provVal){
+                array_push($query, [
+                    'id' => $provVal->id,
+                    'display_name' => $provVal->first_name
+                ]);
+            }
         }
         // [
         //     'id' => "1",
