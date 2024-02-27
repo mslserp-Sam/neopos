@@ -376,25 +376,25 @@ class HomeController extends Controller
         $getUser = auth()->user();
 
         // $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
-         //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
-         $tableDatap[] = "";
-        //  $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
-        //  foreach($query as $val){
-        //     array_push($tableDatap, [
-        //         'id' => $val->id,
-        //         'display_name' => $val->display_name
-        //     ]);
-         
-        //  }
+        //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
         $query = [];
+        $getNeo = DB::table('users')->where('user_type', 'Neopreneur')->get();
+
+        foreach($getNeo as $val){
+            array_push($getNeo, [
+                'id' => $val->id,
+                'display_name' => $val->display_name
+            ]);
+         
+        }
         // [
         //     'id' => "1",
         //     'display_name' => "333"
         // ];
-        array_push($query, [
-            'id' =>'2',
-            'display_name' => "2"
-        ]);
+        // array_push($query, [
+        //     'id' =>'2',
+        //     'display_name' => "2"
+        // ]);
         return Datatables::of($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query['display_name'].'</a>';
