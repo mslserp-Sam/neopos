@@ -164,7 +164,7 @@
                                 <input type="text" class="form-control " value="{{ $getProviderUpline->first_name }} {{ $getProviderUpline->last_name }}" >
                             </div>
                         </div>
-                        @else
+                        
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="">
@@ -202,7 +202,7 @@
                                 </div>
                             </div>  
                         </div>
-                        @endif
+                        
                         
                         <div class="row">
                             <div class="form-group col-md-6">
