@@ -261,54 +261,54 @@
                         name: 'display_name',
                         title: "Provider Name"
                     },
-                    {
-                        data: 'total_booking',
-                        name: 'total_booking',
-                        title: "Total Booking",
-                        searchable: false,
-                    },
-                    {
-                        data: 'sp_comm',
-                        name: 'sp_comm',
-                        title: "SP Revenue",
-                        searchable: false,
-                    },
-                    {
-                        data: 'comm_persent',
-                        name: 'comm_persent',
-                        title: "Commission(%)",
-                        searchable: false,
-                    },
-                    {
-                        data: 'neo_comm',
-                        name: 'neo_comm',
-                        title: "Commission",
-                        searchable: false,
-                    },
-                    {
-                        data: 'total_completed',
-                        name: 'total_completed',
-                        title: "Completed",
-                        searchable: false,
-                    },
-                    {
-                        data: 'total_rejected',
-                        name: 'total_rejected',
-                        title: "Rejected",
-                        searchable: false,
-                    },
-                    {
-                        data: 'total_cancelled',
-                        name: 'total_cancelled',
-                        title: "Cancelled",
-                        searchable: false,
-                    },
-                    {
-                        data: 'total_failed',
-                        name: 'total_failed',
-                        title: "Failed",
-                        searchable: false,
-                    }
+                    // {
+                    //     data: 'total_booking',
+                    //     name: 'total_booking',
+                    //     title: "Total Booking",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'sp_comm',
+                    //     name: 'sp_comm',
+                    //     title: "SP Revenue",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'comm_persent',
+                    //     name: 'comm_persent',
+                    //     title: "Commission(%)",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'neo_comm',
+                    //     name: 'neo_comm',
+                    //     title: "Commission",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'total_completed',
+                    //     name: 'total_completed',
+                    //     title: "Completed",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'total_rejected',
+                    //     name: 'total_rejected',
+                    //     title: "Rejected",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'total_cancelled',
+                    //     name: 'total_cancelled',
+                    //     title: "Cancelled",
+                    //     searchable: false,
+                    // },
+                    // {
+                    //     data: 'total_failed',
+                    //     name: 'total_failed',
+                    //     title: "Failed",
+                    //     searchable: false,
+                    // }
                     
                 ]
                 
