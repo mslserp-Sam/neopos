@@ -257,9 +257,9 @@
                 columns: [
                     
                     {
-                        data: 'booking_id',
-                        name: 'booking_id',
-                        title: "Provider Names"
+                        data: 'sp_name',
+                        name: 'sp_name',
+                        title: "Provider Name"
                     },
                     // {
                     //     data: 'total_booking',
