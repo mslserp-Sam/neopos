@@ -381,7 +381,7 @@ class HomeController extends Controller
         $getNeo = DB::table('users')->where('user_type', 'Neopreneur')->get();
 
         foreach($getNeo as $val){
-            array_push($getNeo, [
+            array_push($query, [
                 'id' => $val->id,
                 'display_name' => $val->display_name
             ]);
