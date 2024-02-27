@@ -259,7 +259,7 @@
                     {
                         data: 'booking_id',
                         name: 'booking_id',
-                        title: "Provider Name"
+                        title: "Provider Names"
                     },
                     // {
                     //     data: 'total_booking',
