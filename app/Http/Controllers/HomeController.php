@@ -405,6 +405,15 @@ class HomeController extends Controller
                 $totalbooking = DB::table('bookings')->where('provider_id', $query['id'])->count();
                 return $totalbooking;
             })
+            ->editColumn('sp_comm', function($query) {
+                $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query['id'])->sum('sp_comm');
+                return isset($totalkomi) ? $totalkomi : 0;
+            })
+            ->editColumn('comm_persent', function($query) {
+                $getCom = DB::table('commission')->first();
+                $getComInt = (int)$getCom->upline;
+                return $getComInt.'%';
+            })
             ->addIndexColumn()
             ->rawColumns(['display_name'])
             ->toJson();
