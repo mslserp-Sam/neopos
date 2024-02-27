@@ -418,7 +418,7 @@ class HomeController extends Controller
                 $neoComms = DB::table('earnings_upline')
                             ->where('upline_id', auth()->user()->id)
                             ->where('sp_id', $query['id'])
-                            ->sum('neo_comm');
+                            ->sum('upline_comm');
                 
                 return $neoComms;
             })
