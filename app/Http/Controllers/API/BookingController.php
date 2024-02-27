@@ -270,13 +270,12 @@ class BookingController extends Controller
                 'booking' => $bookingdata,
             ];
     
-            DB::table('consoles')->insert([
-                'data' => $old_status. ' - ' .$bookingdata->old_status. ' - ' .$data['status']
-            ]);
-
             $wallet = Wallet::where('user_id',auth()->user())->first();
             if($wallet !== null){
                 $wallet_amount = $wallet->amount;
+                DB::table('consoles')->insert([
+                    'data' => $wallet_amount
+                ]);
                 if($wallet_amount > 0){
                     saveBookingActivity($activity_data);
                 }else{
