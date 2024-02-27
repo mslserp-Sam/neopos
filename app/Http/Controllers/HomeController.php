@@ -387,7 +387,7 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-            $query = $query->where('user_type','Neopreneur')
+            $query = $query->where('user_type','Neopreneur');
 
         }   
         return $datatable->eloquent($query)
