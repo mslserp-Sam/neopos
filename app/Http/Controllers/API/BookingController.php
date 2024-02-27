@@ -271,10 +271,11 @@ class BookingController extends Controller
             ];
     
             DB::table('consoles')->insert([
-                'data' => $old_status. ' - ' .$bookingdata->old_status 
+                'data' => $old_status. ' - ' .$bookingdata->old_status. ' - ' .$data['status']
             ]);
 
             saveBookingActivity($activity_data);
+            return comman_message_response($message);
         }
 
         if($bookingdata->payment_id != null){
