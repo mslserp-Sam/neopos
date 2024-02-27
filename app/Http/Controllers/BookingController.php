@@ -380,7 +380,9 @@ class BookingController extends Controller
                 $data['coupon_id'] = $coupons->id;
             }
         }
-                                                                        
+        DB::table('consoles')->insert([
+            'data' => 'gumana'
+        ])                                          
         $result = Booking::updateOrCreate(['id' => $request->id], $data);
        
         $activity_data = [
