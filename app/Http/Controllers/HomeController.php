@@ -391,10 +391,10 @@ class HomeController extends Controller
             $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
 
         }   
-        return $datatable->eloquent($jabs)
-            ->editColumn('display_name', function($jabs){
+        return $datatable->eloquent($earningNeo)
+            ->editColumn('display_name', function($earningNeo){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $jabs;
+                return $earningNeo;
             })
             // ->filterColumn('display_name',function($query,$keyword){
             //     $query->where('display_name','like','%'.$keyword.'%');
