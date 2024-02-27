@@ -396,11 +396,20 @@ class HomeController extends Controller
         return $datatable->eloquent($earningUpline)
             ->editColumn('id', function($earningUpline){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
+                $sp = DB::table('users')->where('id', $earningUpline->sp_id);
+                return $sp->first_name . " " . $sp->last_name;
+            })
+            ->editColumn('total_booking', function($earningUpline){
+                $totalbooking = DB::table('bookings')->where('provider_id', $earningUpline->sp_id)->count();
                 return $earningUpline;
             })
-            ->editColumn('any', function($earningUpline){
-                //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $earningUpline;
+            ->editColumn('comm_persent', function($earningUpline) {
+                $getCom = DB::table('commission')->first();
+                return $getCom->upline;
+            })
+             ->editColumn('comm', function($earningUpline) {
+                // $totalkomi = DB::table('earnings_upline')->where('upline', $query->id)->sum('sp_comm');
+                return $earningUpline->upline_comm;
             })
             // ->filterColumn('display_name',function($query,$keyword){
             //     $query->where('display_name','like','%'.$keyword.'%');

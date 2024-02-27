@@ -259,12 +259,20 @@
                     {
                         data: 'id',
                         name: 'id',
-                        title: "Provider Name"
+                        title: "Provider Name",
+                        searchable: false,
                     },
                     {
-                        data: 'any',
-                        name: 'any',
-                        title: "any"
+                        data: 'comm_persent',
+                        name: 'comm_persent',
+                        title: "Commission(%)",
+                        searchable: false,
+                    },
+                    {
+                        data: 'comm',
+                        name: 'comm',
+                        title: "Commission",
+                        searchable: false,
                     },
                     // {
                     //     data: 'total_booking',
@@ -278,12 +286,7 @@
                     //     title: "SP Revenue",
                     //     searchable: false,
                     // },
-                    // {
-                    //     data: 'comm_persent',
-                    //     name: 'comm_persent',
-                    //     title: "Commission(%)",
-                    //     searchable: false,
-                    // },
+                    
                     // {
                     //     data: 'neo_comm',
                     //     name: 'neo_comm',
