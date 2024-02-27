@@ -327,7 +327,7 @@ class CustomerController extends Controller
                         'title' => $lastestId->first_name. " " .$lastestId->last_name,
                         'user_id' => $lastestId->id,
                         'amount' => 0,
-                        'status' => 0
+                        'status' => 1
                     ]);
                 } 
             }
