@@ -382,10 +382,9 @@ class HomeController extends Controller
 
         foreach($getNeo as $val){
             array_push($query, [
-                'id' => $val->id,
-                'display_name' => $val->display_name
+                'id' => "ge",
+                'display_name' => "ge"
             ]);
-         
         }
         // [
         //     'id' => "1",
