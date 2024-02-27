@@ -386,11 +386,7 @@ class HomeController extends Controller
         //     ]);
          
         //  }
-        $query[] =
-        [
-            'id' => "1",
-            'display_name' => "333"
-        ];
+        $query[] = "";
         array_push($query, [
             'id' =>'2',
             'display_name' => "2"
