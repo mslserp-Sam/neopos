@@ -282,8 +282,13 @@
                             data: 'comm_persent',
                             name: 'comm_persent',
                             title: "Commission(%)"
+                    },
+                    {
+                            data: 'earnings_upline ',
+                            name: 'earnings_upline ',
+                            title: "Commission"
                     }
-                    
+                     
                 ]
                 
             });

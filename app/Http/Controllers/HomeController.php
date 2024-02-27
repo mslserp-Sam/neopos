@@ -414,6 +414,14 @@ class HomeController extends Controller
                 $getComInt = (int)$getCom->upline;
                 return $getComInt.'%';
             })
+            ->editColumn('earnings_upline', function($query) {
+                $neoComms = DB::table('earnings_upline')
+                            ->where('upline_id', auth()->user()->id)
+                            ->where('sp_id', $query['id'])
+                            ->sum('neo_comm');
+                
+                return $neoComms;
+            })
             ->addIndexColumn()
             ->rawColumns(['display_name'])
             ->toJson();
