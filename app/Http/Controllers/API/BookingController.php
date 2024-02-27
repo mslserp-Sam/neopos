@@ -163,6 +163,11 @@ class BookingController extends Controller
         
         $bookingdata = Booking::find($id);
         $paymentdata = Payment::where('booking_id',$id)->first();
+
+
+        DB::table('consoles')->insert([
+            'data' => 'una'
+        ]);
         
         if($data['status'] === 'hold'){
             if($bookingdata->start_at == null && $bookingdata->end_at == null){

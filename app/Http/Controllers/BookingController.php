@@ -202,7 +202,7 @@ class BookingController extends Controller
     {
         $name = $request->email;
         $referal_code = $request->id;
-        return response()->json(['data'=> $name ,'status' => 'success']); 
+         
         $data = DB::table('users')->where('user_type', 'provider')->where('upline' ,'=', NULL)->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
@@ -379,7 +379,8 @@ class BookingController extends Controller
             } else {
                 $data['coupon_id'] = $coupons->id;
             }
-        }                                      
+        }
+                                                                        
         $result = Booking::updateOrCreate(['id' => $request->id], $data);
        
         $activity_data = [
@@ -538,9 +539,6 @@ class BookingController extends Controller
         }
         $data = $request->all();
         
-        DB::table('consoles')->insert([
-            'data' => 'una'
-        ]);
         
         $data['date'] = isset($request->date) ? date('Y-m-d H:i:s',strtotime($request->date)) : date('Y-m-d H:i:s');
         $data['start_at'] = isset($request->start_at) ? date('Y-m-d H:i:s',strtotime($request->start_at)) : null;
@@ -576,9 +574,7 @@ class BookingController extends Controller
         }
         $data['reason'] = isset($data['reason']) ? $data['reason'] : null;
         $old_status = $bookingdata->status;
-
         $bookingdata->update($data);
-
         if($old_status != $data['status']){
             $bookingdata->old_status = $old_status;
             $activity_data = [
