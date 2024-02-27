@@ -390,7 +390,7 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
             $query = $query->where('user_type', 'Neopreneur');
-            $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
+            $earningUpline = $earningUpline->where('id', auth()->user()->id);
 
         }   
         return $datatable->eloquent($earningUpline)
