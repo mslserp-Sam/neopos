@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\EarningsNeo;
+use App\Models\EarningsUpline;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProviderDocument;
 use App\Models\AppSetting;
@@ -366,13 +367,13 @@ class HomeController extends Controller
             ->toJson();
     }
     public function neo_tag_upline_history(DataTables $datatable, Request $request){
-        // $user = User::query();
-        // $query = Booking::query();
-        
+    
         $query = User::query();
         $user = Booking::query();
 
         $earningNeo = EarningsNeo::query();
+        $EarningsUpline = EarningsUpline::query();
+        
         $filter = $request->filter;
         $getUser = auth()->user();
         
@@ -391,15 +392,11 @@ class HomeController extends Controller
             $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
 
         }   
-        return $datatable->eloquent($earningNeo)
-            ->editColumn('booking_id', function($earningNeo){
-                $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
-                $ge = [];
-                foreach($jabs as $val){
-                    $ge[$val] = $val->id;
-                }
+        return $datatable->eloquent($EarningsUpline)
+            ->editColumn('booking_id', function($EarningsUpline){
+              
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $ge;
+                return $EarningsUpline;
             })
             // ->filterColumn('display_name',function($query,$keyword){
             //     $query->where('display_name','like','%'.$keyword.'%');
