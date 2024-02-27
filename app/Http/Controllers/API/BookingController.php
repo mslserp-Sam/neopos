@@ -260,10 +260,6 @@ class BookingController extends Controller
             $data['total_amount'] =round($totalamount,2);
             $data['final_total_tax'] = round($tax,2);
         }
-
-        DB::table('consoles')->insert([
-            'data' => $old_status
-        ]);
         $bookingdata->update($data);
 
         if($old_status != $data['status'] ){
@@ -274,6 +270,10 @@ class BookingController extends Controller
                 'booking' => $bookingdata,
             ];
     
+            DB::table('consoles')->insert([
+                'data' => $old_status. ' - ' .$bookingdata->old_status 
+            ]);
+
             saveBookingActivity($activity_data);
         }
 
