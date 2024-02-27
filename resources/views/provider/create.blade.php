@@ -172,9 +172,13 @@
                                         <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Search Neopreneur</h5>
                                         </div>
+                                        @if(isset($providerdata->upline))
+                                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp
+                                            @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
+                                        @endif
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo" value="{{ isset($getUpline->email) ? $getUpline->email : '' }}">
                                             <input type="hidden" name="neo" id="neoReferralCode">
                                             <input type="hidden" name="neoUpline" id="neouplineCode">
                                         </div>
@@ -192,7 +196,7 @@
                                         </div>
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline">
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline" value="{{ isset($getProviderUpline->email) ? $getProviderUpline->email : '' }}">
                                             <input type="hidden" name="spNeoUpline" id="uplineReferralCode">
                                         </div>
                                         <div id="pangErrorUpline" class="ml-2">
