@@ -202,7 +202,7 @@ class BookingController extends Controller
     {
         $name = $request->email;
         $referal_code = $request->id;
-         
+        return response()->json(['data'=> $name ,'status' => 'success']); 
         $data = DB::table('users')->where('user_type', 'provider')->where('upline' ,'=', NULL)->where('email', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  

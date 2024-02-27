@@ -254,8 +254,6 @@
     $('#inputNeo').on('keyup', () => {
         var vdata = {
             email: $('#inputNeo').val(),
-            refid: $('#neo_referal_code').val(),
-            userid: "{{ $customerdata->id }}"
         }
         $.ajax({
             type: 'GET',
