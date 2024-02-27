@@ -165,10 +165,6 @@ class BookingController extends Controller
         $paymentdata = Payment::where('booking_id',$id)->first();
         
         if($data['status'] === 'hold'){
-
-            DB::table('consoles')->insert([
-                'data' => 'una'
-            ]);
             if($bookingdata->start_at == null && $bookingdata->end_at == null){
                 $duration_diff = $data['duration_diff'];
                 $data['duration_diff'] = $duration_diff;
@@ -208,11 +204,18 @@ class BookingController extends Controller
                 $assigned_handyman_ids = $bookingdata->handymanAdded()->pluck('handyman_id')->toArray();
                 $bookingdata->handymanAdded()->delete();
                 $data['status'] = 'accept';
+                DB::table('consoles')->insert([
+                    'data' => '1'
+                ]);
             }   
         }
         if($data['status'] == 'pending'){
             if($bookingdata->handymanAdded()->count() > 0){
                 $bookingdata->handymanAdded()->delete();
+
+                DB::table('consoles')->insert([
+                    'data' => '2'
+                ]);
             }
         }
 
@@ -237,6 +240,7 @@ class BookingController extends Controller
         }
         $data['reason'] = isset($data['reason']) ? $data['reason'] : null;
         $old_status = $bookingdata->status;
+
         if(!empty($request->extra_charges)){
             if($bookingdata->bookingExtraCharge()->count() > 0)
             {
@@ -257,6 +261,9 @@ class BookingController extends Controller
             $data['final_total_tax'] = round($tax,2);
         }
 
+        DB::table('consoles')->insert([
+            'data' => $old_status
+        ]);
         $bookingdata->update($data);
 
         if($old_status != $data['status'] ){
