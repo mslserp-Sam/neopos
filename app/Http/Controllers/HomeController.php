@@ -388,12 +388,13 @@ class HomeController extends Controller
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
             $query = $query->where('user_type', 'Neopreneur');
+            $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
 
         }   
-        return $datatable->eloquent($query)
+        return $datatable->eloquent($jabs)
             ->editColumn('display_name', function($query){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $query;
+                return $jab;
             })
             ->filterColumn('display_name',function($query,$keyword){
                 $query->where('display_name','like','%'.$keyword.'%');
