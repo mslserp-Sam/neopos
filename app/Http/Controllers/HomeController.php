@@ -392,7 +392,7 @@ class HomeController extends Controller
 
         }   
         return $datatable->eloquent($earningNeo)
-            ->editColumn('display_name', function($earningNeo){
+            ->editColumn('booking_id', function($earningNeo){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
                 return $earningNeo;
             })

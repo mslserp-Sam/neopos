@@ -257,8 +257,8 @@
                 columns: [
                     
                     {
-                        data: 'display_name',
-                        name: 'display_name',
+                        data: 'booking_id',
+                        name: 'booking_id',
                         title: "Provider Name"
                     },
                     // {
