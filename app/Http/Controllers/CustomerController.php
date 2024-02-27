@@ -320,7 +320,7 @@ class CustomerController extends Controller
             $data['password'] = bcrypt($data['password']);
             $user = User::create($data);
             if($user){
-                $lastestId = DB::table('wallets')->where('user_id', $lastestId->id)->orderByDesc('id')->first();
+                $lastestId = DB::table('users')->orderByDesc('id')->first();
                 $getWallet = DB::table('wallets')->where('user_id', $lastestId->id)->first();
                 if($getWallet == null){
                     $insertWallet = DB::table('wallets')->insert([
