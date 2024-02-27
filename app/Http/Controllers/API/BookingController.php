@@ -260,7 +260,7 @@ class BookingController extends Controller
             $data['total_amount'] =round($totalamount,2);
             $data['final_total_tax'] = round($tax,2);
         }
-        // $bookingdata->update($data);
+        $bookingdata->update($data);
         
         if($old_status != $data['status'] ){
             $bookingdata->old_status = $old_status;
@@ -270,22 +270,22 @@ class BookingController extends Controller
                 'booking' => $bookingdata,
             ];
     
-            $wallet = Wallet::where('user_id',auth()->user()->id)->first();
-            if($wallet !== null){
-                $wallet_amount = $wallet->amount;
-                if((int)$wallet_amount > 0){
-                    // saveBookingActivity($activity_data);
-                    DB::table('consoles')->insert([
-                        "data" => 'if'
-                    ]);
-                }else{
-                    DB::table('consoles')->insert([
-                        "data" => 'else'
-                    ]);
-                    $message = __('messages.wallent_balance_error');
-                    return comman_message_response($message, "error");
-                }
-            }
+            // $wallet = Wallet::where('user_id',auth()->user()->id)->first();
+            // if($wallet !== null){
+            //     $wallet_amount = $wallet->amount;
+            //     if((int)$wallet_amount > 0){
+            //         // saveBookingActivity($activity_data);
+            //         DB::table('consoles')->insert([
+            //             "data" => 'if'
+            //         ]);
+            //     }else{
+            //         DB::table('consoles')->insert([
+            //             "data" => 'else'
+            //         ]);
+            //         $message = __('messages.wallent_balance_error');
+            //         return comman_message_response($message, 400);
+            //     }
+            // }
         }
 
         if($bookingdata->payment_id != null){
