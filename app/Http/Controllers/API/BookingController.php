@@ -277,12 +277,9 @@ class BookingController extends Controller
                     // saveBookingActivity($activity_data);
                 }else{
                     DB::table('consoles')->insert([
-                        "data" => 'elsesads'
+                        "data" => 'sdasd'
                     ]);
-                    if(request()->is('api/*')){
-                        $msg= __('messages.msg_deleted',['name' => __('messages.bank')] );
-                    }
-                    return comman_custom_response(['message'=> $msg , 'status' => true]);
+                    $msg= __('messages.msg_deleted',['name' => __('messages.bank')] );
                 }
             }
         }
