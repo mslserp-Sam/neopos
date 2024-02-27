@@ -274,7 +274,7 @@ class BookingController extends Controller
             if($wallet !== null){
                 $wallet_amount = $wallet->amount;
                 if((int)$wallet_amount > 0){
-                    saveBookingActivity($activity_data);
+                    // saveBookingActivity($activity_data);
                 }else{
                     $message = __('messages.wallent_balance_error');
                     return comman_message_response($message);
