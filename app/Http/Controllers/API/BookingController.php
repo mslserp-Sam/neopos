@@ -279,9 +279,7 @@ class BookingController extends Controller
                     DB::table('consoles')->insert([
                         "data" => 'sdasd'
                     ]);
-                    $message = __('messages.delete_form',[ 'form' => __('messages.rating') ] );
-
-                    return comman_message_response($message);
+                    return response()->json( [ 'message' => "test" ], 200 );
                 }
             }
         }
