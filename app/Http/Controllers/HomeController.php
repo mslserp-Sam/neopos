@@ -401,7 +401,7 @@ class HomeController extends Controller
             })
             ->editColumn('comm_persent', function($query) {
                 $getCom = DB::table('commission')->first();
-                $getComInt = (int)$getCom->neopreneur;
+                $getComInt = (int)$getCom->upline;
                 return $getComInt.'%';
             })
             ->editColumn('total_completed', function($query) {
