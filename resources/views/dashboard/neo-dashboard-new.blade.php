@@ -263,6 +263,12 @@
                         searchable: false,
                     },
                     {
+                        data: 'total_booking',
+                        name: 'total_booking',
+                        title: "Total Booking",
+                        searchable: false,
+                    },
+                    {
                         data: 'comm_persent',
                         name: 'comm_persent',
                         title: "Commission(%)",
@@ -274,12 +280,7 @@
                         title: "Commission",
                         searchable: false,
                     },
-                    // {
-                    //     data: 'total_booking',
-                    //     name: 'total_booking',
-                    //     title: "Total Booking",
-                    //     searchable: false,
-                    // },
+                    
                     // {
                     //     data: 'sp_comm',
                     //     name: 'sp_comm',
