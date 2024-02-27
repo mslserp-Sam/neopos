@@ -204,6 +204,9 @@ class BookingController extends Controller
                 $assigned_handyman_ids = $bookingdata->handymanAdded()->pluck('handyman_id')->toArray();
                 $bookingdata->handymanAdded()->delete();
                 $data['status'] = 'accept';
+                DB::table('consoles')->insert([
+                    'data' => 'gumana'
+                ]);
             } 
         }
         if($data['status'] == 'pending'){
