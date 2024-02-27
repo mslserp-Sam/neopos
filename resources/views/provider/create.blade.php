@@ -149,6 +149,9 @@
                                 {{ Form::label('address',__('messages.address'), ['class' => 'form-control-label']) }}
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
+                            
+                        </div>
+                        <div class="row">
                             @if(isset($providerdata->upline))
                                 @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
                                 <div class="form-group col-md-6 col-sm-12">
@@ -162,7 +165,6 @@
                                 </div>
                             @else
                         </div>
-                        
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="">
