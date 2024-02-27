@@ -393,19 +393,10 @@ class HomeController extends Controller
                 return isset($totalkomi) ? $totalkomi : 0;
             })
             ->editColumn('neo_comm', function($query) {
-                $neoComms = DB::table('earnings_neo')
-                            ->where('neo_id', auth()->user()->id)
+                $neoComms = DB::table('earnings_upline')
+                            ->where('upline_id', auth()->user()->id)
                             ->where('sp_id', $query->id)
-                            ->sum('neo_comm');
-                //$getU = DB::table('users')->where('id', 2597)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')->sum('ye');
-                //->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status')
-                //->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('earnings_neo.neo_comm as ye')
-                //$getU = DB::table('users')->where('id', '=', $query->id)->join('bookings', 'users.id', '=', 'bookings.provider_id')->join('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')->select('users.first_name as uge')->first();
-                // $querye = User::query();
-                // $querye = $querye->where('user_type','provider')->where('upline', $getUser->referal_code)->where('id', 2597)
-                // ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
-                // ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
-                // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
+                            ->sum('upline_comm');
                 return $neoComms;
             })
             ->editColumn('comm_persent', function($query) {
