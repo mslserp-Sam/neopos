@@ -274,10 +274,11 @@ class BookingController extends Controller
                 'data' => $old_status. ' - ' .$bookingdata->old_status. ' - ' .$data['status']
             ]);
 
-            saveBookingActivity($activity_data);
             $status_code = 400;
             $message = __('messages.wallent_balance_error');
-            return comman_message_response($message,$status_code);
+            return comman_custom_response($message);
+
+            saveBookingActivity($activity_data);
         }
 
         if($bookingdata->payment_id != null){
