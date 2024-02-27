@@ -10,7 +10,6 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\EarningsNeo;
-use App\Models\EarningsUpline;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProviderDocument;
 use App\Models\AppSetting;
@@ -367,13 +366,13 @@ class HomeController extends Controller
             ->toJson();
     }
     public function neo_tag_upline_history(DataTables $datatable, Request $request){
-    
+        // $user = User::query();
+        // $query = Booking::query();
+        
         $query = User::query();
         $user = Booking::query();
 
         $earningNeo = EarningsNeo::query();
-        $EarningsUpline = EarningsUpline::query();
-        
         $filter = $request->filter;
         $getUser = auth()->user();
         
@@ -394,7 +393,6 @@ class HomeController extends Controller
         }   
         return $datatable->eloquent($earningNeo)
             ->editColumn('booking_id', function($earningNeo){
-              
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
                 return $earningNeo;
             })
