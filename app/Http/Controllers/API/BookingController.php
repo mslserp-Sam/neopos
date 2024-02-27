@@ -163,13 +163,12 @@ class BookingController extends Controller
         
         $bookingdata = Booking::find($id);
         $paymentdata = Payment::where('booking_id',$id)->first();
-
-
-        DB::table('consoles')->insert([
-            'data' => 'una'
-        ]);
         
         if($data['status'] === 'hold'){
+
+            DB::table('consoles')->insert([
+                'data' => 'una'
+            ]);
             if($bookingdata->start_at == null && $bookingdata->end_at == null){
                 $duration_diff = $data['duration_diff'];
                 $data['duration_diff'] = $duration_diff;
