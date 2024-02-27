@@ -275,14 +275,13 @@ class BookingController extends Controller
                 $wallet_amount = $wallet->amount;
                 if((int)$wallet_amount > 0){
                     // saveBookingActivity($activity_data);
-                    DB::table('consoles')->insert([
-                        "data" => 'if'
-                    ]);
                 }else{
                     DB::table('consoles')->insert([
-                        "data" => 'else'
+                        "data" => 'elsesads'
                     ]);
-                    $msg= __('messages.msg_deleted',['name' => __('messages.bank')] );
+                    if(request()->is('api/*')){
+                        $msg= __('messages.msg_deleted',['name' => __('messages.bank')] );
+                    }
                     return comman_custom_response(['message'=> $msg , 'status' => true]);
                 }
             }
