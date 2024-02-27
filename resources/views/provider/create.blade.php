@@ -149,18 +149,19 @@
                                 {{ Form::label('address',__('messages.address'), ['class' => 'form-control-label']) }}
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
+                            @if(isset($providerdata->upline))
+                                @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label class=""form-control-label>Neopreneur</label>
+                                    <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label class=""form-control-label>Upline</label>
+                                    <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
+                                </div>
+                            @else
                         </div>
-                        @if(isset($providerdata->upline))
-                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label class=""form-control-label>Neopreneur</label>
-                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label class=""form-control-label>Upline</label>
-                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
-                            </div>
-                        @else
+                        
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="">
