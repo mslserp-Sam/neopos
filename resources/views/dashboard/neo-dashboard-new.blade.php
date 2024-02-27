@@ -272,11 +272,16 @@
                             data: 'total_booking',
                             name: 'total_booking',
                             title: "Total Booking"
-                    }
+                    },
                     {
                             data: 'sp_comm',
                             name: 'sp_comm',
                             title: "SP Revenue"
+                    },
+                    {
+                            data: 'comm_persent',
+                            name: 'comm_persent',
+                            title: "Commission(%)"
                     }
                     
                 ]
