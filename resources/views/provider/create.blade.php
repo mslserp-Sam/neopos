@@ -150,54 +150,57 @@
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
                         </div>
+                        
+                        @if(isset($providerdata->upline))
                         <div class="row">
-                            @if(isset($providerdata->upline))
-                                @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label class=""form-control-label>Neopreneur</label>
-                                    <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
-                                </div>
-                                @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label class=""form-control-label>Upline</label>
-                                    <input type="text" class="form-control " value="{{ $getProviderUpline->first_name }} {{ $getProviderUpline->last_name }}" >
-                                </div>
-                            @else
-                                <div class="col-lg-6 col-sm-12">
+                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class=""form-control-label>Neopreneur</label>
+                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
+                            </div>
+                            @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class=""form-control-label>Upline</label>
+                                <input type="text" class="form-control " value="{{ $getProviderUpline->first_name }} {{ $getProviderUpline->last_name }}" >
+                            </div>
+                        </div>
+                        @else
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="">
                                     <div class="">
-                                        <div class="">
-                                            <div class="d-flex p-3 ">
-                                                    <h5 class="font-weight-bold">Search Neopreneur</h5>
-                                            </div>
-                                            <div class="input-group ml-2 mb-2">
-                                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                                <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
-                                                <input type="hidden" name="neo" id="neoReferralCode">
-                                                <input type="hidden" name="neoUpline" id="neouplineCode">
-                                            </div>
-                                            <div id="pangError" class="ml-2">
-                                
-                                            </div>
+                                        <div class="d-flex p-3 ">
+                                                <h5 class="font-weight-bold">Search Neopreneur</h5>
+                                        </div>
+                                        <div class="input-group ml-2 mb-2">
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
+                                            <input type="hidden" name="neo" id="neoReferralCode">
+                                            <input type="hidden" name="neoUpline" id="neouplineCode">
+                                        </div>
+                                        <div id="pangError" class="ml-2">
+                            
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-sm-12">
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="">
                                     <div class="">
-                                        <div class="">
-                                            <div class="d-flex p-3 ">
-                                                    <h5 class="font-weight-bold">Search Upline</h5>
-                                            </div>
-                                            <div class="input-group ml-2 mb-2">
-                                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                                <input type="text" class="form-control " placeholder="Search..." id="searchUpline">
-                                                <input type="hidden" name="spNeoUpline" id="uplineReferralCode">
-                                            </div>
-                                            <div id="pangErrorUpline" class="ml-2">
-                                
-                                            </div>
+                                        <div class="d-flex p-3 ">
+                                                <h5 class="font-weight-bold">Search Upline</h5>
+                                        </div>
+                                        <div class="input-group ml-2 mb-2">
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline">
+                                            <input type="hidden" name="spNeoUpline" id="uplineReferralCode">
+                                        </div>
+                                        <div id="pangErrorUpline" class="ml-2">
+                            
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
+                            </div>  
                         </div>
                         @endif
                         
