@@ -421,6 +421,21 @@ class HomeController extends Controller
                             ->sum('upline_comm');
                 
                 return $neoComms;
+            })->editColumn('total_completed', function($query) {
+                $totalCompleted = DB::table('bookings')->where('provider_id', $query['id'])->where('status', 'completed')->count();
+                return $totalCompleted;
+            })
+            ->editColumn('total_rejected', function($query) {
+                $total = DB::table('bookings')->where('provider_id', $query['id'])->where('status', 'rejected')->count();
+                return isset($total) ? $total : 0;
+            })
+            ->editColumn('total_cancelled', function($query) {
+                $total = DB::table('bookings')->where('provider_id', $query['id'])->where('status', 'cancelled')->count();
+                return isset($total) ? $total : 0;
+            })
+            ->editColumn('total_failed', function($query) {
+                $total = DB::table('bookings')->where('provider_id', $query['id'])->where('status', 'failed')->count();
+                return isset($total) ? $total : 0;
             })
             ->addIndexColumn()
             ->rawColumns(['display_name'])
