@@ -155,9 +155,10 @@
                                     <label class=""form-control-label>Neopreneur</label>
                                     <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
                                 </div>
+                                @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class=""form-control-label>Upline</label>
-                                    <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
+                                    <input type="text" class="form-control " value="{{ $getProviderUpline->first_name }} {{ $getProviderUpline->last_name }}" >
                                 </div>
                             @else
                         </div>
