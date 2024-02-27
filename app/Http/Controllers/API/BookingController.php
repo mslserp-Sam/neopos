@@ -261,7 +261,9 @@ class BookingController extends Controller
             $data['final_total_tax'] = round($tax,2);
         }
         // $bookingdata->update($data);
-
+        $message = __('messages.wallent_balance_error');
+        return comman_message_response($message);
+        
         if($old_status != $data['status'] ){
             $bookingdata->old_status = $old_status;
             $activity_data = [
