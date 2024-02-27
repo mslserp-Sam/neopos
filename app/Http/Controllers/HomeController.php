@@ -393,7 +393,7 @@ class HomeController extends Controller
         // ];
         return Datatables::of($tableDatap)
             ->editColumn('display_name', function($tableDatap){
-                return '<a class="btn-link btn-link-hover" >'.$tableDatap->display_name.'</a>';
+                return '<a class="btn-link btn-link-hover" >'.$tableDatap['display_name'].'</a>';
             })
             ->addIndexColumn()
             ->rawColumns(['display_name'])
