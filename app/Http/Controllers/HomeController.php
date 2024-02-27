@@ -396,7 +396,7 @@ class HomeController extends Controller
         return $datatable->eloquent($earningUpline)
             ->editColumn('id', function($earningUpline){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                $sp = DB::table('users')->where('id', $earningUpline->sp_id);
+                $sp = DB::table('users')->where('id', $earningUpline->sp_id)->first();
                 return $sp->first_name . " " . $sp->last_name;
             })
             ->editColumn('total_booking', function($earningUpline){
