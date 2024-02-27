@@ -394,7 +394,11 @@ class HomeController extends Controller
 
         }   
         return $datatable->eloquent($earningUpline)
-            ->editColumn('sp_name', function($earningUpline){
+            ->editColumn('id', function($earningUpline){
+                //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
+                return $earningUpline;
+            })
+            ->editColumn('any', function($earningUpline){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
                 return $earningUpline;
             })
