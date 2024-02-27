@@ -274,11 +274,16 @@ class BookingController extends Controller
                 'data' => $old_status. ' - ' .$bookingdata->old_status. ' - ' .$data['status']
             ]);
 
-            $status_code = 400;
-            $message = __('messages.wallent_balance_error');
-            return comman_custom_response($message);
-
-            saveBookingActivity($activity_data);
+            $wallet = Wallet::where('user_id',auth()->user())->first();
+            if($wallet !== null){
+                $wallet_amount = $wallet->amount;
+                if($wallet_amount > 0){
+                    saveBookingActivity($activity_data);
+                }else{
+                    $message = __('messages.wallent_balance_error');
+                    return comman_message_response($message);
+                }
+            }
         }
 
         if($bookingdata->payment_id != null){
