@@ -265,7 +265,7 @@
                     {
                         data: 'total_booking',
                         name: 'total_booking',
-                        title: "Total Booking",
+                        title: "Total ID",
                         searchable: false,
                     },
                     {

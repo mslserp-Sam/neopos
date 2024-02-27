@@ -401,7 +401,7 @@ class HomeController extends Controller
             })
             ->editColumn('total_booking', function($earningUpline){
                 $totalbooking = DB::table('bookings')->where('provider_id', $earningUpline->sp_id)->count();
-                return $totalbooking;
+                return $earningUpline->booking_id;
             })
             ->editColumn('comm_persent', function($earningUpline) {
                 $getCom = DB::table('commission')->first();
