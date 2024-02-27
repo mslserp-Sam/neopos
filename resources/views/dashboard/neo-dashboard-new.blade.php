@@ -267,6 +267,11 @@
                             data: 'display_name',
                             name: 'display_name',
                             title: "Provider Name"
+                    },
+                    {
+                            data: 'total_booking',
+                            name: 'total_booking',
+                            title: "Total Booking"
                     }
                     
                 ]
