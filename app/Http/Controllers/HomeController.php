@@ -392,13 +392,13 @@ class HomeController extends Controller
 
         }   
         return $datatable->eloquent($jabs)
-            ->editColumn('display_name', function($query){
+            ->editColumn('display_name', function($jabs){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $jab;
+                return $jabs;
             })
-            ->filterColumn('display_name',function($query,$keyword){
-                $query->where('display_name','like','%'.$keyword.'%');
-            })
+            // ->filterColumn('display_name',function($query,$keyword){
+            //     $query->where('display_name','like','%'.$keyword.'%');
+            // })
             // ->editColumn('total_booking', function($query) {
             //     $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
             //     return $totalbooking;
