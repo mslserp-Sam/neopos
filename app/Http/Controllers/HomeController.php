@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\EarningsNeo;
+use App\Models\EarningsUpline;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProviderDocument;
 use App\Models\AppSetting;
@@ -373,6 +374,7 @@ class HomeController extends Controller
         $user = Booking::query();
 
         $earningNeo = EarningsNeo::query();
+        $earningUpline = EarningsUpline::query();
         $filter = $request->filter;
         $getUser = auth()->user();
         
@@ -391,10 +393,10 @@ class HomeController extends Controller
             $jabs = DB::table('users')->where('user_type', 'Neopreneur')->get();
 
         }   
-        return $datatable->eloquent($earningNeo)
-            ->editColumn('booking_id', function($earningNeo){
+        return $datatable->eloquent($earningUpline)
+            ->editColumn('booking_id', function($earningUpline){
                 //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                return $earningNeo;
+                return $earningUpline;
             })
             // ->filterColumn('display_name',function($query,$keyword){
             //     $query->where('display_name','like','%'.$keyword.'%');
