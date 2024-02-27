@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Role;
@@ -318,6 +319,19 @@ class CustomerController extends Controller
         if($id == null){
             $data['password'] = bcrypt($data['password']);
             $user = User::create($data);
+            if($user){
+                $lastestId = DB::table('wallets')->where('user_id', $lastestId->id)->orderByDesc('id')->first();
+                $getWallet = DB::table('wallets')->where('user_id', $lastestId->id)->first();
+                if($getWallet == null){
+                    $insertWallet = DB::table('wallets')->insert([
+                        'title' => $lastestId->first_name. " " .$lastestId->last_name,
+                        'user_id' => $lastestId->id,
+                        'amount' => 0,
+                        'status' => 0
+                    ]);
+                } 
+            }
+            
         }else{
             $user = User::findOrFail($id);
             $user->removeRole($user->user_type);
