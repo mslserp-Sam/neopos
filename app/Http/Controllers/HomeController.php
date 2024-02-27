@@ -379,20 +379,24 @@ class HomeController extends Controller
          //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
          $tableDatap[] = "";
          $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
-         foreach($query as $val){
-            array_push($tableDatap, [
-                'id' => $val->id,
-                'display_name' => $val->display_name
-            ]);
+        //  foreach($query as $val){
+        //     array_push($tableDatap, [
+        //         'id' => $val->id,
+        //         'display_name' => $val->display_name
+        //     ]);
          
-         }
-        // $query[] =
-        // [
-        //     'id' => "1",
-        //     'display_name' => "1"
-        // ];
-        return Datatables::of($tableDatap)
-            ->editColumn('display_name', function($tableDatap){
+        //  }
+        $query[] =
+        [
+            'id' => "1",
+            'display_name' => "1"
+        ];
+        array_push($query, [
+            'id' =>'2',
+            'display_name' => "2"
+        ]);
+        return Datatables::of($query)
+            ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$tableDatap['display_name'].'</a>';
             })
             ->addIndexColumn()
