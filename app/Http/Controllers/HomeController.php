@@ -382,7 +382,7 @@ class HomeController extends Controller
             'id': "1",
             'display_name': "1"
         ];
-        return $datatable->eloquent($query)
+        return Datatables::of($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
             })
