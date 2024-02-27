@@ -273,10 +273,7 @@ class BookingController extends Controller
             $wallet = Wallet::where('user_id',auth()->user()->id)->first();
             if($wallet !== null){
                 $wallet_amount = $wallet->amount;
-                DB::table('consoles')->insert([
-                    'data' => $wallet_amount. ' - ' .auth()->user()->id
-                ]);
-                if($wallet_amount > 0){
+                if((int)$wallet_amount > 0){
                     saveBookingActivity($activity_data);
                 }else{
                     $message = __('messages.wallent_balance_error');
