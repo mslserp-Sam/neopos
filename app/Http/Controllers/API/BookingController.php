@@ -275,9 +275,9 @@ class BookingController extends Controller
             ]);
 
             saveBookingActivity($activity_data);
-            
+            $status_code = 400;
             $message = __('messages.wallent_balance_error');
-            return comman_message_response($message);
+            return comman_message_response($message,$status_code);
         }
 
         if($bookingdata->payment_id != null){
