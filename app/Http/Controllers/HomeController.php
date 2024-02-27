@@ -372,91 +372,60 @@ class HomeController extends Controller
         // $query = Booking::query();
         
         $query = User::query();
-        $user = Booking::query();
-
-        $earningNeo = EarningsNeo::query();
-        $earningUpline = EarningsUpline::query();
-        $filter = $request->filter;
+        
         $getUser = auth()->user();
         
-        if (isset($filter)) {
-            if (isset($filter['column_status'])) {
-                $query->where('status', $filter['column_status']);
-            }
-        }
-        if (auth()->user()->hasAnyRole(['admin'])) {
-            $query->withTrashed();
-        }
-        if($request->list_status == 'all'){
-            $query = $query->whereNotIn('user_type',['admin','demo_admin']);
-        }else{
-            $query = $query->where('user_type', 'Neopreneur');
-            $earningUpline = $earningUpline->where('upline_id', auth()->user()->id);
+        $query = $query->where('user_type', 'provider')->where('upline', $getUser->referal_code);
 
-        }   
-        return $datatable->eloquent($earningUpline)
-            ->editColumn('id', function($earningUpline){
-                //return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
-                $sp = DB::table('users')->where('id', $earningUpline->sp_id)->first();
-                return $sp->first_name . " " . $sp->last_name;
-            })
-            ->editColumn('total_booking', function($earningUpline){
-                $totalbooking = DB::table('bookings')->where('provider_id', $earningUpline->sp_id)->count();
-                return $earningUpline->booking_id;
-            })
-            ->editColumn('comm_persent', function($earningUpline) {
-                $getCom = DB::table('commission')->first();
-                return $getCom->upline;
-            })
-             ->editColumn('comm', function($earningUpline) {
-                // $totalkomi = DB::table('earnings_upline')->where('upline', $query->id)->sum('sp_comm');
-                return $earningUpline->upline_comm;
-            })
-            ->filterColumn('display_name',function($query,$keyword){
-                $query->where('display_name','like','%'.$keyword.'%');
-            })
-            ->editColumn('total_booking', function($query) {
-                $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
-                return $totalbooking;
-            })
-            ->editColumn('sp_comm', function($query) {
-                $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
-                return isset($totalkomi) ? $totalkomi : 0;
-            })
-            ->editColumn('neo_comm', function($query) {
-                $neoComms = DB::table('earnings_upline')
-                            ->where('upline_id', auth()->user()->id)
-                            ->where('sp_id', $query->id)
-                            ->sum('upline_comm');
-                return $neoComms;
-            })
-            ->editColumn('comm_persent', function($query) {
-                $getCom = DB::table('commission')->first();
-                $getComInt = (int)$getCom->upline;
-                return $getComInt.'%';
-            })
-            ->editColumn('total_completed', function($query) {
-                $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
-                return $totalCompleted;
-            })
-            ->editColumn('total_rejected', function($query) {
-                $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'rejected')->count();
-                return isset($total) ? $total : 0;
-            })
-            ->editColumn('total_cancelled', function($query) {
-                $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'cancelled')->count();
-                return isset($total) ? $total : 0;
-            })
-            ->editColumn('total_failed', function($query) {
-                $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'failed')->count();
-                return isset($total) ? $total : 0;
-            })
-            // ->filterColumn('sp_comm',function($query,$keyword){
-            //     $query->where('sp_comm','like','%'.$keyword.'%');
-            // })
-            ->addIndexColumn()
-            ->rawColumns(['display_name'])
-            ->toJson();
+        return $datatable->eloquent($query)
+        ->editColumn('display_name', function($query){
+            return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
+        })
+        ->filterColumn('display_name',function($query,$keyword){
+            $query->where('display_name','like','%'.$keyword.'%');
+        })
+        ->editColumn('total_booking', function($query) {
+            $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
+            return $totalbooking;
+        })
+        ->editColumn('sp_comm', function($query) {
+            $totalkomi = DB::table('earnings_service_provider')->where('sp_id', $query->id)->sum('sp_comm');
+            return isset($totalkomi) ? $totalkomi : 0;
+        })
+        ->editColumn('neo_comm', function($query) {
+            $neoComms = DB::table('earnings_upline')
+                        ->where('upline_id', auth()->user()->id)
+                        ->where('sp_id', $query->id)
+                        ->sum('upline_comm');
+            return $neoComms;
+        })
+        ->editColumn('comm_persent', function($query) {
+            $getCom = DB::table('commission')->first();
+            $getComInt = (int)$getCom->upline;
+            return $getComInt.'%';
+        })
+        ->editColumn('total_completed', function($query) {
+            $totalCompleted = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'completed')->count();
+            return $totalCompleted;
+        })
+        ->editColumn('total_rejected', function($query) {
+            $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'rejected')->count();
+            return isset($total) ? $total : 0;
+        })
+        ->editColumn('total_cancelled', function($query) {
+            $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'cancelled')->count();
+            return isset($total) ? $total : 0;
+        })
+        ->editColumn('total_failed', function($query) {
+            $total = DB::table('bookings')->where('provider_id', $query->id)->where('status', 'failed')->count();
+            return isset($total) ? $total : 0;
+        })
+        // ->filterColumn('sp_comm',function($query,$keyword){
+        //     $query->where('sp_comm','like','%'.$keyword.'%');
+        // })
+        ->addIndexColumn()
+        ->rawColumns(['display_name'])
+        ->toJson();
     }
     public function adminDashboard($data)
     {
