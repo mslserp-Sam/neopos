@@ -376,15 +376,16 @@ class HomeController extends Controller
         $getUser = auth()->user();
 
         // $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
-        // $query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
-        $query[] =
-        [
-            'id' => "1",
-            'display_name' => "1"
-        ];
+         //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
+         $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
+        // $query[] =
+        // [
+        //     'id' => "1",
+        //     'display_name' => "1"
+        // ];
         return Datatables::of($query)
             ->editColumn('display_name', function($query){
-                return '<a class="btn-link btn-link-hover" >'.$query['display_name'].'</a>';
+                return '<a class="btn-link btn-link-hover" >'.$query->display_name.'</a>';
             })
             ->addIndexColumn()
             ->rawColumns(['display_name'])
