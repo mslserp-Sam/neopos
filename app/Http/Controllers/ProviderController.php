@@ -203,8 +203,13 @@ class ProviderController extends Controller
             }
         }else{
             $user = User::findOrFail($id);
-
+            $data['upline'] = isset($data['neo']) ? $data['neo'] : NULL;
             $user->fill($data)->update();
+            if($user){
+                if($data['spNeoUpline'] != NULL){
+                    $updateupline = DB::table('users')->where('referal_code', $data['neo'])->update(['upline' => $data['spNeoUpline']]);
+                }
+            }
         }
         if($data['status'] == 1 && auth()->user()->hasAnyRole(['admin'])){
             try {

@@ -150,21 +150,6 @@
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
                         </div>
-                        
-                        @if(isset($providerdata->upline))
-                        <div class="row">
-                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp        
-                            <div class="form-group col-lg-6 col-sm-12">
-                                <label class=""form-control-label>Neopreneur</label>
-                                <input type="text" class="form-control " value="{{ $getUpline->first_name }} {{ $getUpline->last_name }}" >
-                            </div>
-                            @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
-                            <div class="form-group col-lg-6 col-sm-12">
-                                <label class=""form-control-label>Upline</label>
-                                <input type="text" class="form-control " value="{{ $getProviderUpline->first_name }} {{ $getProviderUpline->last_name }}" >
-                            </div>
-                        </div>
-                        @endif
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="">
