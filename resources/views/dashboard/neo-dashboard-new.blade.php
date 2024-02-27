@@ -130,6 +130,13 @@
                     </div>
                 </div>
                 <!-- end table -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <h4 class="">Your Downlin Service Provider</h4>
+                        </div>
+                    </div>
+                </div>
                  <!-- start table -->
                  <div class="card">
                     <div class="card-body">
