@@ -260,7 +260,7 @@ class BookingController extends Controller
             $data['total_amount'] =round($totalamount,2);
             $data['final_total_tax'] = round($tax,2);
         }
-        $bookingdata->update($data);
+        // $bookingdata->update($data);
 
         if($old_status != $data['status'] ){
             $bookingdata->old_status = $old_status;
