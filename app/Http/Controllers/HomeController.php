@@ -378,7 +378,7 @@ class HomeController extends Controller
         // $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
          //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
          $tableDatap[] = "";
-         $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
+        //  $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
         //  foreach($query as $val){
         //     array_push($tableDatap, [
         //         'id' => $val->id,
@@ -391,10 +391,10 @@ class HomeController extends Controller
             'id' => "1",
             'display_name' => "1"
         ];
-        array_push($query, [
-            'id' =>'2',
-            'display_name' => "2"
-        ]);
+        // array_push($query, [
+        //     'id' =>'2',
+        //     'display_name' => "2"
+        // ]);
         return Datatables::of($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$tableDatap['display_name'].'</a>';
