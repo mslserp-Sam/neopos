@@ -380,7 +380,10 @@ class HomeController extends Controller
          $tableDatap[] = [];
          $query = DB::table('users')->where('user_type', 'Neopreneur')->get();
          foreach($query as $val){
-            $tableDatap[] = $query;
+            $tableDatap[] = [
+                    'id', $val->id,
+                    'display_name' => $val->display_name
+            ];
          }
         // $query[] =
         // [
