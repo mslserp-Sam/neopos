@@ -279,7 +279,7 @@ class BookingController extends Controller
                     // saveBookingActivity($activity_data);
                 }else{
                     $message = __('messages.wallent_balance_error');
-                    return comman_message_response($message);
+                    return comman_message_response($message, 400);
                 }
             }
         }
