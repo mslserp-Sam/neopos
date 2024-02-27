@@ -402,7 +402,7 @@ class HomeController extends Controller
                 return '<a class="btn-link btn-link-hover" >'.$query['display_name'].'</a>';
             })
             ->editColumn('total_booking', function($query) {
-                $totalbooking = DB::table('bookings')->where('provider_id', $query->id)->count();
+                $totalbooking = DB::table('bookings')->where('provider_id', $query['id'])->count();
                 return $totalbooking;
             })
             ->addIndexColumn()
