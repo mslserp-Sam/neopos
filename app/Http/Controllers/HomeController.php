@@ -368,15 +368,8 @@ class HomeController extends Controller
             ->toJson();
     }
     public function neo_tag_upline_history(DataTables $datatable, Request $request){
-        // $user = User::query();
-        // $query = Booking::query();
-        
-        // $query = User::query();
         
         $getUser = auth()->user();
-
-        // $neoData = $query->where('user_type', 'Neopreneur')->where('upline', $getUser->referal_code);
-        //$query   = $query->where('user_type', 'provider')->where('upline', $neoData->referal_code);
         $query = [];
         $getNeo = DB::table('users')->where('user_type', 'Neopreneur')->where('upline', auth()->user()->referal_code)->get();
 
@@ -389,14 +382,6 @@ class HomeController extends Controller
                 ]);
             }
         }
-        // [
-        //     'id' => "1",
-        //     'display_name' => "333"
-        // ];
-        // array_push($query, [
-        //     'id' =>'2',
-        //     'display_name' => "2"
-        // ]);
         return Datatables::of($query)
             ->editColumn('display_name', function($query){
                 return '<a class="btn-link btn-link-hover" >'.$query['display_name'].'</a>';
