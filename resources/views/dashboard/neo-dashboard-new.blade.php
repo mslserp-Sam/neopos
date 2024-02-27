@@ -110,6 +110,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <h4 class="">Your Service Provider</h4>
+                            <h4 class="">{{ $wallet->amount}}</h4>
                         </div>
                     </div>
                 </div>

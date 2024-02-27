@@ -136,6 +136,7 @@ class HomeController extends Controller
             $data['neo_total_services'] = $total_downline_services;
             $data['total_downline_commission'] = $total_downline_commission;
             $data['total_sp_rev'] = $total_sp_rev;
+            $data['wallet_id'] = $user->id;
         }
 
         if (auth()->user()->hasAnyRole(['admin', 'demo_admin'])) {
@@ -454,7 +455,8 @@ class HomeController extends Controller
         if ($dashboard_setting == null) {
             $show = "true";
         }
-        return view('dashboard.neo-dashboard-new', compact('data', 'show'));
+        $wallet = DB::table('wallets')->where('user_id', $data->wallet_id)->first();
+        return view('dashboard.neo-dashboard-new', compact('data', 'show', 'wallet'));
     }
     public function providerDashboard($data)
     {
