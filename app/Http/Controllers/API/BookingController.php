@@ -283,7 +283,7 @@ class BookingController extends Controller
                         "data" => 'else'
                     ]);
                     $message = __('messages.wallent_balance_error');
-                    return comman_message_response($message, 400);
+                    return comman_message_response($message, "error");
                 }
             }
         }
