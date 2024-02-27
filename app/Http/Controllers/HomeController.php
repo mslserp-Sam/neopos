@@ -387,10 +387,8 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-            $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
-            $neoCommss = DB::table('earnings_neo')
-                            ->where('upline_id', auth()->user()->id)
-                            ->sum('upline_comm');
+            $query = $query->where('user_type','Neopreneur')
+
         }   
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
@@ -421,7 +419,7 @@ class HomeController extends Controller
                 // ->rightJoin('bookings', 'users.id', '=', 'bookings.provider_id')
                 // ->rightJoin('earnings_neo', 'bookings.id', '=', 'earnings_neo.booking_id')
                 // ->select('*', 'bookings.id AS booking_new_id', 'bookings.status AS booking_status');
-                return $neoCommss;
+                return $neoComms;
             })
             ->editColumn('comm_persent', function($query) {
                 $getCom = DB::table('commission')->first();
