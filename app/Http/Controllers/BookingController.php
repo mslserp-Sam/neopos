@@ -540,7 +540,7 @@ class BookingController extends Controller
         
         DB::table('consoles')->insert([
             'data' => 'una'
-        ])    
+        ]);
         
         $data['date'] = isset($request->date) ? date('Y-m-d H:i:s',strtotime($request->date)) : date('Y-m-d H:i:s');
         $data['start_at'] = isset($request->start_at) ? date('Y-m-d H:i:s',strtotime($request->start_at)) : null;
