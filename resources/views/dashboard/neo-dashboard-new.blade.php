@@ -284,8 +284,8 @@
                             title: "Commission(%)"
                     },
                     {
-                            data: 'earnings_upline ',
-                            name: 'earnings_upline ',
+                            data: 'earnings_upline',
+                            name: 'earnings_upline',
                             title: "Commission"
                     }
                      
