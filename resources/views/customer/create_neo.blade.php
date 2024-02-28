@@ -215,8 +215,8 @@
         return result;
     }
     $('#referal_code').val(makeid(6));
-    // $('#taguplineBtn').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
-    
+    $('#taguplineBtn').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
+    $('#tagNeo').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
     // $('#taguplineBtn').attr('disabled', true)
     $('#taguplineBtn').on('click', () => {
         console.log('asd')
@@ -457,6 +457,7 @@
                         $('#tagNeo').show()
                         setTimeout(()=>{
                             $('#pangErrorNeo').html("")
+                            location.reload();
                         }, 2000)
                     }else{
                         $('#pangErrorNeo').append(`
