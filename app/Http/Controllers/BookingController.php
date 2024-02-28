@@ -213,7 +213,7 @@ class BookingController extends Controller
         ->where('user_type', 'provider')
         ->where('user_type',  'provider')
         ->where('sp_neo_id' ,'=', NULL)
-        ->first();
+        ->get();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
