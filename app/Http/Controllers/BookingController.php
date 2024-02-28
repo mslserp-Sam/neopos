@@ -208,7 +208,7 @@ class BookingController extends Controller
         $data = DB::table('users')
         ->where('user_type', 'provider')
         ->where('user_type',  'provider')->where('sp_neo_id' ,'=', NULL)
-        ->where('display_name',  $name)
+        ->where('display_name', 'like' ,$name.'%')
         ->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
