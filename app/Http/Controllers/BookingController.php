@@ -315,7 +315,7 @@ class BookingController extends Controller
         
         $update = DB::table('users')->where('id', $id)->update(['upline' => NULL, 'neo_neo_id' => NULL]);
         if($update){
-            $neoProviders = User::where('user_type', 'provider')->where('sp_neo_id', $id)->update(['sp_upline' => NULL]);
+            $neoProviders = User::where('user_type', 'provider')->where('sp_neo_id', $id)->update(['sp_upline_id' => NULL]);
             return response()->json(['data'=> $id ,'status' => 'success']); 
         }else{
             return response()->json(['data'=> "a" ,'status' => 'error']); 
