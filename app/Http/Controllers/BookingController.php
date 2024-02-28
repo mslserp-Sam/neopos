@@ -190,9 +190,14 @@ class BookingController extends Controller
         if($users){
             $update = DB::table('users')->where('id', $id)->update(['upline' => $users->referal_code, 'neo_neo_id' => $neo_id]);
             if($update){
-                return response()->json(['data'=> $users ,'status' => 'success']); 
+                $getProviders = DB::table('users')->where('sp_neo_id', $id)->update(['sp_upline_id' => $neo_id]);
+                if($getProviders){
+                    return response()->json(['data'=> $users ,'status' => 'success']); 
+                }else{
+                    return response()->json(['data'=> "a" ,'status' => 'error']); 
+                }
             }else{
-                return response()->json(['data'=> "a" ,'status' => 'error']); 
+                
             }
         }else{
             return response()->json(['data'=> "a" ,'status' => 'error']); 
