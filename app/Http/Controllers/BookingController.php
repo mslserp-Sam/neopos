@@ -199,7 +199,7 @@ class BookingController extends Controller
                         return response()->json(['data'=> "a" ,'status' => 'error']); 
                     }
                 }else{
-                    return response()->json(['data'=> "a" ,'status' => 'error']); 
+                    return response()->json(['data'=> $users ,'status' => 'success']); 
                 }
             }else{
                 return response()->json(['data'=> "a" ,'status' => 'error']); 
