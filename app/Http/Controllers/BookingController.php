@@ -251,9 +251,9 @@ class BookingController extends Controller
     }
     public function search_neo_tagged(Request $request)
     {
-        $referal_code = $request->email;
+        $name = $request->email;
 
-        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $request->email)->first();
+        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('display_name', 'like' ,$name.'%')->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
