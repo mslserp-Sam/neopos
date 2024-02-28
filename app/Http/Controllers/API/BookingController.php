@@ -277,9 +277,10 @@ class BookingController extends Controller
                     // saveBookingActivity($activity_data);
                 }else{
                     DB::table('consoles')->insert([
-                        "data" => 'sdasd'
+                        "data" => '212312'
                     ]);
-                    return response()->json( [ 'message' => "test" ], 200 );
+                    $message = __('messages.already_provider_wallet');
+                    return comman_message_response($message,406);
                 }
             }
         }
