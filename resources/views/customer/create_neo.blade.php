@@ -140,6 +140,7 @@
                                     </div>
                                 @endif
                             </div>
+                            <input type="hidden" id="neoLagayaId">
                             <button type="button" class="btn btn-md btn-primary float-right" id="taguplineBtn" >Add</button>
                         </div>
                     </div>
@@ -223,6 +224,7 @@
         var vdata = {
             email: $('#inputNeo').val(),
             refid: $('#neo_referal_code').val(),
+            neo_id: $('#neo_referal_code').val(),
             userid: "{{ $customerdata->id }}"
         }
         $.ajax({
@@ -279,8 +281,10 @@
                         $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email not found !</label>`)
                         $('#taguplineBtn').attr('disabled', true)
                         $('#neoAccordionSearch').html("")
+                        $('#neoLagayaId').val("")
                         
                     }else{
+                        $('#neoLagayaId').val(nData.id)
                         $('#pangErrorNeo').html("")
                         $('#neoAccordionSearch').html("")
                         $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
