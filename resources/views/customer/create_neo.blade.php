@@ -115,14 +115,7 @@
                             <div id="neoAccordionSearch">
                                 <div class="card">
                                     <div class="card-header" id="neoAcjabuid">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabuid" aria-expanded="true" aria-controls="collapseAcc{{ $userupline->id }}">
-                                                Name: 
-                                            </button>
-                                            <button class="btn btn-danger float-right" onClick="removeUpline('{{ $customerdata->id }}');">
-                                                Remove
-                                            </button>
-                                        </h5>
+                                        
                                     </div>
                                     <div id="collapseAccjabuid" class="collapse " aria-labelledby="neoAcjabuid" data-parent="#neoAccordionSearch">
                                         <div class="card-body">
