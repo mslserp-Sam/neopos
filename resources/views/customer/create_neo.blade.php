@@ -224,7 +224,7 @@
         var vdata = {
             email: $('#inputNeo').val(),
             refid: $('#neo_referal_code').val(),
-            neo_id: $('#neo_referal_code').val(),
+            neo_id: $('#neoLagayaId').val(),
             userid: "{{ $customerdata->id }}"
         }
         $.ajax({

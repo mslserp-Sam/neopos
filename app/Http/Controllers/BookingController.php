@@ -185,9 +185,10 @@ class BookingController extends Controller
         $id = $request->userid;
         $email = $request->email;
         $referal_id = $request->refId;
-        $users = DB::table('users')->where('email', $email)->first();
+        $neo_id = $request->neo_id;
+        $users = DB::table('users')->where('display_name', $email)->first();
         if($users){
-            $update = DB::table('users')->where('id', $id)->update(['upline' => $users->referal_code]);
+            $update = DB::table('users')->where('id', $id)->update(['upline' => $users->referal_code, 'neo_neo_id' => $neo_id]);
             if($update){
                 return response()->json(['data'=> $users ,'status' => 'success']); 
             }else{
