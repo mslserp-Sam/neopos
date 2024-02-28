@@ -292,7 +292,7 @@ class BookingController extends Controller
     public function remove_neo_upline(Request $request)
     {
         $id = $request->id;
-        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL]);
+        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL, 'neo_neo_id' => NULL]);
         if($update){
             return response()->json(['data'=> $id ,'status' => 'success']); 
         }else{
