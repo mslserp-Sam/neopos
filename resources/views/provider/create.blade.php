@@ -152,6 +152,33 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
+                                <div id="neoAccordion">
+                                    <div class="card">
+                                        <div class="card-header" id="neoAcjabs">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabs" aria-expanded="true" aria-controls="collapseAccjabs">
+                                                    Name: 
+                                                </button>
+                                                <button class="btn btn-danger float-right" onClick="removeUpline('id');">
+                                                    Remove
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseAccjabs" class="collapse " aria-labelledby="neoAcjabs" data-parent="#neoAccordion">
+                                            <div class="card-body">
+                                                <span><b></b></span><br>
+                                                <span>Name: </span><br>
+                                                <span>Contact no.: </span><br>
+                                                <span>Email: </span><br>
+                                                <span>Address: </span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
                                 <div class="">
                                     <div class="">
                                         <div class="d-flex p-3 ">
@@ -305,7 +332,7 @@
     })
     $('#searchUpline').on('keyup', () => {
         var data = {
-            email: $('#searchUpline').val(),
+            name: $('#searchUpline').val(),
             refid: $('#neoReferralCode').val()
         }
         $.ajax({
