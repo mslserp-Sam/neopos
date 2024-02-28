@@ -97,8 +97,8 @@
                 </div>
             </div>
         </div>
-        @if($customerdata->id))
-            <div class="row">
+        @if($customerdata->id)
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -153,6 +153,7 @@
                                 <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                                 <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
                                 <input type="hidden" value="{{ $customerdata->referal_code }}" id="neo_referal_code">
+                                <input type="hidden" value="{{ $customerdata->id }}" id="neo_id">
                             </div>
                             <div id="pangError">
                                 
@@ -282,7 +283,8 @@
     $('#searchNeo').on('keyup', () => {
         var vdata = {
             email: $('#searchNeo').val(),
-            id: $('#neo_referal_code').val()
+            id: $('#neo_referal_code').val(),
+            neo_id: $('#neo_id').val()
         }
         $.ajax({
             type: 'GET',
@@ -309,7 +311,7 @@
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#data${nData.id}" aria-expanded="true" aria-controls="data${nData.id}">
                                               ${nData.first_name} ${nData.last_name}
                                             </button>
-                                            <button class="btn btn-primary float-right addTag" data-data-tagid="${nData.id}" onClick="addTag('${nData.id}', '{{ $customerdata->referal_code }}');">
+                                            <button class="btn btn-primary float-right addTag" data-data-tagid="${nData.id}" onClick="addTag('${nData.id}', '{{ $customerdata->referal_code }}', '{{ $customerdata->id }}');">
                                                 Add
                                             </button>
                                         </h5>
@@ -330,12 +332,13 @@
             }
         });
     })
-    function addTag(dataa, dataid){
+    function addTag(dataa, dataid, neoid){
         $('#alertAdd').html("")
         var token = "{{ csrf_token() }}";
         var ndata = {
             tagId: dataa,
             refId: dataid,
+            neo_id: neoid,
             _token: token
         }
         Swal.fire({
