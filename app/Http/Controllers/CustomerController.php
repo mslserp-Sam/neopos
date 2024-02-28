@@ -343,7 +343,7 @@ class CustomerController extends Controller
 			$message = __('messages.save_form',[ 'form' => __('messages.user') ] );
 		}
 
-		return redirect(route('user.index'))->withSuccess($message);
+		return redirect(route('user.create_neo'))->withSuccess($message);
     }
     public function neo_store(UserRequest $request)
     {
