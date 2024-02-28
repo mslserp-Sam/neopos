@@ -116,7 +116,7 @@
                                 
                             </div>
                             <div id="neoAccordion">
-                                @if(isset($userupline->id))
+                                @if(isset($userupline->id) || isset($userupline->neo_neo_id))
                                     <div class="card">
                                         <div class="card-header" id="neoAc{{ $userupline->id }}">
                                             <h5 class="mb-0">
