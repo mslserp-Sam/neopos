@@ -209,7 +209,7 @@ class BookingController extends Controller
         ->where('user_type', 'provider')
         ->where('user_type',  'provider')->where('sp_neo_id' ,'=', NULL)
         ->where('first_name', 'like', $name.'%')
-        ->orWhere(function (Builder $query){
+        ->orWhere(function ($query){
             $query->where('last_name', 'like', $name.'%')
             ->where('user_type', 'provider')
             ->where('user_type',  'provider')
