@@ -168,18 +168,32 @@ class BookingController extends Controller
             ->rawColumns(['action','status','payment_id','service_id','id','check'])
             ->toJson();
     }
+    //add ng provider
     public function add_neo(Request $request)
     {
         $id = $request->tagId;
         $referal_id = $request->refId;
         $neo_id = $request->neo_id;
-        $update = DB::table('users')->where('id', $id)->update(['upline' => $referal_id, 'sp_neo_id' => $neo_id]);
-        if($update){
-            return response()->json(['data'=> $id ,'status' => 'success']); 
+        $neopreneur = DB::table('users')->where('id', $neo_id)->first();
+        if($neopreneur->neo_neo_id){
+            $update = DB::table('users')->where('id', $id)->update(['upline' => $referal_id, 'sp_neo_id' => $neo_id, 'sp_upline_id' => $neopreneur->neo_neo_id]);
+            if($update){
+                return response()->json(['data'=> $id ,'status' => 'success']); 
+            }else{
+                return response()->json(['data'=> "a" ,'status' => 'error']); 
+            }
         }else{
-            return response()->json(['data'=> "a" ,'status' => 'error']); 
+            $update = DB::table('users')->where('id', $id)->update(['upline' => $referal_id, 'sp_neo_id' => $neo_id]);
+            if($update){
+                return response()->json(['data'=> $id ,'status' => 'success']); 
+            }else{
+                return response()->json(['data'=> "a" ,'status' => 'error']); 
+            }
         }
+        
+        
     }
+    //add ng neo neo
     public function add_neo_tag(Request $request)
     {
         $id = $request->userid;
@@ -283,11 +297,12 @@ class BookingController extends Controller
         }
         
     }
+    //remove ng provider
     public function remove_neo(Request $request)
     {
         $id = $request->tagId;
         $referal_id = $request->refId;
-        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL, 'sp_neo_id' => NULL]);
+        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL, 'sp_neo_id' => NULL, 'sp_upline_id' => NULL]);
         if($update){
             return response()->json(['data'=> $id ,'status' => 'success']); 
         }else{
