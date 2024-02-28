@@ -260,8 +260,19 @@ class BookingController extends Controller
             $data['total_amount'] =round($totalamount,2);
             $data['final_total_tax'] = round($tax,2);
         }
-        // $bookingdata->update($data);
-        
+        $wallet = Wallet::where('user_id',auth()->user()->id)->first();
+        if($wallet !== null){
+            $wallet_amount = $wallet->amount;
+            if((int)$wallet_amount > 0)
+            {
+                $bookingdata->update($data);
+            }
+            else
+            {
+                $message = __('messages.negative_wallet');
+                return comman_message_response($message,406);
+            }
+        }
         if($old_status != $data['status'] ){
             $bookingdata->old_status = $old_status;
             $activity_data = [
@@ -269,20 +280,7 @@ class BookingController extends Controller
                 'booking_id' => $id,
                 'booking' => $bookingdata,
             ];
-    
-            $wallet = Wallet::where('user_id',auth()->user()->id)->first();
-            if($wallet !== null){
-                $wallet_amount = $wallet->amount;
-                if((int)$wallet_amount > 0){
-                    // saveBookingActivity($activity_data);
-                }else{
-                    DB::table('consoles')->insert([
-                        "data" => '212312'
-                    ]);
-                    $message = __('messages.negative_wallet');
-                    return comman_message_response($message,406);
-                }
-            }
+            saveBookingActivity($activity_data);
         }
 
         if($bookingdata->payment_id != null){
