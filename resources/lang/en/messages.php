@@ -656,7 +656,7 @@
         'slot' => 'Time Slot',
         'wallet_credited' => 'Wallet is Credited',
         'already_provider_wallet' => 'A provider wallet already exists. Add a new amount to the wallet.',
-    
+        'negative_wallet' => "You don't have suffient balance in wallet please contact to administor.",
 
 
           

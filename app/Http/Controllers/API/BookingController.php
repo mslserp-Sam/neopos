@@ -279,7 +279,7 @@ class BookingController extends Controller
                     DB::table('consoles')->insert([
                         "data" => '212312'
                     ]);
-                    $message = __('messages.already_provider_wallet');
+                    $message = __('messages.negative_wallet');
                     return comman_message_response($message,406);
                 }
             }
