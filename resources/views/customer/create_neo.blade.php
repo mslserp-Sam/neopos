@@ -364,9 +364,8 @@
                         $('#alertAdd').append(`
                             <div class="alert alert-success ml-2" role="alert">
                               Successfully Added !
-                            </div>`).then(()=>{
-                                $('#searchContent').html("")
-                            })
+                            </div>`)
+                        $('#searchContent').html("")
                         neoList("{{ $customerdata->referal_code }}");
                         setTimeout(()=>{
                             $('#alertAdd').html("")
