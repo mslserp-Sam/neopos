@@ -110,7 +110,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <h4 class="">Your Service Provider</h4>
-                            <h4 class=""><span class="text-primary">Wallet</span> | ₱ {{ isset($wallet->amount) ? $wallet->amount : 0.00}}</h4>
+                            <h4 class=""><span class="text-primary">Wallet</span> | ₱ {{ isset($wallet->amount) ? $wallet->amount : "0.00"}}</h4>
                         </div>
                     </div>
                 </div>
