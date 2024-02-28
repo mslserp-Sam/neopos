@@ -215,8 +215,9 @@
         return result;
     }
     $('#referal_code').val(makeid(6));
-    $('#taguplineBtn').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
-    $('#taguplineBtn').attr('disabled', true)
+    // $('#taguplineBtn').css('display', '{{ isset($customerdata->upline) ? "none" : "block"}}')
+    
+    // $('#taguplineBtn').attr('disabled', true)
     $('#taguplineBtn').on('click', () => {
         console.log('asd')
         var vdata = {
@@ -289,17 +290,17 @@
                             <div class="card-header" id="neoAcjabuid">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabuid" aria-expanded="true" aria-controls="collapseAccjabuid">
-                                        Name: 
+                                        Name: ${nData.display_name}
                                     </button>
                                 </h5>
                             </div>
                             <div id="collapseAccjabuid" class="collapse " aria-labelledby="neoAcjabuid" data-parent="#neoAccordionSearch">
                                 <div class="card-body">
-                                    <span><b></b></span><br>
-                                    <span>Name: </span><br>
-                                    <span>Contact no.: </span><br>
-                                    <span>Email: </span><br>
-                                    <span>Address: </span><br>
+                                    <span><b>${nData.user_type}</b></span><br>
+                                    <span>Name: ${nData.display_name}</span><br>
+                                    <span>Contact no.: ${nData.contact_number}</span><br>
+                                    <span>Email: ${nData.email}</span><br>
+                                    <span>Address: ${nData.address}</span><br>
                                 </div>
                             </div>
                         </div>`)
@@ -452,6 +453,8 @@
                             </div>`)
                         neoList("{{ $customerdata->referal_code }}");
                         $('#neoAccordion').html("");
+                        $('#taguplineBtn').attr('disabled', true)
+                        $('#tagNeo').show()
                         setTimeout(()=>{
                             $('#pangErrorNeo').html("")
                         }, 2000)
@@ -463,6 +466,8 @@
                         setTimeout(()=>{
                             $('#pangErrorNeo').html("")
                         }, 2000)
+                        
+                       
                     }
                     console.log(data)
                    
