@@ -261,7 +261,7 @@
 
     $('#searchNeo').on('keyup', () => {
         var data = {
-            email: $('#searchNeo').val()
+            name: $('#searchNeo').val()
         }
         $.ajax({
             type: 'GET',

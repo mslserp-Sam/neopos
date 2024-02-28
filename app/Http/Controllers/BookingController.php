@@ -244,8 +244,8 @@ class BookingController extends Controller
     }
     public function sp_search_neo(Request $request)
     {
-        $name = $request->email;
-        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('email', $name)->first();
+        $name = $request->name;
+        $data = DB::table('users')->where('user_type', 'Neopreneur')->where('display_name', $name)->first();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error', 'uplineEmail' => ""]);  
         }else{
@@ -255,9 +255,6 @@ class BookingController extends Controller
                 $neo = DB::table('users')->where('user_type', 'Neopreneur')->where('referal_code', $data->upline)->first();
                 return response()->json(['data'=> $data ,'status' => 'success', 'uplineEmail' => $neo->email, 'ref_neo' => $neo->referal_code]);
             }
-            
-
-            
         }
         
     }
