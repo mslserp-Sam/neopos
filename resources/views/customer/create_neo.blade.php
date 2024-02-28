@@ -140,7 +140,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <input type="hidden" id="neoLagayaId">
+                            <input type="hidden" id="neoLagayaId" value="{{ isset($customerdata->neo_neo_id) ? $customerdata->neo_neo_id : ''}}">
                             <button type="button" class="btn btn-md btn-primary float-right" id="taguplineBtn" >Add</button>
                         </div>
                     </div>
