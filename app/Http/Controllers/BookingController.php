@@ -276,7 +276,7 @@ class BookingController extends Controller
     {
         $id = $request->tagId;
         $referal_id = $request->refId;
-        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL]);
+        $update = DB::table('users')->where('id', $id)->update(['upline' => NULL, 'sp_neo_id' => NULL]);
         if($update){
             return response()->json(['data'=> $id ,'status' => 'success']); 
         }else{
