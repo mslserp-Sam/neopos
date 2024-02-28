@@ -280,13 +280,15 @@
             }
         });
     })
-    $('#searchNeo').on('keyup', () => {
+    $('#searchNeo').on('keyup', function(e){
         var vdata = {
             email: $('#searchNeo').val(),
             id: $('#neo_referal_code').val(),
             neo_id: $('#neo_id').val()
         }
-        $.ajax({
+        if(e.keyCode == 13)
+        {
+            $.ajax({
             type: 'GET',
             url: '{{ route("booking.search_neo") }}',
             data: vdata,
@@ -330,6 +332,8 @@
               
             }
         });
+        }
+        
     })
     function addTag(dataa, dataid, neoid){
         $('#alertAdd').html("")
