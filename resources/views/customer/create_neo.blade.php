@@ -112,6 +112,29 @@
                             <div id="pangErrorNeo">
                                 
                             </div>
+                            <div id="neoAccordionSearch">
+                                <div class="card">
+                                    <div class="card-header" id="neoAcjabuid">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabuid" aria-expanded="true" aria-controls="collapseAcc{{ $userupline->id }}">
+                                                Name: 
+                                            </button>
+                                            <button class="btn btn-danger float-right" onClick="removeUpline('{{ $customerdata->id }}');">
+                                                Remove
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseAccjabuid" class="collapse " aria-labelledby="neoAcjabuid" data-parent="#neoAccordionSearch">
+                                        <div class="card-body">
+                                            <span><b></b></span><br>
+                                            <span>Name: </span><br>
+                                            <span>Contact no.: </span><br>
+                                            <span>Email: </span><br>
+                                            <span>Address: </span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="neoAccordion">
                                 @if(isset($userupline->id))
                                     <div class="card">
