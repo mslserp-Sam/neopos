@@ -297,37 +297,37 @@
                 // console.log(data);
                 var nData = data.data;
                 console.log(nData)
-                // if(data.status == "error"){
-                //    $('#pangError').html("")
-                //    $('#searchContent').html("") 
-                //    $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                if(data.status == "error"){
+                   $('#pangError').html("")
+                   $('#searchContent').html("") 
+                   $('#pangError').append(`<label class="text-danger ml-2">Email not found !</label>`)
                    
-                // }else{
-                //     $('#pangError').html("")
-                //     $('#searchContent').html("")
-                //     $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
-                //     $('#searchContent').append(`
-                //                 <div class="card">
-                //                     <div class="card-header" id="heading${nData.id}">
-                //                         <h5>
-                //                             <button class="btn btn-link" data-toggle="collapse" data-target="#data${nData.id}" aria-expanded="true" aria-controls="data${nData.id}">
-                //                               ${nData.first_name} ${nData.last_name}
-                //                             </button>
-                //                             <button class="btn btn-primary float-right addTag" data-data-tagid="${nData.id}" onClick="addTag('${nData.id}', '{{ $customerdata->referal_code }}', '{{ $customerdata->id }}');">
-                //                                 Add
-                //                             </button>
-                //                         </h5>
-                //                     </div>
-                //                     <div id="data${nData.id}" class="collapse " aria-labelledby="heading${nData.id}" data-parent="#accordion">
-                //                       <div class="card-body">
-                //                         <span>Name: ${nData.first_name} ${nData.last_name}</span><br>
-                //                         <span>Contact no.: ${nData.contact_number}</span><br>
-                //                         <span>Email: ${nData.email}</span><br>
-                //                         <span>Address: ${nData.address}</span><br>
-                //                       </div>    
-                //                     </div>
-                //                 </div>`)
-                // }
+                }else{
+                    $('#pangError').html("")
+                    $('#searchContent').html("")
+                    $('#pangError').append(`<label class="text-success ml-2">Email matched !</label>`)
+                    $('#searchContent').append(`
+                                <div class="card">
+                                    <div class="card-header" id="heading${nData.id}">
+                                        <h5>
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#data${nData.id}" aria-expanded="true" aria-controls="data${nData.id}">
+                                              ${nData.first_name} ${nData.last_name}
+                                            </button>
+                                            <button class="btn btn-primary float-right addTag" data-data-tagid="${nData.id}" onClick="addTag('${nData.id}', '{{ $customerdata->referal_code }}', '{{ $customerdata->id }}');">
+                                                Add
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="data${nData.id}" class="collapse " aria-labelledby="heading${nData.id}" data-parent="#accordion">
+                                      <div class="card-body">
+                                        <span>Name: ${nData.first_name} ${nData.last_name}</span><br>
+                                        <span>Contact no.: ${nData.contact_number}</span><br>
+                                        <span>Email: ${nData.email}</span><br>
+                                        <span>Address: ${nData.address}</span><br>
+                                      </div>    
+                                    </div>
+                                </div>`)
+                }
                 
               
             }
