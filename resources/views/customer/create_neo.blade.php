@@ -97,86 +97,89 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex p-3 ">
-                            <h5 class="font-weight-bold">Tag Neopreneur Upline</h5>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <lavel cclass="form-control-label">Upline name</lavel>
-                            <input type="text" class ="form-control" id="inputNeo" /> 
-                        </div>
-                        <div id="pangErrorNeo">
-                            
-                        </div>
-                        <div id="neoAccordion">
-                            @if(isset($userupline->id))
-                                <div class="card">
-                                    <div class="card-header" id="neoAc{{ $userupline->id }}">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAcc{{ $userupline->id }}" aria-expanded="true" aria-controls="collapseAcc{{ $userupline->id }}">
-                                                Name: {{$userupline->first_name}} {{$userupline->last_name}}
-                                            </button>
-                                            <button class="btn btn-danger float-right" onClick="removeUpline('{{ $customerdata->id }}');">
-                                                Remove
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseAcc{{ $userupline->id }}" class="collapse " aria-labelledby="neoAc{{ $userupline->id }}" data-parent="#neoAccordion">
-                                        <div class="card-body">
-                                            <span><b>{{$userupline->user_type}}</b></span><br>
-                                            <span>Name: {{$userupline->first_name}} {{$userupline->last_name}}</span><br>
-                                            <span>Contact no.: {{$userupline->contact_number}}</span><br>
-                                            <span>Email: {{$userupline->email}}</span><br>
-                                            <span>Address: {{$userupline->address}}</span><br>
+        @if($customerdata->id))
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex p-3 ">
+                                <h5 class="font-weight-bold">Tag Neopreneur Upline</h5>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <lavel cclass="form-control-label">Upline name</lavel>
+                                <input type="text" class ="form-control" id="inputNeo" /> 
+                            </div>
+                            <div id="pangErrorNeo">
+                                
+                            </div>
+                            <div id="neoAccordion">
+                                @if(isset($userupline->id))
+                                    <div class="card">
+                                        <div class="card-header" id="neoAc{{ $userupline->id }}">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAcc{{ $userupline->id }}" aria-expanded="true" aria-controls="collapseAcc{{ $userupline->id }}">
+                                                    Name: {{$userupline->first_name}} {{$userupline->last_name}}
+                                                </button>
+                                                <button class="btn btn-danger float-right" onClick="removeUpline('{{ $customerdata->id }}');">
+                                                    Remove
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseAcc{{ $userupline->id }}" class="collapse " aria-labelledby="neoAc{{ $userupline->id }}" data-parent="#neoAccordion">
+                                            <div class="card-body">
+                                                <span><b>{{$userupline->user_type}}</b></span><br>
+                                                <span>Name: {{$userupline->first_name}} {{$userupline->last_name}}</span><br>
+                                                <span>Contact no.: {{$userupline->contact_number}}</span><br>
+                                                <span>Email: {{$userupline->email}}</span><br>
+                                                <span>Address: {{$userupline->address}}</span><br>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @endif
+                            </div>
+                            <button type="button" class="btn btn-md btn-primary float-right" id="taguplineBtn" >Add</button>
                         </div>
-                        <button type="button" class="btn btn-md btn-primary float-right" id="taguplineBtn" >Add</button>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex p-3 ">
-                                <h5 class="font-weight-bold">Search Service Provider</h5>
-                        </div>
-                        <div class="input-group ml-2 mb-2">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
-                            <input type="hidden" value="{{ $customerdata->referal_code }}" id="neo_referal_code">
-                        </div>
-                        <div id="pangError">
-                            
-                        </div>
-                        <div id="accordion">
-                            <div id="searchContent">
-                                
-                            </div>
-                            <div id="alertAdd">
-                                
-                            </div>
-                            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="d-flex p-3 ">
-                                <h5 class="font-weight-bold">Service Provider List</h5>
+                                    <h5 class="font-weight-bold">Search Service Provider</h5>
                             </div>
-                            <div id="neoList">
+                            <div class="input-group ml-2 mb-2">
+                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control " placeholder="Search..." id="searchNeo">
+                                <input type="hidden" value="{{ $customerdata->referal_code }}" id="neo_referal_code">
+                            </div>
+                            <div id="pangError">
                                 
                             </div>
-                            
+                            <div id="accordion">
+                                <div id="searchContent">
+                                    
+                                </div>
+                                <div id="alertAdd">
+                                    
+                                </div>
+                                <hr>
+                                <div class="d-flex p-3 ">
+                                    <h5 class="font-weight-bold">Service Provider List</h5>
+                                </div>
+                                <div id="neoList">
+                                    
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>  
-           
-        </div>
+                </div>  
+            
+            </div>
+        @endif
+        
     </div>
 </x-master-layout>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
