@@ -205,10 +205,12 @@ class BookingController extends Controller
         $referal_code = $request->id;
         $referal_code = $request->neo_id;
 
-        $data = DB::table('users')->where('user_type', 'provider')->where('sp_neo_id' ,'=', NULL)
+        $data = DB::table('users')
+        ->where('user_type', 'provider')
+        ->where('user_type',  'provider')->where('sp_neo_id' ,'=', NULL)
         ->where('first_name', 'like', $name.'%')
-        ->orWhere('last_name', 'like', $name.'%')
-        ->first();
+        ->orWhere('last_name', 'like', $name.'%')->where('user_type', 'provider')->where('user_type',  'provider')->where('sp_neo_id' ,'=', NULL)
+        ->get();
         if($data == null){
            return response()->json(['data'=> 'none' ,'status' => 'error']);  
         }else{
