@@ -105,28 +105,15 @@
                             <div class="d-flex p-3 ">
                                 <h5 class="font-weight-bold">Tag Neopreneur Upline</h5>
                             </div>
-                            <div class="form-group col-md-4">
-                                <lavel cclass="form-control-label">Upline name</lavel>
+                            <div class="form-group col-md-4" id="tagNeo">
+                                <lavel cclass="form-control-label">Neopreneur name</lavel>
                                 <input type="text" class ="form-control" id="inputNeo" /> 
                             </div>
                             <div id="pangErrorNeo">
                                 
                             </div>
                             <div id="neoAccordionSearch">
-                                <div class="card">
-                                    <div class="card-header" id="neoAcjabuid">
-                                        
-                                    </div>
-                                    <div id="collapseAccjabuid" class="collapse " aria-labelledby="neoAcjabuid" data-parent="#neoAccordionSearch">
-                                        <div class="card-body">
-                                            <span><b></b></span><br>
-                                            <span>Name: </span><br>
-                                            <span>Contact no.: </span><br>
-                                            <span>Email: </span><br>
-                                            <span>Address: </span><br>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div id="neoAccordion">
                                 @if(isset($userupline->id))
@@ -271,30 +258,56 @@
             }
         });
     })
-    $('#inputNeo').on('keyup', () => {
+    $('#inputNeo').on('keyup', function(e) {
         var vdata = {
             email: $('#inputNeo').val(),
         }
-        $.ajax({
-            type: 'GET',
-            url: '{{ route("booking.search_neo_tagged") }}',
-            data: vdata,
-            dataType: 'JSON',
-            success: function(data) {
-                console.log(data)
-                var nData = data.data;
-                console.log(nData)
-                if(data.status == "error"){
-                    $('#pangErrorNeo').html("")
-                    $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email not found !</label>`)
-                    $('#taguplineBtn').attr('disabled', true)
-                }else{
-                    $('#pangErrorNeo').html("")
-                    $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
-                    $('#taguplineBtn').attr('disabled', false)
+        if(e.keyCode == 13)
+        {
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("booking.search_neo_tagged") }}',
+                data: vdata,
+                dataType: 'JSON',
+                success: function(data) {
+                    console.log(data)
+                    var nData = data.data;
+                    console.log(nData)
+                    if(data.status == "error"){
+                        $('#pangErrorNeo').html("")
+                        $('#pangErrorNeo').append(`<label class="text-danger ml-2">Email not found !</label>`)
+                        $('#taguplineBtn').attr('disabled', true)
+                        $('#neoAccordionSearch').html("")
+                        
+                    }else{
+                        $('#pangErrorNeo').html("")
+                        $('#neoAccordionSearch').html("")
+                        $('#pangErrorNeo').append(`<label class="text-success ml-2">Email matched !</label>`)
+                        $('#taguplineBtn').attr('disabled', false)
+                        $('#neoAccordionSearch').append(`
+                        <div class="card">
+                            <div class="card-header" id="neoAcjabuid">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabuid" aria-expanded="true" aria-controls="collapseAccjabuid">
+                                        Name: 
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseAccjabuid" class="collapse " aria-labelledby="neoAcjabuid" data-parent="#neoAccordionSearch">
+                                <div class="card-body">
+                                    <span><b></b></span><br>
+                                    <span>Name: </span><br>
+                                    <span>Contact no.: </span><br>
+                                    <span>Email: </span><br>
+                                    <span>Address: </span><br>
+                                </div>
+                            </div>
+                        </div>`)
+                    }
                 }
-            }
-        });
+            });
+        }
+        
     })
     $('#searchNeo').on('keyup', function(e){
         var vdata = {
