@@ -184,9 +184,9 @@
                                         <div class="d-flex p-3 ">
                                                 <h5 class="font-weight-bold">Search Neopreneur</h5>
                                         </div>
-                                        @if(isset($providerdata->upline))
-                                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $providerdata->upline)->first(); @endphp
-                                            @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('referal_code', $getUpline->upline)->first(); @endphp
+                                        @if(isset($providerdata->sp_neo_id))
+                                            @php $getUpline = Illuminate\Support\Facades\DB::table('users')->where('id', $providerdata->sp_neo_id)->first(); @endphp
+                                            @php $getProviderUpline = Illuminate\Support\Facades\DB::table('users')->where('id', $getUpline->neo_neo_id)->first(); @endphp
                                         @endif
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
