@@ -156,10 +156,10 @@
                                     <div class="card">
                                         <div class="card-header" id="neoAcjabs">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabs" aria-expanded="true" aria-controls="collapseAccjabs">
+                                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseAccjabs" aria-expanded="true" aria-controls="collapseAccjabs">
                                                     Name: 
                                                 </button>
-                                                <button class="btn btn-danger float-right" onClick="removeUpline('id');">
+                                                <button type="button" class="btn btn-danger float-right" onClick="removeUpline('id');">
                                                     Remove
                                                 </button>
                                             </h5>
