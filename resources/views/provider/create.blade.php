@@ -193,6 +193,9 @@
                                             <input type="text" class="form-control " placeholder="Search..." id="searchNeo" value="{{ isset($getUpline->display_name) ? $getUpline->display_name : '' }}">
                                             <input type="hidden" name="neo" id="neoReferralCode">
                                             <input type="hidden" name="neoUpline" id="neouplineCode">
+
+                                            <input type="hidden" name="neo_id" id="neo_id">
+                                            <input type="hidden" name="upline_neo_id" id="upline_neo_id">
                                         </div>
                                         <div id="pangError" class="ml-2">
                             
@@ -306,6 +309,8 @@
                    $('#searchUpline').val("");
                    $('#neoReferralCode').val("")
                    $('#pangErrorUpline').html("")
+                   $('#neo_id').val("");
+                   $('#upline_neo_id').val("");
                    $('#searchUpline').attr('disabled', true)
                    
                 }else{
@@ -314,7 +319,14 @@
                     $("#neoReferralCode").val(nData.referal_code);
                     $("#neouplineCode").val(nData.upline);
                     $('#searchUpline').val(data.uplineEmail);
+
+                    $('#neo_id').val("");
+                    $('#upline_neo_id').val("");
+
                     $('#pangErrorUpline').html("");
+                    $('#neo_id').val("");
+                    $('#upline_neo_id').val("");
+                    
                     if(data.uplineEmail == ""){
                         $('#pangErrorUpline').html("");
                         $("#uplineReferralCode").val("");
