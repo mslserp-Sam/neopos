@@ -307,7 +307,7 @@ class HomeController extends Controller
         if($request->list_status == 'all'){
             $query = $query->whereNotIn('user_type',['admin','demo_admin']);
         }else{
-            $query = $query->where('user_type','provider')->where('upline', $getUser->referal_code);
+            $query = $query->where('user_type','provider')->where('sp_neo_id', $getUser->id);
         }   
         return $datatable->eloquent($query)
             ->editColumn('display_name', function($query){
