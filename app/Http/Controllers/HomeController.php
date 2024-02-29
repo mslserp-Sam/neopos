@@ -118,16 +118,16 @@ class HomeController extends Controller
         }
 
         if($user->hasRole('Neopreneur')){
-            $total_downline = DB::table('users')->where('upline', $user->referal_code)->where('user_type', 'provider')
+            $total_downline = DB::table('users')->where('sp_neo_id', $user->id)->where('user_type', 'provider')
             ->join('bookings', 'users.id', '=', 'bookings.provider_id')
             ->count();
 
-            $total_downline_services = DB::table('users')->where('upline', $user->referal_code)->where('user_type', 'provider')
+            $total_downline_services = DB::table('users')->where('sp_neo_id', $user->id)->where('user_type', 'provider')
             ->count();
 
             $total_downline_commission = DB::table('earnings_neo')->where('neo_id', $user->id)->sum('neo_comm');
 
-            $total_sp_rev = DB::table('users')->where('upline', $user->referal_code)->where('user_type', 'provider')
+            $total_sp_rev = DB::table('users')->where('sp_neo_id', $user->id)->where('user_type', 'provider')
             ->join('earnings_service_provider', 'users.id', '=', 'earnings_service_provider.sp_id')
             ->sum('sp_comm');
 
