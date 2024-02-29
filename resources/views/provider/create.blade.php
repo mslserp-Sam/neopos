@@ -326,11 +326,13 @@
                     $('#pangErrorUpline').html("");
                     $('#neo_id').val("");
                     $('#upline_neo_id').val("");
-                    
+                    console.log('pasok')
                     if(data.uplineEmail == ""){
                         $('#pangErrorUpline').html("");
                         $("#uplineReferralCode").val("");
+                        console.log('pasok2')
                     }else{
+                        console.log('pasok3')
                         $("#uplineReferralCode").val(data.ref_neo);
                         $('#pangErrorUpline').append(`<label class="text-success ml-2">Email matched !</label>`)
                         $('#searchUpline').attr('disabled', true)
