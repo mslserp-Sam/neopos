@@ -206,6 +206,8 @@ class ProviderController extends Controller
         }else{
             $user = User::findOrFail($id);
             $data['upline'] = isset($data['neo']) ? $data['neo'] : NULL;
+            $data['sp_neo_id'] = isset($data['neo_id']) ? $data['neo_id'] : NULL;
+            $data['sp_upline_id'] = isset($data['upline_neo_id']) ? $data['upline_neo_id'] : NULL;
             $user->fill($data)->update();
             if($user){
                 if($data['spNeoUpline'] != NULL){
