@@ -320,8 +320,8 @@
                     $("#neouplineCode").val(nData.upline);
                     $('#searchUpline').val(data.uplineEmail);
 
-                    $('#neo_id').val("");
-                    $('#upline_neo_id').val("");
+                    $('#neo_id').val(nData.id);
+                    $('#upline_neo_id').val(nData.neo_neo_id);
 
                     $('#pangErrorUpline').html("");
                     $('#neo_id').val("");
