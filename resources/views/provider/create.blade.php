@@ -150,7 +150,7 @@
                                 {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'rows'=>1  , 'placeholder'=> __('messages.address') ]) }}
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div id="neoAccordion">
                                     <div class="card">
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="">
@@ -190,7 +190,7 @@
                                         @endif
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo" value="{{ isset($getUpline->email) ? $getUpline->email : '' }}">
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchNeo" value="{{ isset($getUpline->display_name) ? $getUpline->display_name : '' }}">
                                             <input type="hidden" name="neo" id="neoReferralCode">
                                             <input type="hidden" name="neoUpline" id="neouplineCode">
                                         </div>
@@ -208,7 +208,7 @@
                                         </div>
                                         <div class="input-group ml-2 mb-2">
                                             <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline" value="{{ isset($getProviderUpline->email) ? $getProviderUpline->email : '' }}">
+                                            <input type="text" class="form-control " placeholder="Search..." id="searchUpline" value="{{ isset($getProviderUpline->display_name) ? $getProviderUpline->display_name : '' }}">
                                             <input type="hidden" name="spNeoUpline" id="uplineReferralCode">
                                         </div>
                                         <div id="pangErrorUpline" class="ml-2">
