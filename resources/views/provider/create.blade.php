@@ -324,8 +324,7 @@
                     $('#upline_neo_id').val(nData.neo_neo_id);
 
                     $('#pangErrorUpline').html("");
-                    $('#neo_id').val("");
-                    $('#upline_neo_id').val("");
+                   
                     console.log('pasok')
                     if(data.uplineEmail == ""){
                         $('#pangErrorUpline').html("");
